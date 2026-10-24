@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tool caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# macOS
+.DS_Store
+
+# Node, which arrives uninvited. The default renderer is Hyperframes over
+# `npx`, and it installs into the composition folder it is run in -- so a
+# node_modules/ appears next to any film that has ever been rendered.
+node_modules/
+package-lock.json
+
+# Rendered output. A film is a build product: regenerable from its spec, and
+# measured in megabytes that do not delta-compress. Five films at three formats
+# came to 75 MB in the brag-output run this package generalises.
+out/
+*.mp4
+*.webm
+# Frame stores. Hyperframes writes its temporary frames NEXT TO the output
+# path, and the disk-capture default wants roughly 4.3 GB per 20 seconds.
+frames/
+.hyperframes/
+
+# The asset tree the films render from, and the reason scripts/ has an audit
+# for it: a WAV and an MP3 do not delta-compress, so none of it belongs in a
+# clone. What is NOT here is the point -- the audit says, per file, whether it
+# is a copy of something tracked, the output of a tool still on the machine, or
+# neither. The third class is the one that is one disk failure from gone.
+_assets/
+
+# Working notes, not the project's documentation.
+.private/

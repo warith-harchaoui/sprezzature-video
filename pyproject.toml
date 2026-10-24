@@ -1,0 +1,140 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sprezzature-video"
+version = "0.1.0"
+description = "Project launch films for the sprezzature stack: one spec drives landscape, portrait and square on a single time grid, every on-screen claim verified against the code it describes, and the asset tree audited for whether the film can be rendered again from a clone."
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [
+    {name = "Warith HARCHAOUI", email = "warithmetics@deraison.ai"},
+]
+keywords = ["video", "launch-video", "demo-video", "storyboard", "webvtt", "hyperframes", "sprezzature"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Video",
+]
+dependencies = [
+    # The one WebVTT module in the suite. It is not vendored here on purpose:
+    # `sprezzature-audio` consolidated four writers and two readers onto
+    # `sprezzature_audio_scripts._vtt` and pinned every one of their
+    # differences in `tests/test_one_vtt.py`. Writing a fifth writer for this
+    # package would re-open exactly what that consolidation closed, and the
+    # differences that matter here — cue identifiers, line structure — are
+    # among the ones it preserves.
+    #
+    # The floor is 1.5.0 because that is the release whose `__init__` re-exports
+    # `write_vtt` / `render_vtt` as public API. Against anything older the
+    # import has to reach into the scripts package directly, which is a private
+    # path this package has no business knowing.
+    "sprezzature-audio>=1.5.0",
+    # Specs are YAML, like `assets/*.yaml` everywhere else in the suite, so a
+    # film is a reviewable text file rather than a Python literal.
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# The voice. `sprezzature-audio[narrate]` pulls `speaker-helper[kokoro,detect]`,
+# which is where the engines actually live — this package never speaks to
+# Kokoro directly, and must not: espeak-ng's loader wheel can kill the process
+# from C with no Python traceback, and the handling for that lives one layer
+# down where it was learned.
+#
+# Separate from the base install because a film can be made silent, and the
+# engines are heavy.
+voice = [
+    "sprezzature-audio[narrate]>=1.5.0",
+]
+# ffmpeg, through the suite's door onto it rather than a hand-rolled
+# subprocess. video-helper 2.7.0 already carries the primitives this package
+# needs by name: `mux_audio`, `concat`, `image_loop`, `burn_subs`, `duration`,
+# `dimensions`, plus two-pass target-size compression. The poster-as-frame-0
+# trick and loudness normalisation are built out of those.
+post = [
+    "video-helper>=2.7.0",
+]
+# The local render path. Hyperframes is the default renderer and arrives over
+# `npx` (Apache 2.0, Node, no Python package), so it is NOT a dependency here —
+# see `sprezzature_video/renderers/`. Playwright is the escape hatch: a
+# composition is HTML, so frames can be captured without Node at all.
+local = [
+    "playwright>=1.40",
+]
+cli = [
+    "click>=8.1",
+]
+api = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+]
+mcp = [
+    "fastapi-mcp>=0.3",
+    # The same pin the rest of the suite carries: fastapi-mcp 0.4.0 declares
+    # mcp>=1.12.0 with no upper bound but calls mcp's Server(...)
+    # positionally, and mcp 2.0.0 made a parameter keyword-only.
+    "mcp<2.0",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "httpx>=0.27",
+    # starlette 1.9.0 moved its TestClient onto httpx2, and CI installs
+    # `.[dev,...]` rather than reading requirements-dev.txt, so the
+    # declaration has to be where the install actually looks.
+    "httpx2>=2.0.0",
+]
+
+[project.scripts]
+make-film = "sprezzature_video.cli:main"
+sprezzature-video = "sprezzature_video.cli_click:main"
+sprezzature-video-mcp = "sprezzature_video.mcp:main"
+
+[project.urls]
+Homepage = "https://sprezzature.ai/"
+Repository = "https://github.com/warith-harchaoui/sprezzature-video"
+
+[tool.setuptools]
+packages = [
+    "sprezzature_video",
+    "sprezzature_video.renderers",
+    "sprezzature_video_scripts",
+]
+
+[tool.setuptools.package-dir]
+"sprezzature_video_scripts" = "scripts"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "renders: shells out to a real renderer; skipped unless the toolchain is present",
+]
+# `--strict-markers` because the alternative is a marker that does nothing:
+# pytest warns about an unknown mark and runs the test anyway, so a typo in
+# `@pytest.mark.renders` reads as a marked test and behaves as an unmarked one.
+# It cost sprezzature-accessibility seven LLM tests running in every default
+# run for weeks. A guard in the hub checks all ten packages still carry it.
+addopts = "-ra --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "C4", "UP", "SIM"]
+ignore = [
+    "E501",
+    "B008",
+    "SIM108",
+]
