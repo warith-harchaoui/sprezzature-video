@@ -117,14 +117,15 @@ Homepage = "https://sprezzature.ai/"
 Repository = "https://github.com/warith-harchaoui/sprezzature-video"
 
 [tool.setuptools]
-packages = [
-    "sprezzature_video",
-    "sprezzature_video.renderers",
-    "sprezzature_video_scripts",
-]
-
-[tool.setuptools.package-dir]
-"sprezzature_video_scripts" = "scripts"
+# Only what exists. `sprezzature_video.renderers` and a `scripts/` package were
+# declared here first, ahead of the modules meant to fill them -- and an empty
+# directory is not a thing git carries, so they were present on the machine
+# that wrote them and absent from every clone. setuptools then refused the
+# build with "package directory does not exist", which is the right answer to
+# a manifest describing a repository that does not exist.
+#
+# Add each one back in the commit that gives it a file.
+packages = ["sprezzature_video"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
