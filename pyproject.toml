@@ -107,10 +107,19 @@ dev = [
     "httpx2>=2.0.0",
 ]
 
-[project.scripts]
-make-film = "sprezzature_video.cli:main"
-sprezzature-video = "sprezzature_video.cli_click:main"
-sprezzature-video-mcp = "sprezzature_video.mcp:main"
+# [project.scripts] is deliberately absent until the modules behind it exist.
+# It was declared first, naming `cli`, `cli_click` and `mcp` ahead of writing
+# them, and `pip install -e .` duly put three commands on PATH that died with
+# ModuleNotFoundError. A command that exists and does not run is worse than a
+# missing one: it is discoverable, it looks supported, and it fails in the
+# caller's hands rather than at install time.
+#
+# Same rule as the packages list above -- each entry point returns in the
+# commit that gives it a module:
+#
+#     make-film              = "sprezzature_video.cli:main"
+#     sprezzature-video      = "sprezzature_video.cli_click:main"
+#     sprezzature-video-mcp  = "sprezzature_video.mcp:main"
 
 [project.urls]
 Homepage = "https://sprezzature.ai/"
