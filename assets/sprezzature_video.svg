@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1224" height="946" viewBox="0 0 1224 946" role="img" aria-labelledby="sp-title sp-desc" font-family="Roboto, -apple-system, Helvetica, Arial, sans-serif"><title id="sp-title">Tools in the Quadrant</title><desc id="sp-desc">A 2D positioning map of 8 tools, Nimble to Robust on the horizontal axis, Versatile to Precise on the vertical axis.</desc><style>.sp-dot{cursor:pointer}.sp-dot:hover circle,.sp-dot:focus circle{stroke-width:2.4}.sp-dot:hover,.sp-dot:focus{filter:brightness(1.08);outline:none}</style><line x1="160.5" y1="484.0" x2="1063.5" y2="484.0" stroke="#C7C7CC" stroke-width="1.2" stroke-dasharray="2,4"/><line x1="612.0" y1="862.0" x2="612.0" y2="106.0" stroke="#C7C7CC" stroke-width="1.2" stroke-dasharray="2,4"/><text data-pole="right" x="1164.0" y="493.1" font-size="26" font-style="italic" fill="#6E6E73" text-anchor="end">Robust</text><text data-pole="left" x="60.0" y="493.1" font-size="26" font-style="italic" fill="#6E6E73" text-anchor="start">Nimble</text><text data-pole="top" x="612.0" y="64.5" font-size="26" font-style="italic" fill="#6E6E73" text-anchor="middle">Precise</text><text data-pole="bottom" x="612.0" y="918.8" font-size="26" font-style="italic" fill="#6E6E73" text-anchor="middle">Versatile</text><g class="sp-dot" tabindex="0" role="img" aria-label="Tools: sprezzature-video
+role: best
+axis1: 2.48
+axis2: 1.12"><circle cx="912.0" cy="259.0" r="8.74" fill="#FF3B30" stroke="white" stroke-width="1" opacity="0.95"/><title>Tools: sprezzature-video
+role: best
+axis1: 2.48
+axis2: 1.12</title></g><text x="899.5" y="264.9" font-size="17" fill="#1C1C1E" text-anchor="end">sprezzature-video</text><g class="sp-dot" tabindex="0" role="img" aria-label="Tools: Remotion
+role: competitor
+axis1: 0.65
+axis2: -1.00"><circle cx="690.1" cy="685.6" r="8.74" fill="#D27292" stroke="white" stroke-width="1" opacity="0.95"/><title>Tools: Remotion
+role: competitor
+axis1: 0.65
+axis2: -1.00</title></g><text x="677.6" y="691.6" font-size="17" fill="#1C1C1E" text-anchor="end">Remotion</text><g class="sp-dot" tabindex="0" role="img" aria-label="Tools: Revideo
+role: competitor
+axis1: 2.23
+axis2: -1.05"><circle cx="882.3" cy="695.0" r="8.74" fill="#539953" stroke="white" stroke-width="1" opacity="0.95"/><title>Tools: Revideo
+role: competitor
+axis1: 2.23
+axis2: -1.05</title></g><text x="894.8" y="700.9" font-size="17" fill="#1C1C1E" text-anchor="start">Revideo</text><g class="sp-dot" tabindex="0" role="img" aria-label="Tools: Motion Canvas
+role: competitor
+axis1: 1.86
+axis2: -0.79"><circle cx="837.2" cy="642.7" r="8.74" fill="#35C8E7" stroke="white" stroke-width="1" opacity="0.95"/><title>Tools: Motion Canvas
+role: competitor
+axis1: 1.86
+axis2: -0.79</title></g><text x="849.7" y="648.7" font-size="17" fill="#1C1C1E" text-anchor="start">Motion Canvas</text><g class="sp-dot" tabindex="0" role="img" aria-label="Tools: Hyperframes
+role: competitor
+axis1: 1.94
+axis2: -1.12"><circle cx="846.4" cy="709.0" r="8.74" fill="#D59741" stroke="white" stroke-width="1" opacity="0.95"/><title>Tools: Hyperframes
+role: competitor
+axis1: 1.94
+axis2: -1.12</title></g><text x="833.9" y="715.0" font-size="17" fill="#1C1C1E" text-anchor="end">Hyperframes</text><g class="sp-dot" tabindex="0" role="img" aria-label="Tools: brag (latent-spaces)
+role: competitor
+axis1: 1.81
+axis2: -0.27"><circle cx="831.1" cy="538.9" r="8.74" fill="#C0B7FF" stroke="white" stroke-width="1" opacity="0.95"/><title>Tools: brag (latent-spaces)
+role: competitor
+axis1: 1.81
+axis2: -0.27</title></g><text x="818.6" y="544.8" font-size="17" fill="#1C1C1E" text-anchor="end">brag (latent-spaces)</text><g class="sp-dot" tabindex="0" role="img" aria-label="Tools: Manim
+role: right
+axis1: 2.48
+axis2: -0.46"><circle cx="912.0" cy="577.2" r="8.74" fill="#007AFF" stroke="white" stroke-width="1" opacity="0.95"/><title>Tools: Manim
+role: right
+axis1: 2.48
+axis2: -0.46</title></g><text x="924.5" y="583.1" font-size="17" fill="#1C1C1E" text-anchor="start">Manim</text><g class="sp-dot" tabindex="0" role="img" aria-label="Tools: Descript
+role: worst
+axis1: -2.48
+axis2: 1.12"><circle cx="312.0" cy="259.0" r="8.74" fill="#A52A2A" stroke="white" stroke-width="1" opacity="0.95"/><title>Tools: Descript
+role: worst
+axis1: -2.48
+axis2: 1.12</title></g><text x="324.5" y="264.9" font-size="17" fill="#1C1C1E" text-anchor="start">Descript</text><text x="612.0" y="26" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">Tools in the Quadrant</text></svg>

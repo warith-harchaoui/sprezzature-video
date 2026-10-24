@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# pre-push — run the same gates CI runs, before the push rather than after.
+#
+# Enable once per clone:  git config core.hooksPath .githooks
+#
+# CI is three Python versions and a few minutes; this is one version and a few
+# seconds. It exists to catch the ordinary mistakes -- an unformatted file, a
+# broken import -- without a round trip through GitHub.
+set -euo pipefail
+
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$here"
+
+echo "pre-push: ruff"
+ruff check .
+ruff format --check .
+
+echo "pre-push: mypy"
+python -m mypy sprezzature_video
+
+echo "pre-push: pytest"
+python -m pytest -q
+
+echo "pre-push: all gates green"

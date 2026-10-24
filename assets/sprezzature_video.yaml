@@ -1,0 +1,144 @@
+meta:
+  reference: sprezzature-video
+  rotation_deg: 11.646
+  explained_variance_ratio:
+  - 0.589
+  - 0.2669
+  cumulative_variance: 0.8558
+  n_approaches: 8
+  attributes:
+  - Claims checked against source
+  - Asset rebuild audit
+  - Self-hosted
+  - Code-first
+  - Open licence
+  - Motion breadth
+  lower_is_better: []
+axes:
+  axis_1:
+    name: Nimble ↔ Robust
+    pole_left: Nimble
+    pole_right: Robust
+    loadings:
+      Claims checked against source: 0.2533
+      Asset rebuild audit: 0.3955
+      Self-hosted: 0.5134
+      Code-first: 0.4834
+      Open licence: 0.48
+      Motion breadth: -0.2276
+  axis_2:
+    name: Versatile ↔ Precise
+    pole_bottom: Versatile
+    pole_top: Precise
+    loadings:
+      Claims checked against source: 0.5996
+      Asset rebuild audit: 0.3326
+      Self-hosted: -0.277
+      Code-first: -0.3373
+      Open licence: -0.2118
+      Motion breadth: -0.5427
+approaches:
+- name: sprezzature-video
+  coordinates:
+    axis_1: 2.4782
+    axis_2: 1.1178
+  role: best
+  color: '#FF3B30'
+  attributes:
+    Claims checked against source: 5.0
+    Asset rebuild audit: 5.0
+    Self-hosted: 5.0
+    Code-first: 5.0
+    Open licence: 5.0
+    Motion breadth: 2.0
+- name: Remotion
+  coordinates:
+    axis_1: 0.6452
+    axis_2: -1.0016
+  role: competitor
+  color: '#D27292'
+  attributes:
+    Claims checked against source: 1.0
+    Asset rebuild audit: 2.0
+    Self-hosted: 4.0
+    Code-first: 5.0
+    Open licence: 2.0
+    Motion breadth: 5.0
+- name: Revideo
+  coordinates:
+    axis_1: 2.2327
+    axis_2: -1.0482
+  role: competitor
+  color: '#539953'
+  attributes:
+    Claims checked against source: 1.0
+    Asset rebuild audit: 2.0
+    Self-hosted: 5.0
+    Code-first: 5.0
+    Open licence: 5.0
+    Motion breadth: 4.0
+- name: Motion Canvas
+  coordinates:
+    axis_1: 1.8606
+    axis_2: -0.7885
+  role: competitor
+  color: '#35C8E7'
+  attributes:
+    Claims checked against source: 1.0
+    Asset rebuild audit: 2.0
+    Self-hosted: 5.0
+    Code-first: 4.0
+    Open licence: 5.0
+    Motion breadth: 4.0
+- name: Hyperframes
+  coordinates:
+    axis_1: 1.9363
+    axis_2: -1.1178
+  role: competitor
+  color: '#D59741'
+  attributes:
+    Claims checked against source: 1.0
+    Asset rebuild audit: 3.0
+    Self-hosted: 4.0
+    Code-first: 5.0
+    Open licence: 5.0
+    Motion breadth: 5.0
+- name: brag (latent-spaces)
+  coordinates:
+    axis_1: 1.8097
+    axis_2: -0.2727
+  role: competitor
+  color: '#C0B7FF'
+  attributes:
+    Claims checked against source: 1.0
+    Asset rebuild audit: 3.0
+    Self-hosted: 4.0
+    Code-first: 4.0
+    Open licence: 5.0
+    Motion breadth: 4.0
+- name: Manim
+  coordinates:
+    axis_1: 2.4782
+    axis_2: -0.4628
+  role: right
+  color: '#007AFF'
+  attributes:
+    Claims checked against source: 1.0
+    Asset rebuild audit: 2.0
+    Self-hosted: 5.0
+    Code-first: 5.0
+    Open licence: 5.0
+    Motion breadth: 3.0
+- name: Descript
+  coordinates:
+    axis_1: -2.4782
+    axis_2: 1.1178
+  role: worst
+  color: '#A52A2A'
+  attributes:
+    Claims checked against source: 1.0
+    Asset rebuild audit: 1.0
+    Self-hosted: 1.0
+    Code-first: 1.0
+    Open licence: 1.0
+    Motion breadth: 4.0

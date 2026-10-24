@@ -39,6 +39,11 @@ dependencies = [
     # import has to reach into the scripts package directly, which is a private
     # path this package has no business knowing.
     "sprezzature-audio>=1.5.0",
+    # Hashing, copying and path work for the asset ledger. Declared even
+    # though `audio-helper` already pulls it: `assets.py` imports it by name,
+    # and a dependency you use directly but inherit transitively is exactly
+    # what a clean venv turns into an ImportError nobody saw coming.
+    "os-helper>=2.10.0",
     # Measures how long a narration line actually is. The script this package
     # generalises hard-coded those durations with a comment warning that
     # regenerating a voice line would silently desync the subtitles -- and it
