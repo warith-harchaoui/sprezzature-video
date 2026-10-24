@@ -71,10 +71,11 @@ Hyperframes derrière une couture.
 
 ## État
 
-Précoce. Le vérificateur, le registre d'actifs, les sous-titres et l'après-rendu
-sont écrits et testés ; la couture du moteur de rendu, le chargeur de
-spécifications YAML et les cinq surfaces (CLI argparse, CLI Click, API HTTP,
-MCP, skill) ne sont pas encore là.
+0.2.0. Le vérificateur, le registre d'actifs, les sous-titres, l'après-rendu, le
+chargeur de spécifications YAML et les cinq surfaces sont écrits et testés —
+46 tests, CI sur 3.10/3.11/3.12. La couture du moteur de rendu reste hors
+bande : Hyperframes est piloté directement, et `renderers/` revient dans le
+commit qui lui donne un module.
 
 ## Licence
 

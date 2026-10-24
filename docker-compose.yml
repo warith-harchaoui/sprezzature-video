@@ -1,0 +1,32 @@
+# `docker compose up` is the whole onboarding. The Dockerfile beside this file
+# is a recipe; this is the way in — the port, the volume, the working directory
+# and the command, declared rather than reconstructed by the next reader from a
+# `docker run` line in somebody's shell history.
+#
+#   docker compose up -d
+#   curl -s localhost:8000/health
+#   docker compose run --rm api make-film verify /work/film.yaml --root /work
+#
+# No model and no network: this brick reads a spec, a composition and a
+# repository, and reports on them. It does not render — rendering needs a
+# browser and tens of seconds, and lives behind the renderer seam rather than
+# behind an HTTP request. That is why there is one service here and no second
+# profile, and saying so is part of the declaration.
+
+services:
+  api:
+    build: .
+    image: sprezzature-video:local
+    ports:
+      - "8000:8000"
+    volumes:
+      # The film spec, its compositions and the repository whose claims are
+      # being checked. Mounted rather than copied so the container never holds
+      # the only copy, and so a re-run sees a spec as just edited.
+      #
+      # `/v1/verify` resolves claim paths under this mount: a claim is only
+      # meaningful against the repository it describes, so the repository has
+      # to be visible from inside.
+      - ./work:/work
+    working_dir: /work
+    restart: unless-stopped

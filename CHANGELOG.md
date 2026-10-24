@@ -4,7 +4,7 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.2.0] - 2026-10-24
 
 ### Added
 - `claims` — a claim is a declared pair (the text on screen, the place in the
@@ -23,8 +23,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `LANDSCAPE.md` / `PAYSAGE.md` — the competitive position, with the
   positioning map produced by `standpoint`.
 
+- `spec` — a film as a reviewable YAML file: its claims, its assets and its
+  narration. The three things that go stale, out of a generator and into a
+  file a reviewer can diff.
+- **The five surfaces.** `make-film` (argparse), `sprezzature-video` (Click),
+  a FastAPI HTTP API, MCP tools mounted on that same app, and a skill. Plus a
+  Dockerfile and a compose file, and `TRIGGERS.md` for routing.
+
+### Fixed
+- `[project.scripts]` named `cli`, `cli_click` and `mcp` before those modules
+  existed, so 0.1.0 put three commands on PATH that died with
+  `ModuleNotFoundError`. They return here with their modules.
+- `packages` declared `sprezzature_video.renderers` and a `scripts` package as
+  empty directories, which git does not carry — the first CI run failed with
+  "package directory does not exist".
+- `os-helper` was imported by name but only inherited transitively.
+
 ### Notes
-- Not yet released to PyPI. The renderer seam, the YAML spec loader and the
-  five surfaces (argparse CLI, Click CLI, HTTP API, MCP, skill) are not here
-  yet; `[project.scripts]` is declared ahead of them and will not resolve until
-  those modules exist.
+- mypy runs at `python_version = 3.12`, not 3.10: numpy >= 2.3 writes its stubs
+  with PEP 695 `type` statements that mypy only accepts from 3.12, and numpy
+  arrives through pydantic's type graph as soon as `api.py` is checked. The
+  3.10 floor is covered by the CI matrix actually running on 3.10.
+- The renderer seam is still not here. Hyperframes is driven out of band; the
+  `renderers/` package returns in the commit that gives it a module.

@@ -37,14 +37,14 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-      # The package with its dev extra. The core dependencies are deliberately
-      # light -- `sprezzature-audio` brings click and langdetect, `audio-helper`
-      # brings scipy and numpy, and torch is behind an extra neither of them
-      # pulls -- so this install stays in the tens of seconds.
+      # The package with every surface it advertises. Not just [dev]: without
+      # [cli,api,mcp] the Click, HTTP and MCP tests all skip, and the gate goes
+      # green on code nobody ran -- a failure this suite has already paid for.
+      # Still cheap: the heavy backends sit behind extras none of these pull.
       - name: Install
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev]"
+          pip install -e ".[dev,cli,api,mcp]"
       - name: Ruff
         run: ruff check .
       - name: Ruff format

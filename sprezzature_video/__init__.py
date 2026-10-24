@@ -36,14 +36,16 @@ from sprezzature_video.claims import (
     verify_all,
     visible_text,
 )
+from sprezzature_video.spec import FilmSpec, load
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "Asset",
     "AssetLedger",
     "AssetVerdict",
     "Claim",
+    "FilmSpec",
     "ClaimReport",
     "ClaimSource",
     "UndeclaredNumber",
@@ -53,6 +55,7 @@ __all__ = [
     "Verdict",
     "__version__",
     "as_claim",
+    "load",
     "numbers_in",
     "measure",
     "read_actual",

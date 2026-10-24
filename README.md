@@ -70,9 +70,11 @@ through Hyperframes behind a seam.
 
 ## Status
 
-Early. The checker, the asset ledger, the captions and the post-processing are
-written and tested; the renderer seam, the YAML spec loader and the five
-surfaces (argparse CLI, Click CLI, HTTP API, MCP, skill) are not here yet.
+0.2.0. The checker, the asset ledger, the captions, the post-processing, the
+YAML spec loader and all five surfaces are written and tested — 46 tests, with
+CI on 3.10/3.11/3.12. The renderer seam is still out of band: Hyperframes is
+driven directly, and `renderers/` returns in the commit that gives it a
+module.
 
 ## License
 

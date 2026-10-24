@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sprezzature-video"
-version = "0.1.0"
+version = "0.2.0"
 description = "Project launch films for the sprezzature stack: one spec drives landscape, portrait and square on a single time grid, every on-screen claim verified against the code it describes, and the asset tree audited for whether the film can be rendered again from a clone."
 readme = "README.md"
 requires-python = ">=3.10,<3.14"
@@ -107,19 +107,10 @@ dev = [
     "httpx2>=2.0.0",
 ]
 
-# [project.scripts] is deliberately absent until the modules behind it exist.
-# It was declared first, naming `cli`, `cli_click` and `mcp` ahead of writing
-# them, and `pip install -e .` duly put three commands on PATH that died with
-# ModuleNotFoundError. A command that exists and does not run is worse than a
-# missing one: it is discoverable, it looks supported, and it fails in the
-# caller's hands rather than at install time.
-#
-# Same rule as the packages list above -- each entry point returns in the
-# commit that gives it a module:
-#
-#     make-film              = "sprezzature_video.cli:main"
-#     sprezzature-video      = "sprezzature_video.cli_click:main"
-#     sprezzature-video-mcp  = "sprezzature_video.mcp:main"
+[project.scripts]
+make-film = "sprezzature_video.cli:main"
+sprezzature-video = "sprezzature_video.cli_click:main"
+sprezzature-video-mcp = "sprezzature_video.mcp:main"
 
 [project.urls]
 Homepage = "https://sprezzature.ai/"
