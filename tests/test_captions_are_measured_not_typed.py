@@ -1,0 +1,86 @@
+"""
+Caption timing comes from the audio, and caption text never splits into a
+fragment.
+
+The script this generalises hard-coded its durations, with a comment warning
+that regenerating a voice line would desync the subtitles. It did: correcting
+two stale sentences moved them by 43 and 64 milliseconds. These tests pin the
+behaviour that makes that impossible -- a duration is read, or the call fails.
+
+Author
+------
+`Warith HARCHAOUI, Ph.D. <https://www.linkedin.com/in/warith-harchaoui/>`_
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+
+from sprezzature_video import Spoken, measure, split_line, to_cues
+from sprezzature_video.captions import LINE_LIMIT
+
+
+def test_a_missing_narration_file_raises(tmp_path: Path) -> None:
+    """
+    Silence must not become a zero-length cue.
+
+    A cue of zero length is never painted, so the caption simply never appears
+    -- a failure a viewer sees and no test would.
+    """
+    with pytest.raises(FileNotFoundError):
+        measure(tmp_path / "absent.wav")
+
+
+def test_a_line_without_audio_or_duration_is_refused() -> None:
+    """Neither measured nor declared means the timing is unknown. Say so."""
+    with pytest.raises(ValueError, match="no audio and no duration"):
+        to_cues([Spoken(start=0.0, text="A line with no timing at all.")])
+
+
+def test_a_declared_duration_is_honoured() -> None:
+    """A translated track rides the original language's timing, with no audio."""
+    [(start, end, text)] = to_cues([Spoken(0.9, "Une phrase.", duration=3.0)])
+    assert (start, end) == (0.9, 3.9)
+    assert text == "Une phrase."
+
+
+def test_a_long_line_splits_after_punctuation() -> None:
+    """Punctuation stays on the left, so neither half reads as a fragment."""
+    head, tail = split_line("A command line is a wall. This builds the door.")
+    assert head == "A command line is a wall."
+    assert tail == "This builds the door."
+
+
+def test_a_long_line_splits_before_a_connector() -> None:
+    """A connector word moves right: "... and" alone is not a caption."""
+    head, tail = split_line("The simulator renders those eyes and the loop looks through them.")
+    assert not head.endswith("and")
+    assert tail.startswith("and")
+
+
+def test_a_split_divides_time_in_proportion() -> None:
+    """
+    The second half must not still be on screen after the voice moved on, so
+    the pivot follows the halves' lengths rather than splitting evenly.
+
+    The line has to exceed LINE_LIMIT or nothing splits -- the first version of
+    this test used a 46-character line and unpacked two cues from one.
+    """
+    text = "The simulator renders those eyes, and the loop looks through them."
+    assert len(text) > LINE_LIMIT
+    (a_start, a_end, a_text), (b_start, b_end, b_text) = to_cues([Spoken(0.0, text, duration=10.0)])
+
+    assert a_start == 0.0 and b_end == 10.0
+    # No gap and no overlap: a caption is on screen for the whole line.
+    assert a_end == b_start
+    # Computed from the halves' lengths, not hard-coded to dur/2.
+    expected = 10.0 * len(a_text) / (len(a_text) + len(b_text))
+    assert a_end == pytest.approx(expected)
+    assert a_text and b_text
+
+
+def test_a_short_line_is_left_whole() -> None:
+    """Splitting what already fits would make two captions where one reads."""
+    assert len(to_cues([Spoken(0.0, "Nine skills, one loop.", duration=2.0)])) == 1

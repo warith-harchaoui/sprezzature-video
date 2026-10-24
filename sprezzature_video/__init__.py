@@ -14,6 +14,14 @@ Author
 
 from __future__ import annotations
 
+from sprezzature_video.assets import (
+    Asset,
+    AssetLedger,
+    AssetVerdict,
+    Provenance,
+    State,
+)
+from sprezzature_video.captions import Spoken, measure, split_line, to_cues
 from sprezzature_video.claims import (
     Claim,
     ClaimReport,
@@ -32,15 +40,24 @@ from sprezzature_video.claims import (
 __version__ = "0.1.0"
 
 __all__ = [
+    "Asset",
+    "AssetLedger",
+    "AssetVerdict",
     "Claim",
     "ClaimReport",
     "ClaimSource",
     "UndeclaredNumber",
+    "Provenance",
+    "Spoken",
+    "State",
     "Verdict",
     "__version__",
     "as_claim",
     "numbers_in",
+    "measure",
     "read_actual",
+    "split_line",
+    "to_cues",
     "undeclared_numbers",
     "verify",
     "verify_all",

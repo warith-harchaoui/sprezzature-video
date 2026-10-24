@@ -39,6 +39,12 @@ dependencies = [
     # import has to reach into the scripts package directly, which is a private
     # path this package has no business knowing.
     "sprezzature-audio>=1.5.0",
+    # Measures how long a narration line actually is. The script this package
+    # generalises hard-coded those durations with a comment warning that
+    # regenerating a voice line would silently desync the subtitles -- and it
+    # did, by 43 and 64 milliseconds, the day two stale sentences were fixed.
+    # A number that can be measured should not be typed.
+    "audio-helper>=1.6.0",
     # Specs are YAML, like `assets/*.yaml` everywhere else in the suite, so a
     # film is a reviewable text file rather than a Python literal.
     "pyyaml>=6.0",
