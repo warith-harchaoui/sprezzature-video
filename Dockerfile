@@ -15,7 +15,7 @@ RUN apt-get update \
 # The API, the MCP endpoint mounted beside it, and the Click twin. fastapi and
 # uvicorn live behind the `api` extra precisely so nobody installing the
 # library pays for them, so an image that serves has to ask for it.
-RUN pip install --no-cache-dir ".[cli,api,mcp,post]"
+RUN pip install --no-cache-dir ".[api,mcp,post]"
 
 EXPOSE 8000
 
