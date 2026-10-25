@@ -52,6 +52,8 @@ dependencies = [
     "audio-helper>=1.6.0",
     # Specs are YAML, like `assets/*.yaml` everywhere else in the suite, so a
     # film is a reviewable text file rather than a Python literal.
+    # The command line, and the only parser since 2026-10-25.
+    "click>=8.1",
     "pyyaml>=6.0",
 ]
 
@@ -82,9 +84,6 @@ post = [
 local = [
     "playwright>=1.40",
 ]
-cli = [
-    "click>=8.1",
-]
 api = [
     "fastapi>=0.115",
     "uvicorn[standard]>=0.30",
@@ -109,7 +108,7 @@ dev = [
 
 [project.scripts]
 make-film = "sprezzature_video.cli:main"
-sprezzature-video = "sprezzature_video.cli_click:main"
+sprezzature-video = "sprezzature_video.cli:main"
 sprezzature-video-mcp = "sprezzature_video.mcp:main"
 
 [project.urls]

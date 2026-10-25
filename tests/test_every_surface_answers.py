@@ -21,12 +21,24 @@ from __future__ import annotations
 
 import json
 import subprocess
-import sys
 from pathlib import Path
 
 import pytest
+from click.testing import CliRunner
 
-from sprezzature_video import cli
+from sprezzature_video.cli import main as cli_main
+
+
+def _run(args: list[str]) -> int:
+    """
+    Invoke the command line and return its exit code.
+
+    Click signals through SystemExit rather than a return value, so the
+    argparse-era `main(argv) -> int` calls became this when the second parser
+    was removed on 2026-10-25.
+    """
+    return CliRunner().invoke(cli_main, args).exit_code
+
 
 SPEC = """
 name: demo
@@ -67,13 +79,13 @@ def test_every_command_can_start(command: str) -> None:
 
 
 def test_verify_exits_0_when_the_claim_holds(project: Path) -> None:
-    assert cli.main(["verify", str(project / "film.yaml"), "--root", str(project)]) == 0
+    assert _run(["verify", str(project / "film.yaml"), "--root", str(project)]) == 0
 
 
 def test_verify_exits_1_when_the_code_disagrees(project: Path) -> None:
     """The exit code is the whole point: it is what makes this usable as a gate."""
     (project / "catalog" / "figures.json").write_text(json.dumps([{"k": i} for i in range(127)]))
-    assert cli.main(["verify", str(project / "film.yaml"), "--root", str(project)]) == 1
+    assert _run(["verify", str(project / "film.yaml"), "--root", str(project)]) == 1
 
 
 def test_verify_refuses_a_spec_with_no_claims(tmp_path: Path) -> None:
@@ -84,44 +96,48 @@ def test_verify_refuses_a_spec_with_no_claims(tmp_path: Path) -> None:
     failure mode this package exists to prevent.
     """
     (tmp_path / "empty.yaml").write_text("name: empty\nclaims: []\n")
-    assert cli.main(["verify", str(tmp_path / "empty.yaml"), "--root", str(tmp_path)]) == 1
+    assert _run(["verify", str(tmp_path / "empty.yaml"), "--root", str(tmp_path)]) == 1
 
 
 def test_a_missing_spec_is_a_usage_error_not_a_crash(tmp_path: Path) -> None:
     """2, not 1: "you passed a bad path" is not "the film is wrong"."""
-    assert cli.main(["verify", str(tmp_path / "absent.yaml")]) == 2
+    assert _run(["verify", str(tmp_path / "absent.yaml")]) == 2
 
 
 def test_scan_finds_an_undeclared_number(project: Path, tmp_path: Path) -> None:
     page = tmp_path / "index.html"
     page.write_text("<p>167 kinds, 960 tests</p>")
-    assert cli.main(["scan", str(page), "--spec", str(project / "film.yaml")]) == 1
+    assert _run(["scan", str(page), "--spec", str(project / "film.yaml")]) == 1
 
 
 def test_scan_accepts_an_exempted_value(project: Path, tmp_path: Path) -> None:
     page = tmp_path / "index.html"
     page.write_text("<p>167 kinds — Sprezzature 2026</p>")
     args = ["scan", str(page), "--spec", str(project / "film.yaml"), "--ignore", "2026"]
-    assert cli.main(args) == 0
+    assert _run(args) == 0
 
 
-def test_the_click_twin_agrees_with_argparse(project: Path) -> None:
+def test_the_two_spellings_are_one_callable() -> None:
     """
-    Same question, same verdict, through the other door.
+    ``make-film`` and ``sprezzature-video`` must resolve to the same target.
 
-    The two CLIs delegate to one implementation, so a difference between them
-    could only be wording — and this is what would catch it if one ever grew
-    its own logic.
+    This replaces a test that ran both parsers and compared their exit codes.
+    Two names that each had their own implementation is how a pair drifts; two
+    names pointing at one function cannot.
     """
-    spec, root = str(project / "film.yaml"), str(project)
-    argparse_code = cli.main(["verify", spec, "--root", root])
-    click_run = subprocess.run(
-        [sys.executable, "-m", "sprezzature_video.cli_click", "verify", spec, "--root", root],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    assert click_run.returncode == argparse_code == 0
+    import tomllib
+
+    root = Path(__file__).resolve().parent.parent
+    scripts = tomllib.loads((root / "pyproject.toml").read_text())["project"]["scripts"]
+    assert scripts["make-film"] == scripts["sprezzature-video"]
+    assert scripts["make-film"] == "sprezzature_video.cli:main"
+
+
+def test_no_second_parser_grows_back() -> None:
+    """A second front door would re-introduce the duplicate command list."""
+    root = Path(__file__).resolve().parent.parent
+    assert not (root / "sprezzature_video" / "cli_click.py").exists()
+    assert "import argparse" not in (root / "sprezzature_video" / "cli.py").read_text()
 
 
 # ----------------------------------------------------------------- the API
