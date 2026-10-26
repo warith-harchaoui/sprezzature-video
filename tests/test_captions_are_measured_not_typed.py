@@ -84,3 +84,28 @@ def test_a_split_divides_time_in_proportion() -> None:
 def test_a_short_line_is_left_whole() -> None:
     """Splitting what already fits would make two captions where one reads."""
     assert len(to_cues([Spoken(0.0, "Nine skills, one loop.", duration=2.0)])) == 1
+
+
+def test_a_french_colon_is_a_break_point() -> None:
+    """
+    French sets a space before the colon, and uses it where English would use
+    a dash or a full stop.
+
+    Without a rule for it the splitter fell through to the middle word, and a
+    caption in the suite's own film read "ce qu'aucune référence / ne peut :"
+    — a break inside the clause, with the colon orphaned at the end of a line.
+    """
+    head, tail = split_line(
+        "Puis un modèle fait ce qu'aucune référence ne peut : il regarde ce que vous avez fait."
+    )
+    assert head.endswith(":")
+    assert tail.startswith("il regarde")
+
+
+def test_an_english_colon_is_a_break_point_too() -> None:
+    """The unspaced form, which is how English writes it."""
+    head, tail = split_line(
+        "The rule is the same in both directions: make the thing, then audit it."
+    )
+    assert head.endswith(":")
+    assert tail.startswith("make the thing")

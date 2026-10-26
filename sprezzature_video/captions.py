@@ -40,7 +40,12 @@ from pathlib import Path
 LINE_LIMIT = 58
 
 #: Break *after* these: punctuation keeps its place on the left of a break.
-AFTER = (". ", ", ", " ; ")
+#:
+#: The two colon forms are not decoration. French sets a space before it
+#: ("ne peut : il regarde"), English does not ("so: it looks"), and a line that
+#: cannot break there breaks in the middle of a clause instead -- which is how
+#: a caption ended up reading "ce qu'aucune référence / ne peut :".
+AFTER = (". ", ", ", " ; ", " : ", ": ", " — ")
 
 #: Break *before* these: a connector word moves to the right, so neither half
 #: of a split caption reads as a sentence fragment.
