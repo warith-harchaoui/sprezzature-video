@@ -52,6 +52,61 @@ undeclared_numbers(html, [claim])  # is anything on screen unaccounted for?
 Checking only declared claims protects the numbers somebody remembered to
 declare — never the one typed into a keyframe at midnight and left to go stale.
 
+## Does the film explain anything?
+
+Two checks that have nothing to do with rendering, and everything to do with
+whether a viewer who never heard of your package can say what it is for.
+
+### `pitch`: problem, solution, secret sauce
+
+Guy KAWASAKI's order. State what goes wrong, then what you do about it, then
+the one non-obvious thing that makes it possible. The third beat is the one
+people get wrong: the underlying magic is an insight, in plain language, that
+a competitor does not have. A feature list is not it, and neither is a demo.
+
+```bash
+sprezzature-video pitch film.yaml --duration 60
+# colors: the secret sauce reads as a feature list ('Ten packages. Five
+# surfaces each.'). Kawasaki's warning applies: the underlying magic is the
+# one non-obvious thing that makes the solution possible, not an inventory
+# of what ships.
+```
+
+Declared in the spec by scene index, so the check runs against the film that
+exists rather than a description of it that can drift:
+
+```yaml
+pitch:
+  problem:  [0, 1]
+  solution: [2, 3]
+  magic:    [4, 5]
+```
+
+It catches three things: no problem beat at all, a problem that arrives after
+the viewer's patience has run out, and a secret sauce that is an inventory.
+Whether the problem is the *right* problem stays a human question.
+
+### `prose`: the mechanical half of the writing charters
+
+Em dashes, comma-plus-and, sentences that open on a negation, the named
+machine tics. Both languages, each with its own list: `mordre` means nothing
+to the English checker and `truly` means nothing to the French one.
+
+```bash
+sprezzature-video prose script.txt --lang fr --strict
+```
+
+Modals and reflex antithesis are **counted and never failed on**. A raw modal
+count confuses the senses, and "a third party can demand this control" keeps
+its modal because it states enforceability. The number tells you where to
+read.
+
+Judgement stays judgement. Whether a sentence earns its place is not a thing
+a regular expression knows, and a green tick standing in for a reading would
+be worse than no check at all.
+
+---
+
 ## Install
 
 ```bash

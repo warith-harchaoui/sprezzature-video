@@ -139,5 +139,73 @@ def poster(video: str, out: str, at: float) -> None:
     click.echo(str(post.poster(video, out, at=at)))
 
 
+@main.command()
+@click.argument("text_file", type=click.Path(exists=True, dir_okay=False))
+@click.option("--lang", default="en", type=click.Choice(["en", "fr"]),
+              help="Which charter to apply.")
+@click.option("--strict", is_flag=True,
+              help="Exit 1 on any hard finding, for a pre-commit hook.")
+def prose(text_file: str, lang: str, strict: bool) -> None:
+    """Check writing against the charter: one line per line of text.
+
+    The mechanical half only. Whether a sentence earns its place stays a
+    human question, and a checker that pretended otherwise would let a green
+    tick stand in for a reading.
+    """
+    from sprezzature_video import charter
+
+    lines = [
+        (f"line {n}", line.strip())
+        for n, line in enumerate(Path(text_file).read_text(encoding="utf-8").splitlines(), 1)
+        if line.strip()
+    ]
+    result = charter.measure(lines, lang)
+    for finding in result["findings"]:
+        click.echo(str(finding))
+    click.echo(
+        f"\n{len(result['findings'])} hard finding(s) over "
+        f"{result['lines']} line(s)"
+    )
+    click.echo(
+        f"{result['antithesis']} reflex antithesis, {result['modals']} modal(s): "
+        f"places to read, not verdicts"
+    )
+    if strict and result["findings"]:
+        raise SystemExit(1)
+
+
+@main.command()
+@click.argument("spec_path", type=click.Path(exists=True, dir_okay=False))
+@click.option("--duration", type=float, required=True,
+              help="The film's length in seconds.")
+def pitch(spec_path: str, duration: float) -> None:
+    """Check a film explains itself: problem, then solution, then secret sauce.
+
+    Guy KAWASAKI's order. The third beat is the one people get wrong: the
+    underlying magic is the single non-obvious thing that makes the solution
+    possible, in plain language. A feature list is not it.
+    """
+    from sprezzature_video import pitch as pitch_mod
+    from sprezzature_video import spec as spec_mod
+
+    film = spec_mod.FilmSpec.load(spec_path)
+    scenes = getattr(film, "scenes", []) or []
+    report = pitch_mod.from_spec(
+        film,
+        scene_text=lambda i: scenes[i].get("text", "") if i < len(scenes) else "",
+        scene_start=lambda i: scenes[i].get("start", 0.0) if i < len(scenes) else 0.0,
+        duration=duration,
+    )
+    for finding in report.findings:
+        click.echo(finding)
+    if report.ok:
+        order = " then ".join(
+            f"{n} at {report.beats[n].start:.1f}s" for n in pitch_mod.BEATS
+        )
+        click.echo(f"problem, solution, secret sauce: {order}")
+    raise SystemExit(0 if report.ok else 1)
+
+
+
 if __name__ == "__main__":
     main()

@@ -22,6 +22,13 @@ from sprezzature_video.assets import (
     State,
 )
 from sprezzature_video.captions import Spoken, measure, split_line, to_cues
+
+# `measure_prose`, not `measure`: `captions.measure` already owns that name
+# in this namespace, and exporting both replaced the captions one silently.
+# The symptom was an unrelated caption test failing with a TypeError about
+# a PosixPath, which is the shape a shadowed function always takes.
+from sprezzature_video.charter import Finding, check_line
+from sprezzature_video.charter import measure as measure_prose
 from sprezzature_video.claims import (
     Claim,
     ClaimReport,
@@ -36,12 +43,17 @@ from sprezzature_video.claims import (
     verify_all,
     visible_text,
 )
+from sprezzature_video.pitch import Beat, PitchReport
+from sprezzature_video.pitch import check as check_pitch
 from sprezzature_video.spec import FilmSpec, load
 
 __version__ = "0.2.0"
 
 __all__ = [
     "Asset",
+    "Beat",
+    "Finding",
+    "PitchReport",
     "AssetLedger",
     "AssetVerdict",
     "Claim",
@@ -55,9 +67,12 @@ __all__ = [
     "Verdict",
     "__version__",
     "as_claim",
+    "check_line",
+    "check_pitch",
+    "measure",
+    "measure_prose",
     "load",
     "numbers_in",
-    "measure",
     "read_actual",
     "split_line",
     "to_cues",
