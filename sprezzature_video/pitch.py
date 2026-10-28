@@ -74,8 +74,17 @@ PROBLEM_BY = 0.22
 #: Numbers get spelled out in film text more often than they get written as
 #: digits: "Ten packages. Five surfaces each." was the line that failed, and
 #: a digits-only pattern cleared it.
+#: `un` and `une` are missing from the French side on purpose. They are the
+#: indefinite article far more often than they are the numeral, so counting
+#: them turns ordinary prose into an inventory: "une puce. Un parcours
+#: d'arbre" matched, and the `publish` film's French magic beat -- a genuine
+#: insight about two code paths that have to agree -- was reported as a
+#: feature list. English has no equivalent trap, because the article is "a"
+#: and the numeral is "one", so the rule fired in one language and not the
+#: other. An inventory whose first item is "un" loses that item here and is
+#: still caught by its second, or by the comma-run alternative below.
 _COUNT = (r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|"
-          r"twelve|twenty|thirty|fifty|hundred|un|une|deux|trois|quatre|cinq|"
+          r"twelve|twenty|thirty|fifty|hundred|deux|trois|quatre|cinq|"
           r"six|sept|huit|neuf|dix|onze|douze|vingt|trente|cinquante|cent)")
 
 FEATURE_LIST = re.compile(

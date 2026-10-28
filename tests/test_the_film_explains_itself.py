@@ -151,3 +151,44 @@ def test_beats_out_of_order_are_caught() -> None:
     }, duration=60.0)
     assert not report.ok
     assert any("out of order" in f for f in report.findings)
+
+
+def test_a_french_article_is_not_a_count() -> None:
+    """`un` and `une` are articles, and ordinary French is not an inventory.
+
+    This is the `publish` film's French magic beat, which says something
+    genuinely non-obvious: the audio and the page leave the same Markdown by
+    two different roads, so the module compares the two lists and refuses on
+    the first divergence. It was reported as a feature list, because
+    "une puce. Un parcours" reads as "<count> <noun>. <count> <noun>" once
+    the article is in the count vocabulary.
+
+    English never tripped it: the article is "a" and the numeral is "one", so
+    the rule fired in one language and passed in the other, on the same
+    insight.
+    """
+    report = pitch.check("publish", {
+        "problem": _beat("problem", "Une phrase de décalage désigne la "
+                                    "mauvaise ligne avec aplomb.", 0.0),
+        "solution": _beat("solution", "Neuf outils font du document un site.", 16.0),
+        "magic": _beat(
+            "magic",
+            "L'audio et la page quittent le même Markdown par deux routes. "
+            "Une expression régulière ne voit pas un bloc de code dans une "
+            "puce. Un parcours d'arbre, oui. Les deux coïncident, ou bien "
+            "ça refuse.",
+            38.0,
+        ),
+    }, duration=60.0)
+    assert report.ok, report.findings
+
+
+def test_a_french_inventory_is_still_caught() -> None:
+    """Dropping the article did not disarm the rule in French."""
+    report = pitch.check("sprezzature", {
+        "problem": _beat("problem", "Tout est déjà décidé.", 0.0),
+        "solution": _beat("solution", "C'est écrit en code.", 20.0),
+        "magic": _beat("magic", "Dix paquets. Cinq surfaces chacun.", 45.0),
+    }, duration=60.0)
+    assert not report.ok
+    assert any("feature list" in f for f in report.findings)
