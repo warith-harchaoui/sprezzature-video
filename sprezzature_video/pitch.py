@@ -54,7 +54,9 @@ Author
 from __future__ import annotations
 
 import re
+from collections.abc import Callable
 from dataclasses import dataclass, field
+from typing import Any
 
 #: The three beats, in the order a viewer needs them.
 BEATS = ("problem", "solution", "magic")
@@ -83,13 +85,15 @@ PROBLEM_BY = 0.22
 #: and the numeral is "one", so the rule fired in one language and not the
 #: other. An inventory whose first item is "un" loses that item here and is
 #: still caught by its second, or by the comma-run alternative below.
-_COUNT = (r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|"
-          r"twelve|twenty|thirty|fifty|hundred|deux|trois|quatre|cinq|"
-          r"six|sept|huit|neuf|dix|onze|douze|vingt|trente|cinquante|cent)")
+_COUNT = (
+    r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|"
+    r"twelve|twenty|thirty|fifty|hundred|deux|trois|quatre|cinq|"
+    r"six|sept|huit|neuf|dix|onze|douze|vingt|trente|cinquante|cent)"
+)
 
 FEATURE_LIST = re.compile(
-    rf"(\b{_COUNT}\s+\w+\s*[,.;]\s*{_COUNT}\s+\w+)"   # "Ten packages. Five surfaces"
-    r"|(\w+,\s*\w+,\s*\w+,\s*\w+,\s*\w+)"            # five or more comma items
+    rf"(\b{_COUNT}\s+\w+\s*[,.;]\s*{_COUNT}\s+\w+)"  # "Ten packages. Five surfaces"
+    r"|(\w+,\s*\w+,\s*\w+,\s*\w+,\s*\w+)"  # five or more comma items
     r"|(\b(?:supports?|includes?|provides?|offers?|features?|"
     r"prend en charge|comprend|fournit|propose)\b)",
     re.I,
@@ -187,7 +191,12 @@ def check(film: str, beats: dict[str, Beat], duration: float) -> PitchReport:
     return report
 
 
-def from_spec(spec, scene_text, scene_start, duration: float) -> PitchReport:
+def from_spec(
+    spec: Any,
+    scene_text: Callable[[int], str],
+    scene_start: Callable[[int], float],
+    duration: float,
+) -> PitchReport:
     """Build the three beats from a spec's ``pitch:`` block and check them.
 
     Parameters

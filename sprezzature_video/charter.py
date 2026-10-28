@@ -83,6 +83,9 @@ ANTITHESIS = re.compile(
 #: The stems below were each checked against a false friend: "mord" does not
 #: appear inside a common French word, where "log" would have matched
 #: "logiciel" and "logique", so the location verbs keep their phrase form.
+# One string per line would turn a list that reads at a glance into sixty
+# lines nobody scans. The layout is the point, so the formatter is told.
+# fmt: off
 BANNED = {
     "en": (
         "at the heart of", "at the intersection of", "at the crossroads of",
@@ -117,12 +120,11 @@ BANNED = {
         "faire écho", "résonner avec", "ouvrir la voie", "geste",
     ),
 }
+# fmt: on
 
 MODALS = {
     "en": re.compile(r"\b(can|could|may|might|must|should|possible)\b", re.I),
-    "fr": re.compile(
-        r"\b(peut|peuvent|pouvoir|possible|doit|doivent|devoir|devrait)\b", re.I
-    ),
+    "fr": re.compile(r"\b(peut|peuvent|pouvoir|possible|doit|doivent|devoir|devrait)\b", re.I),
 }
 
 

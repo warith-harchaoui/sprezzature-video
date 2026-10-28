@@ -53,12 +53,21 @@ class FilmSpec:
         What the film renders from.
     narration : dict[str, list[Spoken]]
         Language code to narration lines.
+    pitch : dict[str, list[int]]
+        Beat name to the scene indices that carry it, for
+        :func:`sprezzature_video.pitch.from_spec`. Indices rather than a copy
+        of the text, so the check runs against the film that exists.
+    scenes : list[dict]
+        What each scene puts on screen and when, in film order: ``text`` and
+        ``start``. The indices in ``pitch`` point into this list.
     """
 
     name: str
     claims: list[Claim] = field(default_factory=list)
     ledger: AssetLedger = field(default_factory=AssetLedger)
     narration: dict[str, list[Spoken]] = field(default_factory=dict)
+    pitch: dict[str, list[int]] = field(default_factory=dict)
+    scenes: list[dict[str, Any]] = field(default_factory=list)
 
 
 def _asset_from(raw: dict[str, Any]) -> Asset:
@@ -159,9 +168,26 @@ def load(path: Path | str) -> FilmSpec:
     for lang, lines in (doc.get("narration") or {}).items():
         narration[lang] = [_spoken_from(line, base=base) for line in lines]
 
+    scenes: list[dict[str, Any]] = []
+    for raw in doc.get("scenes") or []:
+        scenes.append(
+            {
+                "text": str(raw.get("text", "")),
+                "start": float(raw.get("start", 0.0)),
+            }
+        )
+
+    pitch: dict[str, list[int]] = {}
+    for beat, indices in (doc.get("pitch") or {}).items():
+        if isinstance(indices, int):
+            indices = [indices]
+        pitch[str(beat)] = [int(i) for i in indices]
+
     return FilmSpec(
         name=doc.get("name") or target.stem,
         claims=claims,
         ledger=ledger,
         narration=narration,
+        pitch=pitch,
+        scenes=scenes,
     )
