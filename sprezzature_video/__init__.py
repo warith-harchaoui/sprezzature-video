@@ -21,6 +21,7 @@ from sprezzature_video.assets import (
     Provenance,
     State,
 )
+from sprezzature_video.calque import CalqueReport, compare_cuts, compare_spec
 from sprezzature_video.captions import Spoken, measure, split_line, to_cues
 
 # `measure_prose`, not `measure`: `captions.measure` already owns that name
@@ -43,37 +44,47 @@ from sprezzature_video.claims import (
     verify_all,
     visible_text,
 )
-from sprezzature_video.pitch import Beat, PitchReport
+from sprezzature_video.pitch import Beat, PitchReport, from_narration, from_spec, scene_of
 from sprezzature_video.pitch import check as check_pitch
 from sprezzature_video.spec import FilmSpec, load
+from sprezzature_video.timeline import Layout, Placed, lay_out
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "Asset",
-    "Beat",
-    "Finding",
-    "PitchReport",
     "AssetLedger",
     "AssetVerdict",
+    "Beat",
+    "CalqueReport",
     "Claim",
-    "FilmSpec",
     "ClaimReport",
     "ClaimSource",
-    "UndeclaredNumber",
+    "FilmSpec",
+    "Finding",
+    "Layout",
+    "PitchReport",
+    "Placed",
     "Provenance",
     "Spoken",
     "State",
+    "UndeclaredNumber",
     "Verdict",
     "__version__",
     "as_claim",
     "check_line",
     "check_pitch",
+    "compare_cuts",
+    "compare_spec",
+    "from_narration",
+    "from_spec",
+    "lay_out",
+    "load",
     "measure",
     "measure_prose",
-    "load",
     "numbers_in",
     "read_actual",
+    "scene_of",
     "split_line",
     "to_cues",
     "undeclared_numbers",

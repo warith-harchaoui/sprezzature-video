@@ -264,7 +264,31 @@ def read_actual(source: ClaimSource, root: Path | str) -> int | str:
         return len(parsed[source.selector])
 
     if source.method == "regex_count":
-        return len(re.findall(source.selector, target.read_text(encoding="utf-8")))
+        # ``re.MULTILINE``, and it is the whole point of this branch.
+        #
+        # A selector over a source file is written per line -- ``^    "[a-z-]+":
+        # check_`` names one entry of a dispatch table -- and ``re.findall``
+        # with no flags makes ``^`` mean *start of the file*. So the pattern
+        # matched once or not at all, and the count came back 0.
+        #
+        # Nothing about that reads as a broken selector. It arrives at
+        # :func:`verify` as "the film says 20, the code says 0", which is the
+        # sentence a claim produces when it has genuinely gone stale -- so the
+        # reader goes and re-cuts a frame that was right. The suite worked
+        # around it once by writing a literal newline into the YAML instead of
+        # an anchor, which is a workaround living in every caller.
+        matches = re.findall(source.selector, target.read_text(encoding="utf-8"), re.M)
+        if not matches:
+            # Zero is not a count here. A claim exists because a film asserts
+            # a quantity, and no film asserts that a thing occurs no times --
+            # so a selector matching nothing is a selector that cannot match,
+            # and saying so is worth more than a number that will be read as
+            # drift.
+            raise ValueError(
+                f"{source.path}: the selector {source.selector!r} matches "
+                f"nothing. That is a pattern to fix, not a count of zero"
+            )
+        return len(matches)
 
     if source.method == "line_count":
         lines = target.read_text(encoding="utf-8").splitlines()

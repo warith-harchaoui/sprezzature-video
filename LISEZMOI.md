@@ -35,6 +35,8 @@ compositions et cinq MP4 rendus : rien d'autre qu'un remontage ne le corrigeait
 | `assets` | Ce film peut-il être rendu à nouveau depuis un clone ? Trois classes : `TRACKED` (copie d'un fichier suivi, **prouvée** égale à sa source), `DERIVED` (sortie d'un outil encore présent), `SOLE` (existe à un seul endroit). Une divergence est signalée, jamais réparée en silence. |
 | `captions` | Du WebVTT construit à partir du script de narration et de la durée **mesurée** de chaque fichier audio — ni transcrite, ni tapée. |
 | `post` | L'affiche cuite en image 0, parce que Slack, X et Discord refabriquent leur vignette côté serveur depuis la première image, quoi que dise un attribut `poster=`. Plus la normalisation de loudness sur une série. |
+| `timeline` | Le moment où chaque ligne de narration tombe, une fois le moteur passé. Une ligne démarre au plus tard entre la scène pour laquelle elle est écrite et la fin de celle qui la précède. Un débordement décale et se signale ; seul un script trop long pour son film est un échec. |
+| `calque` | La deuxième langue d'un film a-t-elle été écrite, ou seulement traduite ? Jamais le sens — la **correspondance** : la part des positions où les deux coupes portent le même nombre de phrases et les mêmes chiffres dans le même ordre. |
 
 ### Les deux sens, et pourquoi le second compte
 
@@ -57,6 +59,38 @@ Ne vérifier que les revendications déclarées protège les nombres qu'on a pen
 à déclarer — jamais celui qu'on a tapé dans une image clé à minuit et laissé
 vieillir.
 
+### Le pitch se lit aussi dans la voix
+
+Une minute de film met une phrase par scène sous les yeux et en prononce huit.
+C'est la voix que le spectateur reçoit, et un film peut porter les trois temps
+de KAWASAKI dans sa liste de scènes en disant tout autre chose à haute voix.
+
+```bash
+sprezzature-video pitch film.yaml --duration 60 --voice fr
+```
+
+Une ligne prend le temps de la scène affichée quand elle commence : une seule
+déclaration, pas deux, donc la voix ne peut pas être rangée sous un temps que
+l'image dément.
+
+### Deux langues, ou une seule et son décalque
+
+Un film tourné en deux langues, c'est deux films. La panne est silencieuse :
+chaque phrase est correcte, chaque fait est juste, et la seconde coupe sonne
+comme une traduction parce qu'elle en est une. Un relecteur qui ouvre le diff
+de deux langues voit deux colonnes de mots sans rapport et ne peut rien en
+dire.
+
+```bash
+sprezzature-video calque film.yaml --from en --to fr
+```
+
+Le sens n'est jamais inspecté. Ce qui se mesure, c'est la correspondance : une
+traduction conserve la forme de ce qu'elle traduit, là où deux scripts écrits
+séparément répartissent leur matière autrement. Le seuil a été calibré des
+deux côtés — onze coupes traduites connues entre 0,75 et 0,89, les onze mêmes
+réécrites entre 0,36 et 0,70. Un soupçon, nommé ligne par ligne, pas un verdict.
+
 ## Installation
 
 ```bash
@@ -75,9 +109,9 @@ Hyperframes derrière une couture.
 
 ## État
 
-0.2.0. Le vérificateur, le registre d'actifs, les sous-titres, l'après-rendu, le
-chargeur de spécifications YAML et les cinq surfaces sont écrits et testés —
-46 tests, CI sur 3.10/3.11/3.12. La couture du moteur de rendu reste hors
+0.3.0. Le vérificateur, le registre d'actifs, les sous-titres, l'après-rendu, le
+calage sur la grille, la mesure de calque, le chargeur de spécifications YAML
+et les cinq surfaces sont écrits et testés — 94 tests, CI sur 3.10/3.11/3.12. La couture du moteur de rendu reste hors
 bande : Hyperframes est piloté directement, et `renderers/` revient dans le
 commit qui lui donne un module.
 

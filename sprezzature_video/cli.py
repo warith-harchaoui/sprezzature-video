@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
-sprezzature-video — the Click twin of ``make-film``.
+sprezzature-video — the command line.
 
-Same five operations as the argparse entry point, same exit codes, reached
-through a different door. Both exist on purpose across this suite: argparse is
-always installed, so the primary command never depends on an extra, while Click
-gives composable sub-commands and shell completion to anyone who has it.
+``make-film`` and ``sprezzature-video`` are two spellings of this one group,
+both declared in ``[project.scripts]`` and both landing here. They were two
+implementations once — an argparse primary and a Click twin — on the reasoning
+that argparse is always installed; the suite settled that on 2026-10-25 by
+making Click a base dependency in all ten packages, and this header went on
+describing the arrangement it replaced.
 
-The two must not drift. Everything they do is delegated to the same library
-functions, so a difference between them can only be in wording, never in
-behaviour.
+Everything is delegated to the library, so a sub-command can differ from the
+function behind it in wording and never in behaviour.
 
 Install the extra::
 
@@ -174,30 +175,80 @@ def prose(text_file: str, lang: str, strict: bool) -> None:
 @main.command()
 @click.argument("spec_path", type=click.Path(exists=True, dir_okay=False))
 @click.option("--duration", type=float, required=True, help="The film's length in seconds.")
-def pitch(spec_path: str, duration: float) -> None:
+@click.option(
+    "--voice",
+    "lang",
+    default="",
+    help="Read the narration of this language instead of the text on screen.",
+)
+def pitch(spec_path: str, duration: float, lang: str) -> None:
     """Check a film explains itself: problem, then solution, then secret sauce.
 
     Guy KAWASAKI's order. The third beat is the one people get wrong: the
     underlying magic is the single non-obvious thing that makes the solution
     possible, in plain language. A feature list is not it.
+
+    Without ``--voice`` this reads the words on screen: one sentence a scene.
+    With it, the narration of that language, which over a sixty-second film is
+    eight times as many words and is most of what a viewer actually receives.
+    A film can carry the three beats in its scene list and say something else
+    out loud, and only the second reading sees that.
     """
     from sprezzature_video import pitch as pitch_mod
     from sprezzature_video import spec as spec_mod
 
     film = spec_mod.load(spec_path)
     scenes = getattr(film, "scenes", []) or []
-    report = pitch_mod.from_spec(
-        film,
-        scene_text=lambda i: scenes[i].get("text", "") if i < len(scenes) else "",
-        scene_start=lambda i: scenes[i].get("start", 0.0) if i < len(scenes) else 0.0,
-        duration=duration,
-    )
+    if lang:
+        report = pitch_mod.from_narration(film, lang, duration)
+    else:
+        report = pitch_mod.from_spec(
+            film,
+            scene_text=lambda i: scenes[i].get("text", "") if i < len(scenes) else "",
+            scene_start=lambda i: scenes[i].get("start", 0.0) if i < len(scenes) else 0.0,
+            duration=duration,
+        )
     for finding in report.findings:
         click.echo(finding)
     if report.ok:
         order = " then ".join(f"{n} at {report.beats[n].start:.1f}s" for n in pitch_mod.BEATS)
         click.echo(f"problem, solution, secret sauce: {order}")
     raise SystemExit(0 if report.ok else 1)
+
+
+@main.command()
+@click.argument("spec_path", type=click.Path(exists=True, dir_okay=False))
+@click.option("--from", "first", default="en", help="The language that was written first.")
+@click.option("--to", "second", default="fr", help="The language to judge against it.")
+def calque(spec_path: str, first: str, second: str) -> None:
+    """Report a second-language cut that reads as a translation of the first.
+
+    A film shot in two languages is two films, and the failure is quiet: every
+    line is grammatical, every fact is right, and the second cut sounds like a
+    translation because it is one. A reviewer reading a diff of two languages
+    sees two columns of unrelated words and cannot tell.
+
+    What is measured is correspondence, never meaning: the share of positions
+    where the two cuts hold the same number of sentences and the same numerals
+    in the same order. Two scripts written separately do not line up that way.
+
+    A suspicion, not a verdict — it names the positions so the two cuts can be
+    read side by side.
+    """
+    from sprezzature_video import calque as calque_mod
+    from sprezzature_video import spec as spec_mod
+
+    film = spec_mod.load(spec_path)
+    report = calque_mod.compare_spec(film, languages=(first, second))
+    for line in report.report():
+        click.echo(line)
+    if not report.suspected:
+        click.echo(
+            f"{film.name}: the {second} cut scores {report.score:.2f} against "
+            f"the {first} one, under {calque_mod.CALQUE_SCORE:.2f} — written "
+            f"rather than rendered"
+        )
+    raise SystemExit(1 if report.suspected else 0)
 
 
 if __name__ == "__main__":

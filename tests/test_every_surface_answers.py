@@ -150,6 +150,86 @@ def test_scan_accepts_an_exempted_value(project: Path, tmp_path: Path) -> None:
     assert _run(args) == 0
 
 
+#: A film in two languages, with its beats on the scene grid and a sentence
+#: on each one. Enough for the two sub-commands that read a *script* rather
+#: than a claim -- and the scene text matters: an empty magic scene is a
+#: zero-word secret sauce, which the checker correctly calls a label.
+VOICED = """
+name: demo
+pitch:
+  problem: [0]
+  solution: [1]
+  magic: [2]
+scenes:
+  - {text: "Light grey on white reads fine. To whoever picked it.", start: 5.0}
+  - {text: "It redraws the chart the way that eye sees it.", start: 20.0}
+  - {text: "Hue goes, saturation goes, and lightness is what holds.", start: 40.0}
+narration:
+  en:
+    - {start: 6.0,  text: "Light grey on white reads fine. At your desk, indoors.", duration: 4.0}
+    - {start: 21.0, text: "So it redraws the picture the way that eye sees it.", duration: 4.0}
+    - {start: 41.0, text: "MAGIC_EN", duration: 4.0}
+  fr:
+    - {start: 6.0,  text: "Du gris clair sur du blanc se lit tres bien. Chez vous, a l_interieur.", duration: 4.0}
+    - {start: 21.0, text: "Il redessine donc l'image telle que cet oeil-la la voit.", duration: 4.0}
+    - {start: 41.0, text: "MAGIC_FR", duration: 4.0}
+"""
+
+#: The same magic line in both languages, one sentence each. With three lines
+#: the score can only be 0, 1/3, 2/3 or 1, so a fixture standing for "this was
+#: translated" has to correspond at *every* position -- which is why the first
+#: French line is two sentences like its English, not one.
+_RENDERED = {
+    "MAGIC_EN": "Hue goes, saturation goes, and lightness is what nothing removes.",
+    "MAGIC_FR": "La teinte s_en va, la saturation s_en va, et rien ne retire la clarte.",
+}
+
+#: The French magic beat composed instead: three short sentences where the
+#: English runs one long one, so the last position stops corresponding.
+_COMPOSED = {
+    "MAGIC_EN": "Hue goes, saturation goes, and lightness is what nothing removes.",
+    "MAGIC_FR": "La teinte s_en va. La saturation aussi. La clarte, rien ne la retire.",
+}
+
+
+def _spec(tmp_path: Path, name: str, magic: dict[str, str]) -> Path:
+    doc = tmp_path / f"{name}.yaml"
+    body = VOICED
+    for key, line in magic.items():
+        body = body.replace(key, line)
+    doc.write_text(body)
+    return doc
+
+
+def test_the_pitch_can_be_read_in_the_voice_from_the_command_line(tmp_path: Path) -> None:
+    """The library grew a second reading; the command line has to reach it.
+
+    This package exists because of tools nothing calls. `from_narration` would
+    have been the next one: a function, a test, and no door.
+    """
+    doc = _spec(tmp_path, "film", _COMPOSED)
+    assert _run(["pitch", str(doc), "--duration", "60"]) == 0
+    assert _run(["pitch", str(doc), "--duration", "60", "--voice", "en"]) == 0
+    assert _run(["pitch", str(doc), "--duration", "60", "--voice", "fr"]) == 0
+
+
+def test_an_unknown_language_is_a_failure_and_not_a_pass(tmp_path: Path) -> None:
+    """Asked about a cut that is not there, it must not answer "fine"."""
+    doc = _spec(tmp_path, "film", _COMPOSED)
+    assert _run(["pitch", str(doc), "--duration", "60", "--voice", "de"]) != 0
+    assert _run(["calque", str(doc), "--to", "de"]) != 0
+
+
+def test_calque_exits_1_on_a_translated_cut_and_0_on_a_written_one(tmp_path: Path) -> None:
+    """Both directions, because a measure that cannot pass is switched off."""
+    assert _run(["calque", str(_spec(tmp_path, "rendered", _RENDERED))]) == 1, (
+        "a line-for-line French cut passed"
+    )
+    assert _run(["calque", str(_spec(tmp_path, "composed", _COMPOSED))]) == 0, (
+        "a written French cut was flagged"
+    )
+
+
 def test_the_two_spellings_are_one_callable() -> None:
     """
     ``make-film`` and ``sprezzature-video`` must resolve to the same target.

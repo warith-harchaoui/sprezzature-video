@@ -285,3 +285,137 @@ def test_a_spec_with_no_pitch_block_says_so(tmp_path) -> None:
     )
     assert not report.ok
     assert "no problem" in report.findings[0]
+
+
+# --- the pitch in the voice -----------------------------------------------
+#
+# `from_spec` reads the sentence a scene puts on screen. `from_narration`
+# reads the eight it speaks over the same minute, which is most of what a
+# viewer of a sixty-second film actually receives. The three cases below are
+# the three the suite's own set produced the first time the voice was read
+# rather than the screen.
+
+
+def _voiced(lines: list[tuple[float, str]]):
+    """A spec whose scenes are a fixed problem / solution / magic grid."""
+    from sprezzature_video.captions import Spoken
+    from sprezzature_video.spec import FilmSpec
+
+    return FilmSpec(
+        name="demo",
+        pitch={"problem": [0], "solution": [1], "magic": [2]},
+        scenes=[
+            {"text": "the problem", "start": 5.0},
+            {"text": "the solution", "start": 20.0},
+            {"text": "the magic", "start": 40.0},
+        ],
+        narration={
+            "en": [Spoken(start=at, text=text, duration=3.0) for at, text in lines]
+        },
+    )
+
+
+def test_a_line_takes_the_beat_of_the_scene_it_lands_on() -> None:
+    """No second mapping to keep in step with the first.
+
+    The beat of a narration line is decided by the picture on screen when it
+    starts. That is the only arrangement in which the voice and the screen
+    cannot drift apart: there is one declaration, not two.
+    """
+    spec = _voiced(
+        [
+            (6.0, "Light grey on white reads fine. To whoever picked it."),
+            (21.0, "It redraws the chart the way that eye sees it."),
+            (41.0, "Hue goes, saturation goes, and lightness is what holds."),
+        ]
+    )
+    report = pitch.from_narration(spec, "en", 60.0)
+    assert report.ok, report.findings
+    assert report.beats["magic"].start == 41.0
+    assert "line(s) 3" in report.beats["magic"].source
+
+
+def test_a_voice_that_reaches_its_problem_late_is_caught() -> None:
+    """The inconsistency the screen cannot show.
+
+    The scene list is in Kawasaki's order and passes `from_spec` either way.
+    What differs is when the *voice* gets to the problem: a cut whose opening
+    lines are all wordmark and tagline leaves a viewer twenty seconds into a
+    sixty-second film with nothing to want yet, and the screen cannot show
+    that because its problem scene began on time.
+    """
+    spec = _voiced(
+        [
+            (18.0, "Light grey on white reads fine. To whoever picked it."),
+            (21.0, "It redraws the chart the way that eye sees it."),
+            (41.0, "Hue goes, saturation goes, and lightness is what holds."),
+        ]
+    )
+    spec.scenes[0]["start"] = 15.0  # the problem scene, and the voice with it
+    report = pitch.from_narration(spec, "en", 60.0)
+    assert not report.ok
+    assert any("problem arrives at" in f for f in report.findings), report.findings
+
+
+def test_a_voice_that_only_recites_its_numbers_has_no_secret_sauce() -> None:
+    """A magic beat made of nothing but published numbers.
+
+    "Seventeen" and "forty-two" are the words that made this case worth
+    writing: the count vocabulary held the teens and the compound tens
+    nowhere, so the most inventory-shaped sentence in the suite went through
+    the check untouched.
+    """
+    spec = _voiced(
+        [
+            (6.0, "Ninety characters, on screen for half a second."),
+            (21.0, "Seven scripts, all of them local."),
+            (41.0, "Seventeen characters a second. Forty-two to a line. Two lines at most."),
+        ]
+    )
+    report = pitch.from_narration(spec, "en", 60.0)
+    assert not report.ok
+    assert any("feature list" in f for f in report.findings), report.findings
+
+
+def test_numbers_followed_by_their_insight_are_not_a_feature_list() -> None:
+    """The case that makes the measure a share rather than a presence.
+
+    This is `audio`'s magic beat as it ships: it quotes the published numbers
+    and then says the thing worth saying about them. Reported on presence it
+    is an inventory; measured, the numbers are a fifth of it. A check that
+    cannot tell this from the test above teaches its reader to ignore it.
+    """
+    spec = _voiced(
+        [
+            (6.0, "Ninety characters, on screen for half a second."),
+            (21.0, "Seven scripts, all of them local."),
+            (41.0, "Seventeen characters a second. Forty-two to a line. Two "
+                   "lines at most. Conventions rather than laws, which is why "
+                   "each one is a flag: a children's programme and a dense "
+                   "talk justify different numbers entirely."),
+        ]
+    )
+    report = pitch.from_narration(spec, "en", 60.0)
+    assert report.ok, report.findings
+
+
+def test_a_beat_the_voice_never_reaches_is_reported() -> None:
+    """A film can show the problem and never say it."""
+    spec = _voiced(
+        [
+            (21.0, "It redraws the chart the way that eye sees it."),
+            (41.0, "Hue goes, saturation goes, and lightness is what holds."),
+        ]
+    )
+    report = pitch.from_narration(spec, "en", 60.0)
+    assert not report.ok
+    assert "no problem" in report.findings[0]
+
+
+def test_an_absent_language_is_refused_rather_than_passed() -> None:
+    """A cut that was never read must not report as a cut that is fine."""
+    import pytest as _pytest
+
+    spec = _voiced([(6.0, "A line.")])
+    with _pytest.raises(KeyError, match="no fr narration"):
+        pitch.from_narration(spec, "fr", 60.0)

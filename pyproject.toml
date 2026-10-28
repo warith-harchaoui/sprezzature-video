@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sprezzature-video"
-version = "0.2.0"
+version = "0.3.0"
 description = "Project launch films for the sprezzature stack: one spec drives landscape, portrait and square on a single time grid, every on-screen claim verified against the code it describes, and the asset tree audited for whether the film can be rendered again from a clone."
 readme = "README.md"
 requires-python = ">=3.10,<3.14"

@@ -35,6 +35,8 @@ it — and nothing, anywhere, was watching. That is this package's whole subject
 | `assets` | Can this film be rendered again from a clone? Three classes: `TRACKED` (a copy of a tracked file, proved equal to its source), `DERIVED` (output of a tool still on the machine), `SOLE` (exists in exactly one place). Divergence is reported, never silently repaired. |
 | `captions` | WebVTT built from the narration script and the **measured** length of each audio file — not transcribed, and not typed. |
 | `post` | The poster baked as frame 0, because Slack, X and Discord regenerate their thumbnail server-side from the first frame whatever a `poster=` attribute says. Plus loudness normalisation across a series. |
+| `timeline` | Where each narration line lands, once the engine has spoken it. A line starts at the later of the scene it was written for and the moment the line in front of it stops. An overrun pushes and is reported; only a script too long for its film is a failure. |
+| `calque` | Whether a film's second language was written or only translated. Never meaning — *correspondence*: the share of positions where two cuts hold the same sentence count and the same numerals in the same order. |
 
 ### Both directions, and why the second one matters
 
@@ -86,9 +88,43 @@ pitch:
   magic:    [4, 5]
 ```
 
-It catches three things: no problem beat at all, a problem that arrives after
-the viewer's patience has run out, and a secret sauce that is an inventory.
-Whether the problem is the *right* problem stays a human question.
+It catches four things: no problem beat at all, beats out of order, a problem
+that arrives after the viewer's patience has run out, and a secret sauce that
+is a label or an inventory. Whether the problem is the *right* problem stays a
+human question.
+
+**`--voice` reads the narration instead of the screen.** A sixty-second film
+puts one sentence a scene in front of a viewer and speaks eight, so the voice
+is most of what they receive — and a film can carry the three beats in its
+scene list while saying something else out loud.
+
+```bash
+sprezzature-video pitch film.yaml --duration 60 --voice fr
+```
+
+A line takes the beat of the scene on screen when it starts. One declaration,
+not two, so the voice cannot be filed under a beat the picture disagrees with.
+
+### `calque`: two languages, or one and a rendering of it
+
+A film shot in two languages is two films. The failure is quiet: every line is
+grammatical, every fact is right, and the second cut sounds like a translation
+because it is one. A reviewer reading a diff of two languages sees two columns
+of unrelated words and cannot tell.
+
+```bash
+sprezzature-video calque film.yaml --from en --to fr
+# demo: the fr cut reads as a rendering of the en one (score 0.88, at or above
+# 0.75). 7 of 8 positions have the same sentence count and the same numerals
+# in the same order: line(s) 1, 2, 3, 4, 5, 6, 8.
+```
+
+Meaning is never inspected. What is measured is correspondence — a translation
+preserves the shape of what it translates, and two scripts composed separately
+distribute their material differently. The threshold was calibrated against
+both sides: eleven known-translated cuts scored 0.75 to 0.89 and the same
+eleven rewritten scored 0.36 to 0.70. A suspicion, named line by line, not a
+verdict.
 
 ### `prose`: the mechanical half of the writing charters
 
@@ -129,9 +165,9 @@ through Hyperframes behind a seam.
 
 ## Status
 
-0.2.0. The checker, the asset ledger, the captions, the post-processing, the
-YAML spec loader and all five surfaces are written and tested — 46 tests, with
-CI on 3.10/3.11/3.12. The renderer seam is still out of band: Hyperframes is
+0.3.0. The checker, the asset ledger, the captions, the post-processing, the
+timeline layout, the calque measure, the YAML spec loader and all five
+surfaces are written and tested — 94 tests, with CI on 3.10/3.11/3.12. The renderer seam is still out of band: Hyperframes is
 driven directly, and `renderers/` returns in the commit that gives it a
 module.
 
