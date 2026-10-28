@@ -16,6 +16,10 @@ Part of the [sprezzature](https://sprezzature.ai/) suite.
 
 ---
 
+## How it works
+
+![Flow diagram. At the top, a film specification and the code it describes feed two lanes. The left lane checks the numbers: every declared claim against the place in the code that decides it, every number visible on screen against the declarations, and whether the film can be rendered again from a clone. The right lane checks the telling: the pitch in Kawasaki's order, and the mechanical half of the writing charter. Both meet in one outcome, the parts of a film a function can own, captions from measured audio, the poster baked as frame zero, and loudness levelled across a series.](https://raw.githubusercontent.com/warith-harchaoui/sprezzature-video/main/assets/how-it-works.svg)
+
 ## Why it exists
 
 The five films that served on sprezzature.ai said **"127 chart kinds"**. The

@@ -16,6 +16,10 @@ Fait partie de la suite [sprezzature](https://sprezzature.ai/).
 
 ---
 
+## Comment ça marche
+
+![Schéma de flux. En haut, une spécification de film et le code qu'elle décrit alimentent deux voies. La voie de gauche vérifie les nombres : chaque affirmation déclarée contre l'endroit du code qui la tranche, chaque nombre visible à l'écran contre les déclarations, et la possibilité de refabriquer le film depuis un clone. La voie de droite vérifie le récit : l'ordre de Kawasaki, et la moitié mécanique de la charte d'écriture. Les deux se rejoignent en un seul résultat, les parties d'un film qu'une fonction peut porter, les sous-titres calés sur l'audio mesuré, l'affiche cuite en image zéro, et le niveau sonore égalisé sur toute une série.](https://raw.githubusercontent.com/warith-harchaoui/sprezzature-video/main/assets/comment-ca-marche.svg)
+
 ## Pourquoi il existe
 
 Les cinq films servis sur sprezzature.ai annonçaient **« 127 chart kinds »**.

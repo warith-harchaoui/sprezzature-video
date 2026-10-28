@@ -1,0 +1,93 @@
+# How this brick works, as drawn in README.md and LISEZMOI.md.
+#
+# The renderer lives in the hub, at sprezzature/scripts/make_brick_diagram.py,
+# because the ten bricks share one drawing and ten generators would have become
+# ten dialects of it. The content lives here, because the brick is what knows
+# what is true about itself.
+#
+# Redraw after any edit:
+#   python ~/sprezzature/scripts/make_brick_diagram.py sprezzature-video
+package: sprezzature-video
+
+en:
+  title: How sprezzature-video works
+  subtitle: A film burns its claims into pixels, where nothing ever reads them again. This reads them.
+  alt: >-
+    Flow diagram. At the top, a film specification and the code it describes feed
+    two lanes. The left lane checks the numbers: every declared claim against the
+    place in the code that decides it, every number visible on screen against the
+    declarations, and whether the film can be rendered again from a clone. The
+    right lane checks the telling: the pitch in Kawasaki's order, and the
+    mechanical half of the writing charter. Both meet in one outcome, the parts of
+    a film a function can own, captions from measured audio, the poster baked as
+    frame zero, and loudness levelled across a series.
+  input:
+    label: A film specification, and the code it describes
+    note: scenes, narration, the numbers that will be on screen, and the repository they are about
+  lanes:
+    - title: "Audit: are the numbers true"
+      steps:
+        - label: Every declared claim, against its source
+          note: "a claim is a pair: the text on screen, and the place in the code that decides whether it holds. The check runs against the film that exists, not a description of it that can drift."
+        - label: Every number on screen, against the declarations
+          note: "this is the half that matters. Checking only declared claims protects the numbers somebody remembered to declare, never the one typed into a keyframe at midnight and left to go stale."
+        - label: Can it be rendered again from a clone
+          note: "three classes for every asset. A tracked copy proved equal to its source, the output of a tool still on the machine, or a file that exists in exactly one place. Divergence is reported, never silently repaired."
+      result:
+        label: Findings, exit 1 on any
+        note: "five films said one chart count while the catalogue had held another since September, baked into ten compositions and five rendered files. Nothing, anywhere, was watching."
+    - title: "Audit: does it explain anything"
+      steps:
+        - label: The pitch, in Kawasaki's order
+          note: "problem, then solution, then the one non-obvious thing that makes the solution possible. Declared by scene index. It catches no problem beat at all, a problem that arrives after the viewer's patience has run out, and a secret sauce that is really an inventory of what ships."
+        - label: The prose, by the named machine tics
+          note: "punctuation dashes, comma-plus-and, sentences that open on a negation. One list per language: a French tic means nothing to the English checker. Modals are counted and never failed on, because a raw count confuses the senses."
+      result:
+        label: What a regular expression can decide, and not a step further
+        note: "whether the problem is the right problem, and whether a sentence earns its place, stay human questions. A green tick standing in for a reading would be worse than no check at all."
+  outcome:
+    label: "Make: the parts of a film a function can own"
+    note: "Captions built from the narration script and the measured length of each audio file, not transcribed and not typed. The poster baked as frame zero, because Slack, X and Discord regenerate their thumbnail server-side from the first frame whatever a poster attribute says. And loudness levelled across a series."
+  footer: Which tool grabs the frames sits behind a seam, because it is the least interesting decision here. Prose in a README gets re-read. A number in a keyframe does not.
+
+fr:
+  title: Comment fonctionne sprezzature-video
+  subtitle: Un film grave ses affirmations dans des pixels, où plus personne ne les relit. Celui-ci les relit.
+  alt: >-
+    Schéma de flux. En haut, une spécification de film et le code qu'elle décrit
+    alimentent deux voies. La voie de gauche vérifie les nombres : chaque
+    affirmation déclarée contre l'endroit du code qui la tranche, chaque nombre
+    visible à l'écran contre les déclarations, et la possibilité de refabriquer le
+    film depuis un clone. La voie de droite vérifie le récit : l'ordre de Kawasaki,
+    et la moitié mécanique de la charte d'écriture. Les deux se rejoignent en un
+    seul résultat, les parties d'un film qu'une fonction peut porter, les
+    sous-titres calés sur l'audio mesuré, l'affiche cuite en image zéro, et le
+    niveau sonore égalisé sur toute une série.
+  input:
+    label: Une spécification de film, et le code qu'elle décrit
+    note: les scènes, la narration, les nombres qui seront à l'écran, et le dépôt dont ils parlent
+  lanes:
+    - title: "Contrôler : les nombres sont-ils vrais"
+      steps:
+        - label: Chaque affirmation déclarée, contre sa source
+          note: "une affirmation est un couple : le texte à l'écran, et l'endroit du code qui décide s'il tient. Le contrôle porte sur le film qui existe, pas sur une description de lui qui peut dériver."
+        - label: Chaque nombre à l'écran, contre les déclarations
+          note: "c'est la moitié qui compte. Ne contrôler que les affirmations déclarées protège les nombres que quelqu'un a pensé à déclarer, jamais celui tapé dans une image-clé à minuit et laissé vieillir."
+        - label: Peut-on le refabriquer depuis un clone
+          note: "trois classes pour chaque ressource. Une copie suivie prouvée identique à sa source, la sortie d'un outil encore présent sur la machine, ou un fichier qui n'existe qu'à un seul endroit. L'écart est rapporté, jamais réparé en silence."
+      result:
+        label: Des constats, code de sortie 1 au premier
+        note: "cinq films annonçaient un nombre de types de figures que le catalogue avait abandonné depuis septembre, cuit dans dix compositions et cinq fichiers rendus. Rien, nulle part, ne surveillait."
+    - title: "Contrôler : explique-t-il quelque chose"
+      steps:
+        - label: Le pitch, dans l'ordre de Kawasaki
+          note: "le problème, puis la solution, puis la seule chose non évidente qui rend la solution possible. Déclaré par indice de scène. Il attrape l'absence de problème, un problème qui arrive après la patience du spectateur, et une sauce secrète qui n'est qu'un inventaire de ce qui est livré."
+        - label: La prose, par les tics de machine nommés
+          note: "les tirets de ponctuation, la virgule suivie de « et », les phrases qui s'ouvrent sur une négation. Une liste par langue : un tic français ne dit rien au contrôleur anglais. Les modaux sont comptés et jamais sanctionnés, parce qu'un décompte brut mélange les sens."
+      result:
+        label: Ce qu'une expression régulière peut trancher, et pas un pas de plus
+        note: "savoir si le problème est le bon, et si une phrase mérite sa place, restent des questions humaines. Une coche verte à la place d'une lecture serait pire que pas de contrôle du tout."
+  outcome:
+    label: "Fabriquer : les parties d'un film qu'une fonction peut porter"
+    note: "Des sous-titres construits sur le texte de narration et la durée mesurée de chaque fichier audio, ni retranscrits ni saisis. L'affiche cuite en image zéro, parce que Slack, X et Discord refabriquent leur vignette côté serveur à partir de la première image quoi qu'en dise un attribut poster. Et le niveau sonore égalisé sur toute une série."
+  footer: Quel outil capture les images reste derrière une couture, parce que c'est la décision la moins intéressante ici. La prose d'un README se relit. Un nombre dans une image-clé, non.
