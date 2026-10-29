@@ -1,0 +1,813 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1384" height="960" viewBox="0 0 1384 960" role="img" aria-labelledby="sp-title sp-desc" font-family="Roboto, -apple-system, Helvetica, Arial, sans-serif"><rect width="1384" height="960" fill="#FFFFFF"/><title id="sp-title">Outils dans le quadrant</title><desc id="sp-desc">A 2D positioning map of 29 outils, Esthétique to Fiabilité on the horizontal axis, Simplicité to Autonomie on the vertical axis.</desc><style>.sp-dot{cursor:pointer}.sp-dot:hover circle,.sp-dot:focus circle{stroke-width:2.4}.sp-dot:hover,.sp-dot:focus{filter:brightness(1.08);outline:none}</style><line x1="191.8" y1="491.0" x2="1044.4" y2="491.0" stroke="#C7C7CC" stroke-width="1.2" stroke-dasharray="2,4"/><line x1="612.0" y1="880.4" x2="612.0" y2="101.6" stroke="#C7C7CC" stroke-width="1.2" stroke-dasharray="2,4"/><text data-pole="right" x="1164.0" y="498.4" font-size="21" font-style="italic" fill="#6E6E73" text-anchor="end">Fiabilité</text><text data-pole="left" x="60.0" y="498.4" font-size="21" font-style="italic" fill="#6E6E73" text-anchor="start">Esthétique</text><text data-pole="top" x="612.0" y="66.2" font-size="21" font-style="italic" fill="#6E6E73" text-anchor="middle">Autonomie</text><text data-pole="bottom" x="612.0" y="928.2" font-size="21" font-style="italic" fill="#6E6E73" text-anchor="middle">Simplicité</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: sprezzature-video
+Produit un film fini: 2
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 2
+Vérifie les revendications déclarées contre le code: 5
+Attrape la dérive non déclarée: 5
+Sous-titres fidèles au script: 5
+Refabricable depuis un clone propre: 5
+Déterminisme du résultat: 3
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 3
+Maturité et écosystème: 1"><circle cx="912.0" cy="262.5" r="6.72" fill="#FF3B30" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: sprezzature-video
+Produit un film fini: 2
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 2
+Vérifie les revendications déclarées contre le code: 5
+Attrape la dérive non déclarée: 5
+Sous-titres fidèles au script: 5
+Refabricable depuis un clone propre: 5
+Déterminisme du résultat: 3
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 3
+Maturité et écosystème: 1</title></g><text x="899.5" y="267.1" font-size="13" fill="#1C1C1E" text-anchor="end">sprezzature-video</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Remotion
+Produit un film fini: 5
+Étendue de l'animation: 5
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 5"><circle cx="481.0" cy="319.3" r="6.72" fill="#C990DE" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Remotion
+Produit un film fini: 5
+Étendue de l'animation: 5
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 5</title></g><text x="468.5" y="311.3" font-size="13" fill="#1C1C1E" text-anchor="end">Remotion</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Motion Canvas
+Produit un film fini: 5
+Étendue de l'animation: 5
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 4
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 3
+Tourne sans intervention humaine: 3
+Installation légère: 3
+Maturité et écosystème: 3"><circle cx="472.5" cy="329.4" r="6.72" fill="#E599DB" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Motion Canvas
+Produit un film fini: 5
+Étendue de l'animation: 5
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 4
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 3
+Tourne sans intervention humaine: 3
+Installation légère: 3
+Maturité et écosystème: 3</title></g><text x="460.0" y="333.9" font-size="13" fill="#1C1C1E" text-anchor="end">Motion Canvas</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Revideo
+Produit un film fini: 5
+Étendue de l'animation: 4
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 4
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 3
+Maturité et écosystème: 2"><circle cx="546.1" cy="314.6" r="6.72" fill="#AE8CE0" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Revideo
+Produit un film fini: 5
+Étendue de l'animation: 4
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 4
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 3
+Maturité et écosystème: 2</title></g><text x="533.6" y="306.6" font-size="13" fill="#1C1C1E" text-anchor="end">Revideo</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: HyperFrames
+Produit un film fini: 5
+Étendue de l'animation: 5
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 4
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 3"><circle cx="488.8" cy="262.5" r="6.72" fill="#AF52DE" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: HyperFrames
+Produit un film fini: 5
+Étendue de l'animation: 5
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 4
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 3</title></g><text x="501.3" y="267.1" font-size="13" fill="#1C1C1E" text-anchor="start">HyperFrames</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Manim
+Produit un film fini: 5
+Étendue de l'animation: 4
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 5"><circle cx="572.3" cy="301.0" r="6.72" fill="#8F85DB" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Manim
+Produit un film fini: 5
+Étendue de l'animation: 4
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 5</title></g><text x="584.8" y="305.5" font-size="13" fill="#1C1C1E" text-anchor="start">Manim</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: After Effects
+Produit un film fini: 5
+Étendue de l'animation: 5
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 4
+Local et hors ligne: 4
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 1
+Installation légère: 1
+Maturité et écosystème: 5"><circle cx="312.0" cy="437.3" r="6.72" fill="#ED93C6" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: After Effects
+Produit un film fini: 5
+Étendue de l'animation: 5
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 4
+Local et hors ligne: 4
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 1
+Installation légère: 1
+Maturité et écosystème: 5</title></g><text x="324.5" y="441.9" font-size="13" fill="#1C1C1E" text-anchor="start">After Effects</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: ffmpeg
+Produit un film fini: 4
+Étendue de l'animation: 2
+Qualité visuelle du résultat: 2
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 4
+Maturité et écosystème: 5"><circle cx="728.9" cy="379.1" r="6.72" fill="#8496EA" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: ffmpeg
+Produit un film fini: 4
+Étendue de l'animation: 2
+Qualité visuelle du résultat: 2
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 4
+Maturité et écosystème: 5</title></g><text x="741.4" y="383.7" font-size="13" fill="#1C1C1E" text-anchor="start">ffmpeg</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Descript
+Produit un film fini: 5
+Étendue de l'animation: 3
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 2
+Installation légère: 2
+Maturité et écosystème: 4"><circle cx="351.0" cy="587.7" r="6.72" fill="#EB858F" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Descript
+Produit un film fini: 5
+Étendue de l'animation: 3
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 2
+Installation légère: 2
+Maturité et écosystème: 4</title></g><text x="363.5" y="592.2" font-size="13" fill="#1C1C1E" text-anchor="start">Descript</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Screen Studio
+Produit un film fini: 5
+Étendue de l'animation: 2
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 3
+Local et hors ligne: 4
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 1
+Installation légère: 3
+Maturité et écosystème: 3"><circle cx="381.0" cy="539.0" r="6.72" fill="#FB96B6" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Screen Studio
+Produit un film fini: 5
+Étendue de l'animation: 2
+Qualité visuelle du résultat: 5
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 3
+Local et hors ligne: 4
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 1
+Installation légère: 3
+Maturité et écosystème: 3</title></g><text x="393.5" y="543.5" font-size="13" fill="#1C1C1E" text-anchor="start">Screen Studio</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Loom
+Produit un film fini: 5
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 3
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 3
+Local et hors ligne: 1
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 1
+Installation légère: 4
+Maturité et écosystème: 5"><circle cx="476.3" cy="647.8" r="6.72" fill="#C87B3A" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Loom
+Produit un film fini: 5
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 3
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 3
+Local et hors ligne: 1
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 1
+Installation légère: 4
+Maturité et écosystème: 5</title></g><text x="488.8" y="652.3" font-size="13" fill="#1C1C1E" text-anchor="start">Loom</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Veed
+Produit un film fini: 5
+Étendue de l'animation: 3
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 2
+Installation légère: 5
+Maturité et écosystème: 4"><circle cx="408.5" cy="635.3" r="6.72" fill="#A52A2A" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Veed
+Produit un film fini: 5
+Étendue de l'animation: 3
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 2
+Installation légère: 5
+Maturité et écosystème: 4</title></g><text x="396.0" y="639.9" font-size="13" fill="#1C1C1E" text-anchor="end">Veed</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Pictory
+Produit un film fini: 5
+Étendue de l'animation: 2
+Qualité visuelle du résultat: 3
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 3
+Installation légère: 5
+Maturité et écosystème: 3"><circle cx="452.6" cy="647.4" r="6.72" fill="#E28660" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Pictory
+Produit un film fini: 5
+Étendue de l'animation: 2
+Qualité visuelle du résultat: 3
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 3
+Installation légère: 5
+Maturité et écosystème: 3</title></g><text x="440.1" y="681.4" font-size="13" fill="#1C1C1E" text-anchor="end">Pictory</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Synthesia
+Produit un film fini: 5
+Étendue de l'animation: 2
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 4
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 2
+Tourne sans intervention humaine: 3
+Installation légère: 5
+Maturité et écosystème: 4"><circle cx="434.4" cy="643.5" r="6.72" fill="#F48F81" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Synthesia
+Produit un film fini: 5
+Étendue de l'animation: 2
+Qualité visuelle du résultat: 4
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 4
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 2
+Tourne sans intervention humaine: 3
+Installation légère: 5
+Maturité et écosystème: 4</title></g><text x="446.9" y="677.5" font-size="13" fill="#1C1C1E" text-anchor="start">Synthesia</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: doctest
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 5
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 5"><circle cx="912.0" cy="462.8" r="6.72" fill="#007AFF" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: doctest
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 5
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 5</title></g><text x="924.5" y="467.4" font-size="13" fill="#1C1C1E" text-anchor="start">doctest</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Sybil
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 5
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 4
+Maturité et écosystème: 3"><circle cx="885.8" cy="422.2" r="6.72" fill="#43AC78" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Sybil
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 5
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 4
+Maturité et écosystème: 3</title></g><text x="898.3" y="426.7" font-size="13" fill="#1C1C1E" text-anchor="start">Sybil</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: pytest-codeblocks
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 4
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 4
+Maturité et écosystème: 3"><circle cx="868.0" cy="420.6" r="6.72" fill="#39D6E1" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: pytest-codeblocks
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 4
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 4
+Maturité et écosystème: 3</title></g><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: cargo test --doc
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 5
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 4"><circle cx="906.3" cy="452.2" r="6.72" fill="#89D188" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: cargo test --doc
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 5
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 5
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 4</title></g><text x="893.8" y="456.7" font-size="13" fill="#1C1C1E" text-anchor="end">cargo test --doc</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Playwright snapshots
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 2
+Attrape la dérive non déclarée: 2
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 4
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 4
+Installation légère: 2
+Maturité et écosystème: 5"><circle cx="811.9" cy="404.2" r="6.72" fill="#5ED0FF" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Playwright snapshots
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 2
+Attrape la dérive non déclarée: 2
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 3
+Déterminisme du résultat: 4
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 4
+Installation légère: 2
+Maturité et écosystème: 5</title></g><text x="799.4" y="408.8" font-size="13" fill="#1C1C1E" text-anchor="end">Playwright snapshots</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Percy
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 2
+Attrape la dérive non déclarée: 2
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 4
+Local et hors ligne: 1
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 3
+Installation légère: 4
+Maturité et écosystème: 4"><circle cx="751.8" cy="557.4" r="6.72" fill="#95A13C" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Percy
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 2
+Attrape la dérive non déclarée: 2
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 4
+Local et hors ligne: 1
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 3
+Installation légère: 4
+Maturité et écosystème: 4</title></g><text x="764.3" y="561.9" font-size="13" fill="#1C1C1E" text-anchor="start">Percy</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Chromatic
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 2
+Attrape la dérive non déclarée: 2
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 4
+Local et hors ligne: 1
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 3
+Installation légère: 3
+Maturité et écosystème: 5"><circle cx="742.8" cy="548.7" r="6.72" fill="#93BC64" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Chromatic
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 2
+Attrape la dérive non déclarée: 2
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 4
+Local et hors ligne: 1
+Gratuit ou ouvert: 2
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 3
+Installation légère: 3
+Maturité et écosystème: 5</title></g><text x="730.3" y="553.2" font-size="13" fill="#1C1C1E" text-anchor="end">Chromatic</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: shields.io
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 4
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 2
+Local et hors ligne: 2
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 2
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 5"><circle cx="808.8" cy="605.6" r="6.72" fill="#C3B44C" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: shields.io
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 4
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 2
+Local et hors ligne: 2
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 2
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 5</title></g><text x="821.3" y="610.1" font-size="13" fill="#1C1C1E" text-anchor="start">shields.io</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: DVC
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 4
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 5
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 3
+Maturité et écosystème: 4"><circle cx="856.4" cy="351.6" r="6.72" fill="#398DCC" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: DVC
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 4
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 5
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 3
+Maturité et écosystème: 4</title></g><text x="868.9" y="356.2" font-size="13" fill="#1C1C1E" text-anchor="start">DVC</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Git LFS
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 4
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 4
+Maturité et écosystème: 5"><circle cx="823.5" cy="423.8" r="6.72" fill="#00ADCB" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Git LFS
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 4
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 4
+Maturité et écosystème: 5</title></g><text x="787.6" y="481.1" font-size="13" fill="#1C1C1E" text-anchor="end">Git LFS</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Make
+Produit un film fini: 2
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 2
+Attrape la dérive non déclarée: 3
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 4
+Déterminisme du résultat: 4
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 5"><circle cx="876.3" cy="419.4" r="6.72" fill="#00A686" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Make
+Produit un film fini: 2
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 2
+Attrape la dérive non déclarée: 3
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 4
+Déterminisme du résultat: 4
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 5
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 5</title></g><text x="876.3" y="403.6" font-size="13" fill="#1C1C1E" text-anchor="middle">Make</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Nix
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 3
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 5
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 4"><circle cx="826.7" cy="339.6" r="6.72" fill="#5B8BD6" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Nix
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 3
+Sous-titres fidèles au script: 1
+Refabricable depuis un clone propre: 5
+Déterminisme du résultat: 5
+Local et hors ligne: 4
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 4
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 4</title></g><text x="814.2" y="344.2" font-size="13" fill="#1C1C1E" text-anchor="end">Nix</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: WhisperX
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 4
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 3
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 3
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 4"><circle cx="699.7" cy="467.2" r="6.72" fill="#06BDB2" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: WhisperX
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 4
+Refabricable depuis un clone propre: 2
+Déterminisme du résultat: 3
+Local et hors ligne: 5
+Gratuit ou ouvert: 5
+Utilisable en intégration continue: 3
+Tourne sans intervention humaine: 5
+Installation légère: 2
+Maturité et écosystème: 4</title></g><text x="687.2" y="471.7" font-size="13" fill="#1C1C1E" text-anchor="end">WhisperX</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: Rev
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 2
+Tourne sans intervention humaine: 2
+Installation légère: 5
+Maturité et écosystème: 5"><circle cx="610.6" cy="719.5" r="6.72" fill="#B77A1D" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: Rev
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 3
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 1
+Utilisable en intégration continue: 2
+Tourne sans intervention humaine: 2
+Installation légère: 5
+Maturité et écosystème: 5</title></g><text x="598.1" y="724.0" font-size="13" fill="#1C1C1E" text-anchor="end">Rev</text><g class="sp-dot" tabindex="0" role="img" aria-label="Outils: YouTube auto-captions
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 4
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 5"><circle cx="699.9" cy="663.2" r="6.72" fill="#E8BE5D" stroke="white" stroke-width="1" opacity="0.95"/><title>Outils: YouTube auto-captions
+Produit un film fini: 1
+Étendue de l'animation: 1
+Qualité visuelle du résultat: 1
+Vérifie les revendications déclarées contre le code: 1
+Attrape la dérive non déclarée: 1
+Sous-titres fidèles au script: 2
+Refabricable depuis un clone propre: 1
+Déterminisme du résultat: 2
+Local et hors ligne: 1
+Gratuit ou ouvert: 4
+Utilisable en intégration continue: 1
+Tourne sans intervention humaine: 5
+Installation légère: 5
+Maturité et écosystème: 5</title></g><text x="712.4" y="667.7" font-size="13" fill="#1C1C1E" text-anchor="start">YouTube auto-captions</text><text x="1236.0" y="42.0" font-size="10" font-weight="700" fill="#1C1C1E">Outils</text><circle cx="1242.0" cy="58.5" r="6" fill="#FF3B30" opacity="0.95"/><text x="1254.0" y="62.0" font-size="10" fill="#1C1C1E">sprezzature-video</text><circle cx="1242.0" cy="77.5" r="6" fill="#8F85DB" opacity="0.95"/><text x="1254.0" y="81.0" font-size="10" fill="#1C1C1E">Manim</text><circle cx="1242.0" cy="96.5" r="6" fill="#AE8CE0" opacity="0.95"/><text x="1254.0" y="100.0" font-size="10" fill="#1C1C1E">Revideo</text><circle cx="1242.0" cy="115.5" r="6" fill="#AF52DE" opacity="0.95"/><text x="1254.0" y="119.0" font-size="10" fill="#1C1C1E">HyperFrames</text><circle cx="1242.0" cy="134.5" r="6" fill="#C990DE" opacity="0.95"/><text x="1254.0" y="138.0" font-size="10" fill="#1C1C1E">Remotion</text><circle cx="1242.0" cy="153.5" r="6" fill="#E599DB" opacity="0.95"/><text x="1254.0" y="157.0" font-size="10" fill="#1C1C1E">Motion Canvas</text><circle cx="1242.0" cy="172.5" r="6" fill="#00A686" opacity="0.95"/><text x="1254.0" y="176.0" font-size="10" fill="#1C1C1E">Make</text><circle cx="1242.0" cy="191.5" r="6" fill="#39D6E1" opacity="0.95"/><text x="1254.0" y="195.0" font-size="10" fill="#1C1C1E">pytest-codeblocks</text><circle cx="1242.0" cy="210.5" r="6" fill="#398DCC" opacity="0.95"/><text x="1254.0" y="214.0" font-size="10" fill="#1C1C1E">DVC</text><circle cx="1242.0" cy="229.5" r="6" fill="#5B8BD6" opacity="0.95"/><text x="1254.0" y="233.0" font-size="10" fill="#1C1C1E">Nix</text><circle cx="1242.0" cy="248.5" r="6" fill="#5ED0FF" opacity="0.95"/><text x="1254.0" y="252.0" font-size="10" fill="#1C1C1E">Playwright snapshots</text><circle cx="1242.0" cy="267.5" r="6" fill="#8496EA" opacity="0.95"/><text x="1254.0" y="271.0" font-size="10" fill="#1C1C1E">ffmpeg</text><circle cx="1242.0" cy="286.5" r="6" fill="#007AFF" opacity="0.95"/><text x="1254.0" y="290.0" font-size="10" fill="#1C1C1E">doctest</text><circle cx="1242.0" cy="305.5" r="6" fill="#89D188" opacity="0.95"/><text x="1254.0" y="309.0" font-size="10" fill="#1C1C1E">cargo test --doc</text><circle cx="1242.0" cy="324.5" r="6" fill="#43AC78" opacity="0.95"/><text x="1254.0" y="328.0" font-size="10" fill="#1C1C1E">Sybil</text><circle cx="1242.0" cy="343.5" r="6" fill="#00ADCB" opacity="0.95"/><text x="1254.0" y="347.0" font-size="10" fill="#1C1C1E">Git LFS</text><circle cx="1242.0" cy="362.5" r="6" fill="#06BDB2" opacity="0.95"/><text x="1254.0" y="366.0" font-size="10" fill="#1C1C1E">WhisperX</text><circle cx="1242.0" cy="381.5" r="6" fill="#ED93C6" opacity="0.95"/><text x="1254.0" y="385.0" font-size="10" fill="#1C1C1E">After Effects</text><circle cx="1242.0" cy="400.5" r="6" fill="#C3B44C" opacity="0.95"/><text x="1254.0" y="404.0" font-size="10" fill="#1C1C1E">shields.io</text><circle cx="1242.0" cy="419.5" r="6" fill="#95A13C" opacity="0.95"/><text x="1254.0" y="423.0" font-size="10" fill="#1C1C1E">Percy</text><circle cx="1242.0" cy="438.5" r="6" fill="#93BC64" opacity="0.95"/><text x="1254.0" y="442.0" font-size="10" fill="#1C1C1E">Chromatic</text><circle cx="1242.0" cy="457.5" r="6" fill="#A52A2A" opacity="0.95"/><text x="1254.0" y="461.0" font-size="10" fill="#1C1C1E">Veed</text><circle cx="1242.0" cy="476.5" r="6" fill="#FB96B6" opacity="0.95"/><text x="1254.0" y="480.0" font-size="10" fill="#1C1C1E">Screen Studio</text><circle cx="1242.0" cy="495.5" r="6" fill="#EB858F" opacity="0.95"/><text x="1254.0" y="499.0" font-size="10" fill="#1C1C1E">Descript</text><circle cx="1242.0" cy="514.5" r="6" fill="#E8BE5D" opacity="0.95"/><text x="1254.0" y="518.0" font-size="10" fill="#1C1C1E">YouTube auto-captions</text><circle cx="1242.0" cy="533.5" r="6" fill="#B77A1D" opacity="0.95"/><text x="1254.0" y="537.0" font-size="10" fill="#1C1C1E">Rev</text><circle cx="1242.0" cy="552.5" r="6" fill="#C87B3A" opacity="0.95"/><text x="1254.0" y="556.0" font-size="10" fill="#1C1C1E">Loom</text><circle cx="1242.0" cy="571.5" r="6" fill="#E28660" opacity="0.95"/><text x="1254.0" y="575.0" font-size="10" fill="#1C1C1E">Pictory</text><circle cx="1242.0" cy="590.5" r="6" fill="#F48F81" opacity="0.95"/><text x="1254.0" y="594.0" font-size="10" fill="#1C1C1E">Synthesia</text><text x="612.0" y="26" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">Outils dans le quadrant</text></svg>

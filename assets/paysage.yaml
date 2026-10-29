@@ -1,0 +1,703 @@
+meta:
+  reference: sprezzature-video
+  rotation_deg: 30.617
+  explained_variance_ratio:
+  - 0.3889
+  - 0.2227
+  cumulative_variance: 0.6116
+  n_approaches: 29
+  attributes:
+  - Produit un film fini
+  - Étendue de l'animation
+  - Qualité visuelle du résultat
+  - Vérifie les revendications déclarées contre le code
+  - Attrape la dérive non déclarée
+  - Sous-titres fidèles au script
+  - Refabricable depuis un clone propre
+  - Déterminisme du résultat
+  - Local et hors ligne
+  - Gratuit ou ouvert
+  - Utilisable en intégration continue
+  - Tourne sans intervention humaine
+  - Installation légère
+  - Maturité et écosystème
+  lower_is_better: []
+  imputed_cells: []
+axes:
+  axis_1:
+    name: Esthétique ↔ Fiabilité
+    pole_left: Esthétique
+    pole_right: Fiabilité
+    loadings:
+      Produit un film fini: -0.4317
+      Étendue de l'animation: -0.3881
+      Qualité visuelle du résultat: -0.4454
+      Vérifie les revendications déclarées contre le code: 0.3021
+      Attrape la dérive non déclarée: 0.1731
+      Sous-titres fidèles au script: -0.1885
+      Refabricable depuis un clone propre: 0.1233
+      Déterminisme du résultat: 0.1278
+      Local et hors ligne: 0.0956
+      Gratuit ou ouvert: 0.2643
+      Utilisable en intégration continue: 0.2693
+      Tourne sans intervention humaine: 0.2741
+      Installation légère: 0.2119
+      Maturité et écosystème: 0.0689
+  axis_2:
+    name: Simplicité ↔ Autonomie
+    pole_bottom: Simplicité
+    pole_top: Autonomie
+    loadings:
+      Produit un film fini: 0.1456
+      Étendue de l'animation: 0.3153
+      Qualité visuelle du résultat: 0.2057
+      Vérifie les revendications déclarées contre le code: -0.0344
+      Attrape la dérive non déclarée: 0.1103
+      Sous-titres fidèles au script: -0.0828
+      Refabricable depuis un clone propre: 0.3849
+      Déterminisme du résultat: 0.3805
+      Local et hors ligne: 0.4109
+      Gratuit ou ouvert: 0.2703
+      Utilisable en intégration continue: 0.2686
+      Tourne sans intervention humaine: 0.2251
+      Installation légère: -0.3623
+      Maturité et écosystème: -0.1671
+approaches:
+- name: sprezzature-video
+  coordinates:
+    axis_1: 3.4553
+    axis_2: 3.4247
+  role: best
+  color: '#FF3B30'
+  attributes:
+    Produit un film fini: 2.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 2.0
+    Vérifie les revendications déclarées contre le code: 5.0
+    Attrape la dérive non déclarée: 5.0
+    Sous-titres fidèles au script: 5.0
+    Refabricable depuis un clone propre: 5.0
+    Déterminisme du résultat: 3.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 3.0
+    Maturité et écosystème: 1.0
+  imputed_attributes: []
+- name: Remotion
+  coordinates:
+    axis_1: -1.5094
+    axis_2: 2.5741
+  role: competitor
+  color: '#C990DE'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 5.0
+    Qualité visuelle du résultat: 5.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 2.0
+    Refabricable depuis un clone propre: 3.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 4.0
+    Gratuit ou ouvert: 2.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 2.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: Motion Canvas
+  coordinates:
+    axis_1: -1.6072
+    axis_2: 2.4221
+  role: competitor
+  color: '#E599DB'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 5.0
+    Qualité visuelle du résultat: 5.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 3.0
+    Déterminisme du résultat: 4.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 3.0
+    Tourne sans intervention humaine: 3.0
+    Installation légère: 3.0
+    Maturité et écosystème: 3.0
+  imputed_attributes: []
+- name: Revideo
+  coordinates:
+    axis_1: -0.7594
+    axis_2: 2.6441
+  role: competitor
+  color: '#AE8CE0'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 4.0
+    Qualité visuelle du résultat: 4.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 2.0
+    Refabricable depuis un clone propre: 3.0
+    Déterminisme du résultat: 4.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 4.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 3.0
+    Maturité et écosystème: 2.0
+  imputed_attributes: []
+- name: HyperFrames
+  coordinates:
+    axis_1: -1.4192
+    axis_2: 3.4247
+  role: top
+  color: '#AF52DE'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 5.0
+    Qualité visuelle du résultat: 5.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 3.0
+    Refabricable depuis un clone propre: 4.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 4.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 4.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 2.0
+    Maturité et écosystème: 3.0
+  imputed_attributes: []
+- name: Manim
+  coordinates:
+    axis_1: -0.4571
+    axis_2: 2.8482
+  role: competitor
+  color: '#8F85DB'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 4.0
+    Qualité visuelle du résultat: 4.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 3.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 4.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 2.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: After Effects
+  coordinates:
+    axis_1: -3.4553
+    axis_2: 0.8048
+  role: competitor
+  color: '#ED93C6'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 5.0
+    Qualité visuelle du résultat: 5.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 2.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 4.0
+    Local et hors ligne: 4.0
+    Gratuit ou ouvert: 1.0
+    Utilisable en intégration continue: 1.0
+    Tourne sans intervention humaine: 1.0
+    Installation légère: 1.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: ffmpeg
+  coordinates:
+    axis_1: 1.3467
+    axis_2: 1.6766
+  role: competitor
+  color: '#8496EA'
+  attributes:
+    Produit un film fini: 4.0
+    Étendue de l'animation: 2.0
+    Qualité visuelle du résultat: 2.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 3.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 4.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: Descript
+  coordinates:
+    axis_1: -3.0058
+    axis_2: -1.449
+  role: competitor
+  color: '#EB858F'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 3.0
+    Qualité visuelle du résultat: 4.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 3.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 2.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 1.0
+    Utilisable en intégration continue: 1.0
+    Tourne sans intervention humaine: 2.0
+    Installation légère: 2.0
+    Maturité et écosystème: 4.0
+  imputed_attributes: []
+- name: Screen Studio
+  coordinates:
+    axis_1: -2.6609
+    axis_2: -0.7191
+  role: competitor
+  color: '#FB96B6'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 2.0
+    Qualité visuelle du résultat: 5.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 2.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 3.0
+    Local et hors ligne: 4.0
+    Gratuit ou ouvert: 1.0
+    Utilisable en intégration continue: 1.0
+    Tourne sans intervention humaine: 1.0
+    Installation légère: 3.0
+    Maturité et écosystème: 3.0
+  imputed_attributes: []
+- name: Loom
+  coordinates:
+    axis_1: -1.5626
+    axis_2: -2.3498
+  role: competitor
+  color: '#C87B3A'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 3.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 2.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 3.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 2.0
+    Utilisable en intégration continue: 1.0
+    Tourne sans intervention humaine: 1.0
+    Installation légère: 4.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: Veed
+  coordinates:
+    axis_1: -2.344
+    axis_2: -2.1631
+  role: worst
+  color: '#A52A2A'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 3.0
+    Qualité visuelle du résultat: 4.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 3.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 2.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 2.0
+    Utilisable en intégration continue: 1.0
+    Tourne sans intervention humaine: 2.0
+    Installation légère: 5.0
+    Maturité et écosystème: 4.0
+  imputed_attributes: []
+- name: Pictory
+  coordinates:
+    axis_1: -1.8363
+    axis_2: -2.3444
+  role: competitor
+  color: '#E28660'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 2.0
+    Qualité visuelle du résultat: 3.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 3.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 2.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 1.0
+    Utilisable en intégration continue: 1.0
+    Tourne sans intervention humaine: 3.0
+    Installation légère: 5.0
+    Maturité et écosystème: 3.0
+  imputed_attributes: []
+- name: Synthesia
+  coordinates:
+    axis_1: -2.046
+    axis_2: -2.2863
+  role: competitor
+  color: '#F48F81'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 2.0
+    Qualité visuelle du résultat: 4.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 4.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 2.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 1.0
+    Utilisable en intégration continue: 2.0
+    Tourne sans intervention humaine: 3.0
+    Installation légère: 5.0
+    Maturité et écosystème: 4.0
+  imputed_attributes: []
+- name: doctest
+  coordinates:
+    axis_1: 3.4553
+    axis_2: 0.4226
+  role: right
+  color: '#007AFF'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 5.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 5.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: Sybil
+  coordinates:
+    axis_1: 3.1541
+    axis_2: 1.0317
+  role: competitor
+  color: '#43AC78'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 5.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 4.0
+    Maturité et écosystème: 3.0
+  imputed_attributes: []
+- name: pytest-codeblocks
+  coordinates:
+    axis_1: 2.9486
+    axis_2: 1.0551
+  role: competitor
+  color: '#39D6E1'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 4.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 4.0
+    Maturité et écosystème: 3.0
+  imputed_attributes: []
+- name: cargo test --doc
+  coordinates:
+    axis_1: 3.3896
+    axis_2: 0.5821
+  role: competitor
+  color: '#89D188'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 5.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 5.0
+    Maturité et écosystème: 4.0
+  imputed_attributes: []
+- name: Playwright snapshots
+  coordinates:
+    axis_1: 2.3022
+    axis_2: 1.3003
+  role: competitor
+  color: '#5ED0FF'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 2.0
+    Attrape la dérive non déclarée: 2.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 3.0
+    Déterminisme du résultat: 4.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 4.0
+    Installation légère: 2.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: Percy
+  coordinates:
+    axis_1: 1.6107
+    axis_2: -0.9951
+  role: competitor
+  color: '#95A13C'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 2.0
+    Attrape la dérive non déclarée: 2.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 4.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 2.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 3.0
+    Installation légère: 4.0
+    Maturité et écosystème: 4.0
+  imputed_attributes: []
+- name: Chromatic
+  coordinates:
+    axis_1: 1.5068
+    axis_2: -0.8645
+  role: competitor
+  color: '#93BC64'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 2.0
+    Attrape la dérive non déclarée: 2.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 4.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 2.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 3.0
+    Installation légère: 3.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: shields.io
+  coordinates:
+    axis_1: 2.2666
+    axis_2: -1.7171
+  role: competitor
+  color: '#C3B44C'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 4.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 2.0
+    Local et hors ligne: 2.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 2.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 5.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: DVC
+  coordinates:
+    axis_1: 2.8145
+    axis_2: 2.0887
+  role: competitor
+  color: '#398DCC'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 4.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 5.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 4.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 4.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 3.0
+    Maturité et écosystème: 4.0
+  imputed_attributes: []
+- name: Git LFS
+  coordinates:
+    axis_1: 2.4363
+    axis_2: 1.0077
+  role: competitor
+  color: '#00ADCB'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 4.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 4.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 4.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 4.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: Make
+  coordinates:
+    axis_1: 3.0441
+    axis_2: 1.0734
+  role: competitor
+  color: '#00A686'
+  attributes:
+    Produit un film fini: 2.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 2.0
+    Attrape la dérive non déclarée: 3.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 4.0
+    Déterminisme du résultat: 4.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 5.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 5.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: Nix
+  coordinates:
+    axis_1: 2.4725
+    axis_2: 2.2689
+  role: competitor
+  color: '#5B8BD6'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 3.0
+    Sous-titres fidèles au script: 1.0
+    Refabricable depuis un clone propre: 5.0
+    Déterminisme du résultat: 5.0
+    Local et hors ligne: 4.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 4.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 2.0
+    Maturité et écosystème: 4.0
+  imputed_attributes: []
+- name: WhisperX
+  coordinates:
+    axis_1: 1.0106
+    axis_2: 0.3574
+  role: competitor
+  color: '#06BDB2'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 4.0
+    Refabricable depuis un clone propre: 2.0
+    Déterminisme du résultat: 3.0
+    Local et hors ligne: 5.0
+    Gratuit ou ouvert: 5.0
+    Utilisable en intégration continue: 3.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 2.0
+    Maturité et écosystème: 4.0
+  imputed_attributes: []
+- name: Rev
+  coordinates:
+    axis_1: -0.0163
+    axis_2: -3.4247
+  role: competitor
+  color: '#B77A1D'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 3.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 2.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 1.0
+    Utilisable en intégration continue: 2.0
+    Tourne sans intervention humaine: 2.0
+    Installation légère: 5.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
+- name: YouTube auto-captions
+  coordinates:
+    axis_1: 1.0125
+    axis_2: -2.5807
+  role: competitor
+  color: '#E8BE5D'
+  attributes:
+    Produit un film fini: 1.0
+    Étendue de l'animation: 1.0
+    Qualité visuelle du résultat: 1.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 2.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 2.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 4.0
+    Utilisable en intégration continue: 1.0
+    Tourne sans intervention humaine: 5.0
+    Installation légère: 5.0
+    Maturité et écosystème: 5.0
+  imputed_attributes: []
