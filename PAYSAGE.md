@@ -114,7 +114,7 @@ film.
 
 ## Les idées à prendre
 
-Étudier un concurrent et n'en rapporter rien, c'est de la lecture perdue. Sept
+Étudier un concurrent et n'en rapporter rien, c'est de la lecture perdue. Huit
 choses trouvées en écrivant cette page, de la meilleure à la plus coûteuse,
 dont deux refusées avec leur raison.
 
@@ -128,7 +128,30 @@ lequel tout le monde passe a cessé de tourner. La réparation est un bloc
 `accepted:` dans la spécification du film, portant l'empreinte que quelqu'un a
 approuvée et la ligne qui dit pourquoi, consulté par `AssetLedger.audit` avant
 qu'il n'émette `State.DIVERGED`. Une demi-journée, et le meilleur rendement des
-sept, parce que cela protège un contrôle qui existe déjà contre l'oubli.
+huit, parce que cela protège un contrôle qui existe déjà contre l'oubli.
+
+**[Nix](https://nixos.org/) et [Make](https://www.gnu.org/software/make/) :
+« je ne trouve pas ton entrée » n'est pas la même panne que « ta sortie est
+périmée ».** Les deux refusent en nommant le fichier absent, et aucun ne compte
+cela comme du travail fait. `verify` ne fait pas cette distinction, et
+l'omission retourne le paquet contre lui-même. Les chemins des revendications
+d'une spécification sont relatifs au répertoire qui contient les clones, ce que
+la spécification documente. Lancé un cran plus bas, le `films.yaml` de la suite
+sort neuf lignes `FAIL could not verify: claim source is missing` et conclut
+**`1/10 claims hold`**, avec le code de sortie 1. Lancé au bon endroit, le même
+fichier donne `10/10`. L'ennui est que `1/10 claims hold` est exactement la
+phrase que produirait un film massivement périmé : quelqu'un qui lit cela en
+intégration continue va corriger des chiffres qui étaient justes. Une mesure
+qui ne sait pas de quel côté elle se trompe, c'est la classe de défaut que ce
+paquet existe pour attraper, retournée contre lui. La réparation est de compter
+`FileNotFoundError` à part d'un écart de valeur, de le signaler sur sa propre
+ligne, et de refuser net quand *toutes* les sources manquent, parce que c'est
+une racine fausse et pas dix revendications mortes le même jour. Une
+demi-journée : `Verdict` porte déjà un `detail`, il lui faut un état et non une
+réécriture. Résoudre les chemins contre le fichier de spécification plutôt que
+contre le répertoire courant est la seconde moitié tentante, et elle doit
+attendre : la disposition des dépôts voisins est une propriété du checkout, pas
+du document.
 
 **[Sybil](https://sybil.readthedocs.io/en/latest/integration.html) et
 [pytest-codeblocks](https://pytest-codeblock.readthedocs.io/en/latest/) : le

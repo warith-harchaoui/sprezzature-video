@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pytest
 
-from sprezzature_video import Spoken, measure, split_line, to_cues
+from sprezzature_video import Spoken, measure, split_line, split_to_fit, to_cues
 from sprezzature_video.captions import LINE_LIMIT
 
 
@@ -109,3 +109,82 @@ def test_an_english_colon_is_a_break_point_too() -> None:
     )
     assert head.endswith(":")
     assert tail.startswith("make the thing")
+
+
+def test_the_budget_is_the_one_the_suite_audits() -> None:
+    """
+    42, because that is the number the rest of the suite already uses.
+
+    ``sprezzature-audio``'s ``audit_captions`` takes its thresholds from the
+    Netflix Timed Text Style Guide and names the source above them, and the
+    suite's ``audio`` film puts "Forty-two to a line" on screen as a declared
+    claim. This module used 58 until 2026-10-29, inherited from the script it
+    generalises, where it had no source: every caption it wrote between 43 and
+    58 characters satisfied its own rule and failed the audit that judges it.
+
+    Pinned as a literal rather than imported from the sibling, because the
+    sibling is not installed in this package's CI and a guard that skips reads
+    exactly like a guard that passed.
+    """
+    assert LINE_LIMIT == 42
+
+
+def test_a_caption_is_broken_up_until_it_fits() -> None:
+    """
+    One cut is not a budget.
+
+    ``split_line`` cuts once, so a long line halved into two pieces that were
+    both still over the limit, and the limit read as satisfied because the
+    function that applied it had returned. On the eleven films' narration that
+    left 41 % of the cues over budget and the longest at 117 characters.
+    """
+    text = (
+        "A film asserts things at thirty frames a second and burns them into pixels, "
+        "where nothing ever reads them again, and prose in a README gets re-read "
+        "while a number in a keyframe does not."
+    )
+    assert len(text) > 3 * LINE_LIMIT
+
+    pieces = split_to_fit(text)
+    assert len(pieces) > 2, "a single cut cannot hold a line this long to the budget"
+    assert all(len(piece) <= LINE_LIMIT for piece in pieces)
+    # Nothing added and nothing dropped: the words are the script's.
+    assert " ".join(pieces).split() == text.split()
+
+
+def test_a_line_with_no_break_is_emitted_whole_rather_than_looped_on() -> None:
+    """
+    A piece that cannot be cut goes out over budget, and says so by being long.
+
+    The alternative is a recursion with no floor, or a truncation nobody asked
+    for. The audit in ``sprezzature-audio`` names an over-wide line; silence
+    and a hang both name nothing.
+    """
+    unbreakable = "x" * (LINE_LIMIT * 3)
+    assert split_to_fit(unbreakable) == [unbreakable]
+
+
+def test_every_piece_of_a_split_line_gets_time_and_the_last_one_ends_on_the_line() -> None:
+    """
+    The cues tile the line: no gap, no overlap, and the last ends exactly on it.
+
+    Accumulating per-piece shares leaves a float residue at the end, and a cue
+    that stops a millisecond early is a caption that flickers.
+    """
+    text = (
+        "Twenty accessibility rules, each decidable by reading the HTML text, "
+        "so no browser opens and no page renders and nothing runs."
+    )
+    cues = to_cues([Spoken(0.0, text, duration=12.0)])
+    assert len(cues) > 2
+
+    assert cues[0][0] == 0.0
+    assert cues[-1][1] == pytest.approx(12.0)
+    for (_, end), (start, _) in zip(
+        [(a, b) for a, b, _ in cues[:-1]], [(a, b) for a, b, _ in cues[1:]], strict=True
+    ):
+        assert end == pytest.approx(start)
+    # Each piece holds the screen in proportion to how much of it there is.
+    total = sum(len(text_) for _, _, text_ in cues)
+    for start, end, piece in cues[:-1]:
+        assert end - start == pytest.approx(12.0 * len(piece) / total)

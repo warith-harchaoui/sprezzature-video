@@ -101,7 +101,7 @@ each spoken line lands on a film's time grid.
 
 ## Ideas worth stealing
 
-Studying a competitor and bringing nothing back is wasted reading. Seven
+Studying a competitor and bringing nothing back is wasted reading. Eight
 things found while writing this page, best value first, two of them refused
 with the reason.
 
@@ -113,8 +113,29 @@ memory: the same divergence is re-reported on every run until people learn to
 scroll past it, and a guard everybody scrolls past has stopped running. The
 fix is an `accepted:` block in the film spec holding the digest somebody
 approved and the one line saying why, consulted by `AssetLedger.audit` before
-it emits `State.DIVERGED`. Half a day, and the highest return of the seven,
+it emits `State.DIVERGED`. Half a day, and the highest return of the eight,
 because it protects a check that already exists from going quietly ignored.
+
+**[Nix](https://nixos.org/) and [Make](https://www.gnu.org/software/make/):
+"I cannot find your input" is a different failure from "your output is
+stale".** Both refuse with a message naming the missing file and neither
+counts it as work done. `verify` does not make that distinction, and the
+omission turns the package against itself. The claim paths in a film spec are
+relative to the directory holding the clones, which the spec documents. Run
+from one level down, the suite's own `films.yaml` prints nine lines of
+`FAIL could not verify: claim source is missing` and concludes
+**`1/10 claims hold`**, with exit code 1. Run from the right place the same
+file gives `10/10`. The trouble is that `1/10 claims hold` is the exact
+sentence a massively stale film produces, so somebody reading it in continuous
+integration goes and corrects numbers that were right. A measure that does not
+know which way it is wrong is the defect class this package exists to catch,
+pointed back at it. The fix is to count `FileNotFoundError` separately from a
+value mismatch, report it on its own line, and refuse outright when *every*
+source is missing, because that is one wrong root and not ten claims dying on
+the same day. Half a day: `Verdict` already carries `detail`, so it needs a
+state rather than a rewrite. Resolving paths against the spec file instead of
+the working directory is the tempting second half and should wait, because the
+sibling layout is a property of the checkout and not of the document.
 
 **[Sybil](https://sybil.readthedocs.io/en/latest/integration.html) and
 [pytest-codeblocks](https://pytest-codeblock.readthedocs.io/en/latest/): the

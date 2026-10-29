@@ -21,6 +21,13 @@ ffprobe call. That is the ai-helpers side of the boundary — video-helper's own
 "for the video side", and it raises on an audio-only file, so reaching for it
 here would be using the wrong half of a deliberate split.
 
+The width is the suite's, not this module's. A caption is broken up at 42
+characters, the Netflix Timed Text Style Guide figure that ``sprezzature-audio``
+audits against and that the suite's own films put on screen, and it is broken
+up as many times as it takes rather than once. Until 2026-10-29 this module
+used 58, a number with no source, so every caption it wrote between 43 and 58
+characters passed here and failed there.
+
 The WebVTT itself is written by the suite's single VTT module, re-exported from
 ``sprezzature_audio``. This is not the place for a fifth writer.
 
@@ -34,10 +41,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-#: Longest caption line before it is split in two. Two short lines read faster
-#: than one long one, and a single line wider than the frame is worse than
-#: either.
-LINE_LIMIT = 58
+#: Longest caption line, in characters, before it is broken up. Netflix Timed
+#: Text Style Guide, adult content, which is the same line ``sprezzature-audio``
+#: cites above its own ``DEFAULT_LINE_CHARS`` and the number the suite's films
+#: put on screen. Named rather than chosen, because a convention with a source
+#: is a thing a reader can go and check.
+#:
+#: It was 58 until 2026-10-29, inherited verbatim from the 707-line script this
+#: module generalises, where it had no source and no argument beyond "two short
+#: lines read faster than one long one". A second number for the same thing
+#: inside one suite is exactly the defect this package exists to catch: the
+#: captions it wrote passed its own rule and failed the audit that judges them.
+LINE_LIMIT = 42
 
 #: Break *after* these: punctuation keeps its place on the left of a break.
 #:
@@ -159,6 +174,48 @@ def split_line(text: str) -> tuple[str, str]:
     return text, ""
 
 
+def split_to_fit(text: str) -> list[str]:
+    """
+    Break a caption into pieces that each fit :data:`LINE_LIMIT`.
+
+    :func:`split_line` cuts once. One cut is not a budget: a 158-character
+    narration line halves into two 79-character captions, both of them over
+    the limit that was supposed to govern them, and the limit then reads as
+    satisfied because the function that applied it returned. Measured on the
+    eleven films' 218 narration lines, cutting once left 41 % of the cues over
+    the 42-character budget and the longest at 117 characters; cutting until
+    the pieces fit leaves none, and the longest is exactly 42.
+
+    Parameters
+    ----------
+    text : str
+        One caption line, of any length.
+
+    Returns
+    -------
+    list[str]
+        The pieces, in reading order. A single element when *text* already
+        fits, or when no break exists.
+
+    Examples
+    --------
+    >>> split_to_fit("Nine skills, one loop.")
+    ['Nine skills, one loop.']
+    """
+    if len(text) <= LINE_LIMIT:
+        return [text]
+
+    head, tail = split_line(text)
+    # No break, or a break that shortened nothing. Stop and let the piece go
+    # out over budget: the audit in ``sprezzature-audio`` names it, which is
+    # worth more than a truncation nobody asked for or a recursion with no
+    # floor. A line with no separator and no space is the real case here.
+    if not tail or len(head) >= len(text) or len(tail) >= len(text):
+        return [text]
+
+    return split_to_fit(head) + split_to_fit(tail)
+
+
 def to_cues(lines: list[Spoken]) -> list[tuple[float, float, str]]:
     """
     Turn narration lines into timed cues, splitting the long ones.
@@ -190,16 +247,22 @@ def to_cues(lines: list[Spoken]) -> list[tuple[float, float, str]]:
         else:
             raise ValueError(f"line at {line.start}s has no audio and no duration: {line.text!r}")
 
-        if len(line.text) <= LINE_LIMIT:
-            out.append((line.start, line.start + length, line.text))
+        pieces = split_to_fit(line.text)
+        if len(pieces) == 1:
+            out.append((line.start, line.start + length, pieces[0]))
             continue
 
-        head, tail = split_line(line.text)
-        if not tail:
-            out.append((line.start, line.start + length, line.text))
-            continue
-        pivot = line.start + length * (len(head) / (len(head) + len(tail)))
-        out += [(line.start, pivot, head), (pivot, line.start + length, tail)]
+        # Each piece takes the share of the line's time its length earns, so a
+        # caption leaves the screen when the voice leaves the words. The last
+        # one is pinned to the line's end rather than accumulated: adding
+        # shares leaves a float residue, and a cue stopping a millisecond early
+        # is a caption that flickers.
+        total = sum(len(piece) for piece in pieces)
+        at, last = line.start, len(pieces) - 1
+        for index, piece in enumerate(pieces):
+            end = line.start + length if index == last else at + length * len(piece) / total
+            out.append((at, end, piece))
+            at = end
     return out
 
 

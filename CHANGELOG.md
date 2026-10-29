@@ -4,6 +4,28 @@ All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+- `captions` breaks a caption at **42 characters instead of 58**, and breaks it
+  as many times as it takes instead of once. 42 is the Netflix Timed Text Style
+  Guide figure `sprezzature-audio` already audits against and the suite's own
+  `audio` film puts on screen as a declared claim; 58 was inherited verbatim
+  from the 707-line script this module generalises, where it had no source.
+  Every caption written between 43 and 58 characters satisfied this package's
+  rule and failed the audit that judges it.
+  One cut was the larger half of the defect: `split_line` cuts once, so a
+  158-character line halved into two 79-character captions and the limit read
+  as satisfied because the function that applied it had returned. Measured on
+  the eleven films' 218 narration lines, cutting once at 58 left 41 % of the
+  cues over the 42-character budget with the longest at 117; cutting at 42
+  until the pieces fit gives 558 cues, none over budget, the longest exactly
+  42. `split_to_fit` is the new public function; `split_line` is unchanged and
+  still cuts once.
+  A piece with no break left is emitted whole rather than truncated or recursed
+  on forever, because an over-wide line is something the audit names and a hang
+  is not.
+
 ## [0.3.0] - 2026-10-28
 
 Three things a film has that nobody was reading: where its lines land, what it

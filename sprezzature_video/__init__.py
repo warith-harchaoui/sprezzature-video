@@ -22,7 +22,7 @@ from sprezzature_video.assets import (
     State,
 )
 from sprezzature_video.calque import CalqueReport, compare_cuts, compare_spec
-from sprezzature_video.captions import Spoken, measure, split_line, to_cues
+from sprezzature_video.captions import Spoken, measure, split_line, split_to_fit, to_cues
 
 # `measure_prose`, not `measure`: `captions.measure` already owns that name
 # in this namespace, and exporting both replaced the captions one silently.
@@ -86,6 +86,7 @@ __all__ = [
     "read_actual",
     "scene_of",
     "split_line",
+    "split_to_fit",
     "to_cues",
     "undeclared_numbers",
     "verify",
