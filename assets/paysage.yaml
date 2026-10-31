@@ -1,11 +1,11 @@
 meta:
   reference: sprezzature-video
-  rotation_deg: 30.617
+  rotation_deg: 32.463
   explained_variance_ratio:
-  - 0.3889
-  - 0.2227
-  cumulative_variance: 0.6116
-  n_approaches: 29
+  - 0.4015
+  - 0.2127
+  cumulative_variance: 0.6141
+  n_approaches: 30
   attributes:
   - Produit un film fini
   - Étendue de l'animation
@@ -25,48 +25,48 @@ meta:
   imputed_cells: []
 axes:
   axis_1:
-    name: Esthétique ↔ Fiabilité
-    pole_left: Esthétique
+    name: Créativité ↔ Fiabilité
+    pole_left: Créativité
     pole_right: Fiabilité
     loadings:
-      Produit un film fini: -0.4317
-      Étendue de l'animation: -0.3881
-      Qualité visuelle du résultat: -0.4454
+      Produit un film fini: -0.4389
+      Étendue de l'animation: -0.4101
+      Qualité visuelle du résultat: -0.4555
       Vérifie les revendications déclarées contre le code: 0.3021
-      Attrape la dérive non déclarée: 0.1731
-      Sous-titres fidèles au script: -0.1885
-      Refabricable depuis un clone propre: 0.1233
-      Déterminisme du résultat: 0.1278
-      Local et hors ligne: 0.0956
-      Gratuit ou ouvert: 0.2643
-      Utilisable en intégration continue: 0.2693
-      Tourne sans intervention humaine: 0.2741
-      Installation légère: 0.2119
-      Maturité et écosystème: 0.0689
+      Attrape la dérive non déclarée: 0.1675
+      Sous-titres fidèles au script: -0.1763
+      Refabricable depuis un clone propre: 0.1088
+      Déterminisme du résultat: 0.1051
+      Local et hors ligne: 0.0844
+      Gratuit ou ouvert: 0.252
+      Utilisable en intégration continue: 0.2566
+      Tourne sans intervention humaine: 0.2629
+      Installation légère: 0.2018
+      Maturité et écosystème: 0.1103
   axis_2:
     name: Simplicité ↔ Autonomie
     pole_bottom: Simplicité
     pole_top: Autonomie
     loadings:
-      Produit un film fini: 0.1456
-      Étendue de l'animation: 0.3153
-      Qualité visuelle du résultat: 0.2057
-      Vérifie les revendications déclarées contre le code: -0.0344
-      Attrape la dérive non déclarée: 0.1103
-      Sous-titres fidèles au script: -0.0828
-      Refabricable depuis un clone propre: 0.3849
-      Déterminisme du résultat: 0.3805
-      Local et hors ligne: 0.4109
-      Gratuit ou ouvert: 0.2703
-      Utilisable en intégration continue: 0.2686
-      Tourne sans intervention humaine: 0.2251
-      Installation légère: -0.3623
-      Maturité et écosystème: -0.1671
+      Produit un film fini: 0.1262
+      Étendue de l'animation: 0.2906
+      Qualité visuelle du résultat: 0.1877
+      Vérifie les revendications déclarées contre le code: -0.0307
+      Attrape la dérive non déclarée: 0.1147
+      Sous-titres fidèles au script: -0.0929
+      Refabricable depuis un clone propre: 0.3921
+      Déterminisme du résultat: 0.3917
+      Local et hors ligne: 0.4143
+      Gratuit ou ouvert: 0.2784
+      Utilisable en intégration continue: 0.2788
+      Tourne sans intervention humaine: 0.2349
+      Installation légère: -0.3696
+      Maturité et écosystème: -0.126
 approaches:
 - name: sprezzature-video
   coordinates:
-    axis_1: 3.4553
-    axis_2: 3.4247
+    axis_1: 3.4064
+    axis_2: 3.343
   role: best
   color: '#FF3B30'
   attributes:
@@ -87,10 +87,10 @@ approaches:
   imputed_attributes: []
 - name: Remotion
   coordinates:
-    axis_1: -1.5094
-    axis_2: 2.5741
+    axis_1: -1.5903
+    axis_2: 2.5858
   role: competitor
-  color: '#C990DE'
+  color: '#CA8EDB'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 5.0
@@ -109,10 +109,10 @@ approaches:
   imputed_attributes: []
 - name: Motion Canvas
   coordinates:
-    axis_1: -1.6072
-    axis_2: 2.4221
+    axis_1: -1.7538
+    axis_2: 2.3253
   role: competitor
-  color: '#E599DB'
+  color: '#E699DB'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 5.0
@@ -131,10 +131,10 @@ approaches:
   imputed_attributes: []
 - name: Revideo
   coordinates:
-    axis_1: -0.7594
-    axis_2: 2.6441
+    axis_1: -0.9445
+    axis_2: 2.5356
   role: competitor
-  color: '#AE8CE0'
+  color: '#B08ADD'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 4.0
@@ -153,8 +153,8 @@ approaches:
   imputed_attributes: []
 - name: HyperFrames
   coordinates:
-    axis_1: -1.4192
-    axis_2: 3.4247
+    axis_1: -1.5928
+    axis_2: 3.343
   role: top
   color: '#AF52DE'
   attributes:
@@ -175,10 +175,10 @@ approaches:
   imputed_attributes: []
 - name: Manim
   coordinates:
-    axis_1: -0.4571
-    axis_2: 2.8482
+    axis_1: -0.5546
+    axis_2: 2.9002
   role: competitor
-  color: '#8F85DB'
+  color: '#9383D9'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 4.0
@@ -195,12 +195,34 @@ approaches:
     Installation légère: 2.0
     Maturité et écosystème: 5.0
   imputed_attributes: []
+- name: Claude Motion
+  coordinates:
+    axis_1: -2.6495
+    axis_2: -1.5572
+  role: competitor
+  color: '#FA9588'
+  attributes:
+    Produit un film fini: 5.0
+    Étendue de l'animation: 4.0
+    Qualité visuelle du résultat: 4.0
+    Vérifie les revendications déclarées contre le code: 1.0
+    Attrape la dérive non déclarée: 1.0
+    Sous-titres fidèles au script: 2.0
+    Refabricable depuis un clone propre: 1.0
+    Déterminisme du résultat: 3.0
+    Local et hors ligne: 1.0
+    Gratuit ou ouvert: 1.0
+    Utilisable en intégration continue: 1.0
+    Tourne sans intervention humaine: 2.0
+    Installation légère: 5.0
+    Maturité et écosystème: 2.0
+  imputed_attributes: []
 - name: After Effects
   coordinates:
-    axis_1: -3.4553
-    axis_2: 0.8048
+    axis_1: -3.4064
+    axis_2: 0.7688
   role: competitor
-  color: '#ED93C6'
+  color: '#EB91C3'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 5.0
@@ -219,10 +241,10 @@ approaches:
   imputed_attributes: []
 - name: ffmpeg
   coordinates:
-    axis_1: 1.3467
-    axis_2: 1.6766
+    axis_1: 1.2598
+    axis_2: 1.7941
   role: competitor
-  color: '#8496EA'
+  color: '#8994E9'
   attributes:
     Produit un film fini: 4.0
     Étendue de l'animation: 2.0
@@ -241,10 +263,10 @@ approaches:
   imputed_attributes: []
 - name: Descript
   coordinates:
-    axis_1: -3.0058
-    axis_2: -1.449
+    axis_1: -2.9031
+    axis_2: -1.5153
   role: competitor
-  color: '#EB858F'
+  color: '#E9838E'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 3.0
@@ -263,10 +285,10 @@ approaches:
   imputed_attributes: []
 - name: Screen Studio
   coordinates:
-    axis_1: -2.6609
-    axis_2: -0.7191
+    axis_1: -2.6354
+    axis_2: -0.8118
   role: competitor
-  color: '#FB96B6'
+  color: '#FB97B7'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 2.0
@@ -285,10 +307,10 @@ approaches:
   imputed_attributes: []
 - name: Loom
   coordinates:
-    axis_1: -1.5626
-    axis_2: -2.3498
+    axis_1: -1.4399
+    axis_2: -2.311
   role: competitor
-  color: '#C87B3A'
+  color: '#C0802B'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 1.0
@@ -307,8 +329,8 @@ approaches:
   imputed_attributes: []
 - name: Veed
   coordinates:
-    axis_1: -2.344
-    axis_2: -2.1631
+    axis_1: -2.2786
+    axis_2: -2.2399
   role: worst
   color: '#A52A2A'
   attributes:
@@ -329,10 +351,10 @@ approaches:
   imputed_attributes: []
 - name: Pictory
   coordinates:
-    axis_1: -1.8363
-    axis_2: -2.3444
+    axis_1: -1.7874
+    axis_2: -2.4322
   role: competitor
-  color: '#E28660'
+  color: '#DC8A4F'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 2.0
@@ -351,10 +373,10 @@ approaches:
   imputed_attributes: []
 - name: Synthesia
   coordinates:
-    axis_1: -2.046
-    axis_2: -2.2863
+    axis_1: -1.9711
+    axis_2: -2.3476
   role: competitor
-  color: '#F48F81'
+  color: '#F0916D'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 2.0
@@ -373,8 +395,8 @@ approaches:
   imputed_attributes: []
 - name: doctest
   coordinates:
-    axis_1: 3.4553
-    axis_2: 0.4226
+    axis_1: 3.4064
+    axis_2: 0.602
   role: right
   color: '#007AFF'
   attributes:
@@ -395,10 +417,10 @@ approaches:
   imputed_attributes: []
 - name: Sybil
   coordinates:
-    axis_1: 3.1541
-    axis_2: 1.0317
+    axis_1: 3.0444
+    axis_2: 1.1262
   role: competitor
-  color: '#43AC78'
+  color: '#2EAD83'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -417,10 +439,10 @@ approaches:
   imputed_attributes: []
 - name: pytest-codeblocks
   coordinates:
-    axis_1: 2.9486
-    axis_2: 1.0551
+    axis_1: 2.8367
+    axis_2: 1.1473
   role: competitor
-  color: '#39D6E1'
+  color: '#4BD9C2'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -439,10 +461,10 @@ approaches:
   imputed_attributes: []
 - name: cargo test --doc
   coordinates:
-    axis_1: 3.3896
-    axis_2: 0.5821
+    axis_1: 3.3057
+    axis_2: 0.7171
   role: competitor
-  color: '#89D188'
+  color: '#7AD495'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -461,10 +483,10 @@ approaches:
   imputed_attributes: []
 - name: Playwright snapshots
   coordinates:
-    axis_1: 2.3022
-    axis_2: 1.3003
+    axis_1: 2.2868
+    axis_2: 1.4775
   role: competitor
-  color: '#5ED0FF'
+  color: '#67CEFF'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -483,10 +505,10 @@ approaches:
   imputed_attributes: []
 - name: Percy
   coordinates:
-    axis_1: 1.6107
-    axis_2: -0.9951
+    axis_1: 1.6222
+    axis_2: -0.8786
   role: competitor
-  color: '#95A13C'
+  color: '#86A447'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -505,10 +527,10 @@ approaches:
   imputed_attributes: []
 - name: Chromatic
   coordinates:
-    axis_1: 1.5068
-    axis_2: -0.8645
+    axis_1: 1.5623
+    axis_2: -0.6995
   role: competitor
-  color: '#93BC64'
+  color: '#82BE6F'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -527,10 +549,10 @@ approaches:
   imputed_attributes: []
 - name: shields.io
   coordinates:
-    axis_1: 2.2666
-    axis_2: -1.7171
+    axis_1: 2.323
+    axis_2: -1.5836
   role: competitor
-  color: '#C3B44C'
+  color: '#B4B751'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -549,10 +571,10 @@ approaches:
   imputed_attributes: []
 - name: DVC
   coordinates:
-    axis_1: 2.8145
-    axis_2: 2.0887
+    axis_1: 2.7127
+    axis_2: 2.2513
   role: competitor
-  color: '#398DCC'
+  color: '#438BCE'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -571,10 +593,10 @@ approaches:
   imputed_attributes: []
 - name: Git LFS
   coordinates:
-    axis_1: 2.4363
-    axis_2: 1.0077
+    axis_1: 2.3821
+    axis_2: 1.1889
   role: competitor
-  color: '#00ADCB'
+  color: '#07AAD0'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -593,10 +615,10 @@ approaches:
   imputed_attributes: []
 - name: Make
   coordinates:
-    axis_1: 3.0441
-    axis_2: 1.0734
+    axis_1: 2.9738
+    axis_2: 1.2433
   role: competitor
-  color: '#00A686'
+  color: '#00A4A3'
   attributes:
     Produit un film fini: 2.0
     Étendue de l'animation: 1.0
@@ -615,10 +637,10 @@ approaches:
   imputed_attributes: []
 - name: Nix
   coordinates:
-    axis_1: 2.4725
-    axis_2: 2.2689
+    axis_1: 2.3832
+    axis_2: 2.4298
   role: competitor
-  color: '#5B8BD6'
+  color: '#6289D7'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -637,10 +659,10 @@ approaches:
   imputed_attributes: []
 - name: WhisperX
   coordinates:
-    axis_1: 1.0106
-    axis_2: 0.3574
+    axis_1: 1.0272
+    axis_2: 0.4322
   role: competitor
-  color: '#06BDB2'
+  color: '#00B8CC'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -659,10 +681,10 @@ approaches:
   imputed_attributes: []
 - name: Rev
   coordinates:
-    axis_1: -0.0163
-    axis_2: -3.4247
+    axis_1: 0.1378
+    axis_2: -3.343
   role: competitor
-  color: '#B77A1D'
+  color: '#AD8011'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
@@ -681,10 +703,10 @@ approaches:
   imputed_attributes: []
 - name: YouTube auto-captions
   coordinates:
-    axis_1: 1.0125
-    axis_2: -2.5807
+    axis_1: 1.11
+    axis_2: -2.4723
   role: competitor
-  color: '#E8BE5D'
+  color: '#DBC45E'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0

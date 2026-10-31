@@ -2,15 +2,15 @@
 
 ## Axes
 
-- **Horizontal: Artistry ↔ Reliability** — ~39% of the variance
-- **Vertical: Simplicity ↔ Autonomy** — ~22% of the variance
+- **Horizontal: Artistry ↔ Automation** — ~40% of the variance
+- **Vertical: Stability ↔ Reproducibility** — ~21% of the variance
 
 In two axes, we preserved ~61% of the information in the table.
 
 ## Analysis
 
-The map reveals a clear distinction between tools prioritizing artistic expression and those focused on dependable, repeatable results. Options clustered on the left side of the map excel in creative capabilities, particularly in areas like animation and visual flair, as seen in tools like After Effects, Motion Canvas, and Remotion. Conversely, those on the right emphasize stability and predictability, often excelling at automated processes and verifiable outputs, exemplified by tools like Nix and Git LFS. The horizontal axis effectively separates these two priorities, with the left side leaning towards artistic freedom and the right side towards robust, reliable workflows.
+The map reveals a fundamental split between tools emphasizing artistic control and those prioritizing automated workflows. Options clustered on the left side of the map, such as After Effects, Descript, and Screen Studio, lean heavily into artistic creation, often requiring significant human intervention and focusing on visual quality. Conversely, those on the right, including Doctest, Nix, and Git LFS, prioritize automation, with features like continuous integration and a lack of human involvement being key characteristics. The reference option, *sprezzature-video*, occupies a unique position, leading the field in automation but also demonstrating a surprising degree of reproducibility.
 
-A significant group of options, including Remotion, Motion Canvas, Revideo, HyperFrames, and Manim, occupy the upper-left corner, demonstrating a strong combination of artistic potential and a degree of independence from rigid processes. These tools offer considerable creative control but may require more manual intervention or specialized knowledge. Interestingly, *sprezzature-video* leads the field overall, but sits in the upper-right corner, demonstrating a rare combination of both reliability and autonomy. This suggests it offers a powerful, dependable platform for creative work, though it may not be as immediately accessible as some of the simpler options.
+A further distinction emerges along the vertical axis, separating tools valued for their stability from those prized for their reproducibility. The lower left quadrant is dominated by options like Loom, Veed, and Synthesia, which prioritize a reliable, consistent output even if it means sacrificing the ability to precisely recreate a project from scratch. In contrast, the upper left quadrant, containing Remotion, Motion Canvas, and Revideo, showcases tools that excel in reproducibility, allowing for meticulous control and consistent results across different environments. 
 
-The lower-left quadrant is dominated by tools that prioritize ease of use and a streamlined experience, such as Loom, Veed, and Synthesia. While these options may not offer the same level of creative depth as their counterparts in the upper-left, they provide a more accessible entry point for users seeking quick and simple video creation. Conversely, the lower-right quadrant contains tools like shields.io and YouTube auto-captions, which prioritize straightforward functionality and dependable output, but may lack the artistic flexibility of other options.
+Several options find themselves in unexpected company. While *sprezzature-video* leads in automation and reproducibility, it shares that upper-right corner with tools like Make and pytest-codeblocks, highlighting a common focus on robust, repeatable processes. Similarly, Rev and YouTube auto-captions, despite their differing primary functions, both occupy the lower-right corner, suggesting a shared emphasis on stability and ease of use, even if they lack the artistic flexibility of options in the upper left.

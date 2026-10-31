@@ -80,6 +80,13 @@ each spoken line lands on a film's time grid.
   [Remotion](https://www.remotion.dev/), [Motion Canvas](https://motioncanvas.io/)
   and HyperFrames are far better at this than anything here, and this package
   is happy to drive them. It owns none of that breadth and does not want to.
+- **You want the animation written for you, and the film is the deliverable.**
+  [Claude Motion](https://www.anthropic.com/news/claude-dashboards-and-motion)
+  takes a description and places and times the text, charts, shapes and images
+  as a program, exports the MP4, and leaves the elements editable as code. If
+  nobody needs to rebuild the cut from a clone in two years and the claims in
+  it are not going to go stale, that is less work than anything on this page.
+  It is Team and Enterprise only.
 - **Your film asserts nothing.** A mood piece, a title sequence, a showreel.
   There is no claim to protect, and the whole apparatus is overhead.
 - **You want to record a screen and share a link.** [Loom](https://www.loom.com/)
@@ -101,7 +108,7 @@ each spoken line lands on a film's time grid.
 
 ## Ideas worth stealing
 
-Studying a competitor and bringing nothing back is wasted reading. Eight
+Studying a competitor and bringing nothing back is wasted reading. Nine
 things found while writing this page, best value first, two of them refused
 with the reason.
 
@@ -115,6 +122,8 @@ fix is an `accepted:` block in the film spec holding the digest somebody
 approved and the one line saying why, consulted by `AssetLedger.audit` before
 it emits `State.DIVERGED`. Half a day, and the highest return of the eight,
 because it protects a check that already exists from going quietly ignored.
+
+**[Claude Motion](https://www.anthropic.com/news/claude-dashboards-and-motion): the elements stay editable as code after the export.** Motion exports an MP4 and the text, charts, shapes and images behind it remain addressable as a program, so changing one number is an edit to one element rather than a new commission. Here, `verify` names the claim that went stale and then stops: nothing connects that failure to the work of fixing it, so the remedy in practice is to re-render everything. On the suite's own films that is 66 HyperFrames projects — eleven films, two languages, three cuts each — and the renderer's unit is the whole composition, so a scene-level re-render is not on offer and this entry does not pretend otherwise. What *is* on offer is narrowing which compositions have to move, and the boundary for it is **already declared**: `FilmSpec.scenes` carries each scene's text and start time, and `pitch` maps every beat to the scene indices that hold it, so the film already knows which scene a failed claim lives in. The work is a `verify --affected` that prints the scenes, and therefore the cuts, a failed claim touches; `render_films.sh` already skips a cut whose MP4 is newer than its composition, so a claim-driven answer plugs into a skip that exists. Cost: a day, almost all of it in the reporting half. It is high on this list because it turns "the film is wrong somewhere" into a work item.
 
 **[Nix](https://nixos.org/) and [Make](https://www.gnu.org/software/make/):
 "I cannot find your input" is a different failure from "your output is
@@ -208,7 +217,12 @@ never meet, because the work this package does is the overlap between them.
 **The first family makes a film.** Inside it the real split is who writes the
 motion. Code-first frameworks (Remotion, Motion Canvas, Revideo, HyperFrames,
 Manim) put the composition in a text file a reviewer can diff, render
-deterministically, and run in a build. Timeline editors (After Effects,
+deterministically, and run in a build. Claude Motion, shipped in October 2026,
+belongs to that camp by technique and to the hosted camp by address: it writes
+the animation as a program with no video model anywhere in the chain, and the
+program lives in an account rather than in your repository. That combination is
+new in this table, and the map below separates the two halves of it rather
+than averaging them. Timeline editors (After Effects,
 Descript) put it in a document a person drags around, which buys craft and
 costs reproducibility. Recorders (Loom, Screen Studio) make the human the
 source, so there is no composition at all. Hosted generators (Veed, Pictory,
@@ -247,7 +261,7 @@ and each column is oriented so that more stars mean stronger on that trait: for
 cost, more stars mean cheaper or more open; for install weight, more stars mean
 lighter. A ⭐ means the tool does not do what the column measures, which on a
 capability scale is a one. The machine-readable source is
-[`assets/landscape.csv`](assets/landscape.csv): 29 tools across 14 criteria.
+[`assets/landscape.csv`](assets/landscape.csv): 30 tools across 14 criteria.
 
 | Tool | Produces a finished film | Motion and animation breadth | Visual quality of the result | Checks declared claims against the code | Catches undeclared drift | Captions faithful to the script | Rebuildable from a clean clone | Deterministic output | Local and offline | Free or open | Usable in continuous integration | Runs with no human in the loop | Light to install | Maturity and ecosystem |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -257,6 +271,7 @@ capability scale is a one. The machine-readable source is
 | Revideo | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ |
 | HyperFrames | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ |
 | Manim | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Claude Motion | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ |
 | After Effects | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐⭐⭐⭐ |
 | ffmpeg | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | Descript | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ |
@@ -283,7 +298,7 @@ capability scale is a one. The machine-readable source is
 
 ## The map
 
-![Positioning map of 29 tools on two axes derived from a principal component analysis. sprezzature-video sits alone in the top right corner, at coordinates 3.46 and 3.42, with nothing else near it. Along the top edge at the same height but far to the left are the code-first renderers: HyperFrames, Manim, Revideo, Remotion and Motion Canvas. The far left is held by After Effects, Descript and Screen Studio. The bottom edge holds the hosted services: Rev at the very bottom, then YouTube auto-captions, Loom, Pictory, Synthesia and Veed. Between this package and the renderers sit the tested-documentation tools, doctest, cargo test --doc, Sybil and pytest-codeblocks, and the asset registries, Nix, DVC, Make and Git LFS. The horizontal axis opposes making the picture to checking the fact; the vertical axis opposes a tool you run and can rebuild from to a tool that is already there and costs nothing to start.](assets/landscape.svg)
+![Positioning map of 30 tools on two axes derived from a principal component analysis. sprezzature-video sits alone in the top right corner, at coordinates 3.41 and 3.34, with nothing else near it. Along the top edge at the same height but far to the left are the code-first renderers: HyperFrames at exactly the same height, then Manim, Remotion, Revideo and Motion Canvas. The far left is held by After Effects, Screen Studio, Descript and Claude Motion, the last two side by side at the same height below the middle. The bottom edge holds the hosted services: Rev at the very bottom, then YouTube auto-captions, Pictory, Synthesia, Loom and Veed. Between this package and the renderers sit the tested-documentation tools, doctest, cargo test --doc, Sybil and pytest-codeblocks, and the asset registries, Nix, DVC, Make and Git LFS. The horizontal axis opposes making the picture to checking the fact; the vertical axis opposes a tool you run and can rebuild from to a tool that is already there and costs nothing to start.](assets/landscape.svg)
 
 The source is [`assets/landscape.csv`](assets/landscape.csv), the star table
 above and nothing added, and the map is regenerated with:
@@ -300,42 +315,68 @@ behind them, so the loadings are the control. `standpoint` puts the first row
 top right and orients everything else around it; that is a convention of the
 drawing, not a claim about quality.
 
-**Horizontal, named "Artistry ↔ Reliability".** Visual quality of the result
-(−0.445), produces a finished film (−0.432) and motion breadth (−0.388) pull
+**Horizontal, named "Artistry ↔ Automation".** Visual quality of the result
+(−0.455), produces a finished film (−0.439) and motion breadth (−0.410) pull
 left; checks declared claims against the code (+0.302), runs with no human in
-the loop (+0.274), usable in continuous integration (+0.269) and free or open
-(+0.264) pull right. The axis opposes *making the picture* to *checking the
+the loop (+0.263), usable in continuous integration (+0.257) and free or open
+(+0.252) pull right. The axis opposes *making the picture* to *checking the
 fact*, which is the division this whole page is about, and it is the axis this
 package sits at the far right of by construction.
 
-**Vertical, named "Simplicity ↔ Autonomy".** Local and offline (+0.411),
-rebuildable from a clean clone (+0.385) and deterministic output (+0.381) load
-together at the top, with free or open (+0.270) and usable in continuous
-integration (+0.269) behind them; light to install (−0.362) and maturity and
-ecosystem (−0.167) pull down. The top pole is one coherent thing, *a tool you
-run yourself and can rebuild from*, and the bottom is its opposite, *a tool
-already standing that costs nothing to start*. Rev, YouTube's automatic
-captions and the hosted video generators sit along the bottom edge; Nix, DVC
-and the renderers sit along the top.
+**Vertical, named "Stability ↔ Reproducibility".** Local and offline (+0.414),
+rebuildable from a clean clone (+0.392) and deterministic output (+0.392) load
+together at the top, with usable in continuous integration (+0.279) and free or
+open (+0.278) behind them; light to install (−0.370) and maturity and ecosystem
+(−0.126) pull down. The top pole is one coherent thing, *a tool you run
+yourself and can rebuild from*, and the bottom is its opposite, *a tool already
+standing that costs nothing to start*. Rev, YouTube's automatic captions and
+the hosted video generators sit along the bottom edge; Nix, DVC and the
+renderers sit along the top.
 
-**Two axes carry 61.2 % of the table** (38.9 % and 22.3 %). The 38.8 % left
-over is in the table and not on this page, and one part of it matters more
-than the rest: *catches undeclared drift* is the weakest-loaded criterion on
-both axes (+0.173 and +0.110), and it is the criterion that separates this
-package from everything else here. The map is a first orientation; the column
-that justifies the package barely moves it.
+**Two axes carry 61.4 % of the table.** The 38.6 % left over is in the table
+and not on this page, and one part of it matters more than the rest: *catches
+undeclared drift* is the weakest-loaded criterion on both axes (+0.167 and
++0.115), and it is the criterion that separates this package from everything
+else here. The map is a first orientation; the column that justifies the
+package barely moves it.
 
-Two readings worth having. HyperFrames sits at exactly the same height as this
-package (3.42) and at the opposite end of the horizontal axis, which is the map
-noticing that the renderer behind the seam shares every reproducibility trait
-and none of the checking ones. And this package is alone in its corner, which
-is not a win: the renderers cluster together because they are in a contest with
-each other, and nobody in that cluster is trying to check a number against a
-catalogue, because that is not what a renderer is for.
+That 61.4 % belongs to the **plane**, and this page used to split it per axis,
+"38.9 % and 22.3 %". It is not attributable that way: `standpoint` names the
+axes it *draws* but reports variance for the underlying principal components,
+and the drawn frame is a rotation of that plane — 32.5° here, 30.6° on the
+29-tool run. Rotating preserves the plane, so the cumulative figure is sound
+and the per-axis split was reading a share the rotation had already mixed. The
+loadings above are quoted from the oriented frame, so those do describe the
+horizontal and the vertical as drawn. Here the rotation moved by under two
+degrees, so the two axes still carry the same splits they did before Claude
+Motion was added; only the model's four words changed, "Reliability" to
+"Automation" and "Simplicity ↔ Autonomy" to "Stability ↔ Reproducibility",
+which is the standing reason the loadings are quoted and the words are not
+trusted.
+
+Three readings worth having. HyperFrames sits at exactly the same height as
+this package (3.34) and at the opposite end of the horizontal axis, which is
+the map noticing that the renderer behind the seam shares every reproducibility
+trait and none of the checking ones. And this package is alone in its corner,
+which is not a win: the renderers cluster together because they are in a
+contest with each other, and nobody in that cluster is trying to check a number
+against a catalogue, because that is not what a renderer is for.
+
+The third is about the newest row. **Claude Motion writes its animation as
+code, the same technique as the whole top-left band, and the map does not put
+it there**: it lands at (−2.65, −1.56), beside Descript at the same height,
+four and a half units below HyperFrames. The vertical axis is the reason, and
+it asks where the film can be rebuilt from rather than how it was authored —
+local and offline, rebuildable from a clean clone, deterministic, open, usable
+in continuous integration. Motion scores one star on four of those five, not
+because of anything about its animation model but because the program lives in
+an account on a Team or Enterprise plan. The map is making a point this page
+would otherwise have to argue: on these criteria, *where the film lives*
+separates tools more than *how the film was made*.
 
 `--check` reports the leader top right and the axis labels visible, and marks
-the figure **not readable**: eight label pairs risk overlapping, among them
-Remotion with Motion Canvas, Sybil with pytest-codeblocks and Percy with
+the figure **not readable**: seven label pairs risk overlapping, among them
+Claude Motion with Descript, Sybil with pytest-codeblocks and Percy with
 Chromatic. Those are tools whose ratings genuinely sit on top of each other,
 so the overlap is the table being honest rather than the figure being wrong.
 The interactive SVG separates them on hover; the PNG does not.
@@ -361,6 +402,8 @@ The interactive SVG separates them on hover; the PNG does not.
   [Whisper Has an Internal Word Aligner](https://arxiv.org/pdf/2509.09987).
 - [Best AI video makers tested for 2026](https://pictory.ai/blog/best-ai-video-maker-2026),
   for the hosted end of the first family.
+- [Claude Dashboards and Claude Motion](https://www.anthropic.com/news/claude-dashboards-and-motion),
+  October 2026, for animation written as code by a hosted assistant.
 
 ## See also
 

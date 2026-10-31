@@ -89,6 +89,14 @@ film.
   [Motion Canvas](https://motioncanvas.io/) et HyperFrames font cela bien mieux
   que quoi que ce soit ici, et ce paquet est content de les piloter. Il ne
   possède rien de cette étendue et n'y tient pas.
+- **Vous voulez que l'animation soit écrite pour vous, et le film est le
+  livrable.** [Claude Motion](https://www.anthropic.com/news/claude-dashboards-and-motion)
+  prend une description, place et minute le texte, les graphiques, les formes
+  et les images comme un programme, exporte le MP4 et laisse les éléments
+  modifiables en tant que code. Si personne n'a besoin de refabriquer la coupe
+  depuis un clone dans deux ans et si les revendications qu'elle porte ne vont
+  pas se périmer, c'est moins de travail que tout ce qui est sur cette page.
+  Réservé aux plans Team et Enterprise.
 - **Votre film n'affirme rien.** Une pièce d'ambiance, un générique, une
   bande démo. Il n'y a aucune revendication à protéger, et tout l'appareil
   n'est que du poids.
@@ -114,7 +122,7 @@ film.
 
 ## Les idées à prendre
 
-Étudier un concurrent et n'en rapporter rien, c'est de la lecture perdue. Huit
+Étudier un concurrent et n'en rapporter rien, c'est de la lecture perdue. Neuf
 choses trouvées en écrivant cette page, de la meilleure à la plus coûteuse,
 dont deux refusées avec leur raison.
 
@@ -129,6 +137,8 @@ lequel tout le monde passe a cessé de tourner. La réparation est un bloc
 approuvée et la ligne qui dit pourquoi, consulté par `AssetLedger.audit` avant
 qu'il n'émette `State.DIVERGED`. Une demi-journée, et le meilleur rendement des
 huit, parce que cela protège un contrôle qui existe déjà contre l'oubli.
+
+**[Claude Motion](https://www.anthropic.com/news/claude-dashboards-and-motion) : les éléments restent modifiables en tant que code après l'export.** Motion exporte un MP4 et le texte, les graphiques, les formes et les images derrière lui restent adressables comme programme, donc changer un chiffre est une retouche d'un élément et non une nouvelle commande. Ici, `verify` nomme la revendication périmée puis s'arrête : rien ne relie cet échec au travail de réparation, donc le remède en pratique est de tout refabriquer. Sur les films de la suite, cela fait 66 projets HyperFrames — onze films, deux langues, trois coupes chacun — et l'unité du moteur est la composition entière, donc un rendu à la scène n'est pas proposé et cette entrée ne prétend pas le contraire. Ce qui est atteignable, c'est de resserrer les compositions à refaire, et la frontière pour le faire est **déjà déclarée** : `FilmSpec.scenes` porte le texte et l'instant de départ de chaque scène, et `pitch` associe chaque temps aux indices de scène qui le portent, donc le film sait déjà dans quelle scène vit une revendication en échec. Le travail : un `verify --affected` qui imprime les scènes, et donc les coupes, que touche une revendication en échec ; `render_films.sh` saute déjà une coupe dont le MP4 est plus récent que sa composition, donc une réponse guidée par les revendications se branche sur un saut qui existe. Coût : une journée, presque entièrement dans la moitié qui rapporte. L'entrée est haute parce qu'elle transforme « le film est faux quelque part » en tâche.
 
 **[Nix](https://nixos.org/) et [Make](https://www.gnu.org/software/make/) :
 « je ne trouve pas ton entrée » n'est pas la même panne que « ta sortie est
@@ -232,7 +242,12 @@ leur recouvrement.
 qui écrit le mouvement. Les cadriciels orientés code (Remotion, Motion Canvas,
 Revideo, HyperFrames, Manim) mettent la composition dans un fichier texte qu'un
 relecteur peut lire en diff, rendent de façon déterministe, et tournent dans
-une chaîne de construction. Les monteurs à ligne de temps (After Effects,
+une chaîne de construction. Claude Motion, livré en octobre 2026, appartient à
+ce camp par la technique et au camp hébergé par l'adresse : il écrit
+l'animation comme un programme, sans aucun modèle vidéo dans la chaîne, et ce
+programme vit dans un compte plutôt que dans votre dépôt. Cette combinaison
+est nouvelle dans cette table, et la carte plus bas sépare ses deux moitiés
+plutôt que d'en faire la moyenne. Les monteurs à ligne de temps (After Effects,
 Descript) la mettent dans un document qu'une personne déplace à la souris, ce
 qui achète du métier et coûte de la reproductibilité. Les enregistreurs (Loom,
 Screen Studio) font de l'humain la source, donc il n'y a pas de composition du
@@ -274,7 +289,7 @@ dire plus fort sur ce trait : pour le coût, plus d'étoiles veut dire moins che
 ou plus ouvert ; pour le poids d'installation, plus d'étoiles veut dire plus
 léger. Un ⭐ signifie que l'outil ne fait pas ce que la colonne mesure, ce qui
 sur une échelle de capacité vaut un. La source lisible par machine est
-[`assets/paysage.csv`](assets/paysage.csv) : 29 outils sur 14 critères.
+[`assets/paysage.csv`](assets/paysage.csv) : 30 outils sur 14 critères.
 
 | Outil | Produit un film fini | Étendue de l'animation | Qualité visuelle du résultat | Vérifie les revendications déclarées contre le code | Attrape la dérive non déclarée | Sous-titres fidèles au script | Refabricable depuis un clone propre | Déterminisme du résultat | Local et hors ligne | Gratuit ou ouvert | Utilisable en intégration continue | Tourne sans intervention humaine | Installation légère | Maturité et écosystème |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -284,6 +299,7 @@ sur une échelle de capacité vaut un. La source lisible par machine est
 | Revideo | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ |
 | HyperFrames | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ |
 | Manim | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Claude Motion | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐ | ⭐⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ |
 | After Effects | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐⭐⭐⭐ |
 | ffmpeg | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | Descript | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐ | ⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ | ⭐ | ⭐ | ⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ |
@@ -310,7 +326,7 @@ sur une échelle de capacité vaut un. La source lisible par machine est
 
 ## La carte
 
-![Carte de positionnement de 29 outils sur deux axes issus d'une analyse en composantes principales. sprezzature-video est seul dans le coin en haut à droite, aux coordonnées 3,46 et 3,42, sans rien près de lui. Le long du bord haut, à la même hauteur mais tout à gauche, se trouvent les moteurs orientés code : HyperFrames, Manim, Revideo, Remotion et Motion Canvas. L'extrême gauche est tenue par After Effects, Descript et Screen Studio. Le bord bas porte les services hébergés : Rev tout en bas, puis les sous-titres automatiques de YouTube, Loom, Pictory, Synthesia et Veed. Entre ce paquet et les moteurs se trouvent les outils de documentation testée, doctest, cargo test --doc, Sybil et pytest-codeblocks, et juste en dessous les registres de ressources, Nix, DVC, Make et Git LFS. L'axe horizontal oppose fabriquer l'image à contrôler le fait ; l'axe vertical oppose un outil qu'on fait tourner soi-même et depuis lequel on peut reconstruire à un outil déjà là qui ne coûte rien à démarrer.](assets/paysage.svg)
+![Carte de positionnement de 30 outils sur deux axes issus d'une analyse en composantes principales. sprezzature-video est seul dans le coin en haut à droite, aux coordonnées 3,41 et 3,34, sans rien près de lui. Le long du bord haut, à la même hauteur mais tout à gauche, se trouvent les moteurs orientés code : HyperFrames exactement à la même hauteur, puis Manim, Remotion, Revideo et Motion Canvas. L'extrême gauche est tenue par After Effects, Screen Studio, Descript et Claude Motion, ces deux derniers côte à côte à la même hauteur, sous le milieu. Le bord bas porte les services hébergés : Rev tout en bas, puis les sous-titres automatiques de YouTube, Pictory, Synthesia, Loom et Veed. Entre ce paquet et les moteurs se trouvent les outils de documentation testée, doctest, cargo test --doc, Sybil et pytest-codeblocks, et juste en dessous les registres de ressources, Nix, DVC, Make et Git LFS. L'axe horizontal oppose fabriquer l'image à contrôler le fait ; l'axe vertical oppose un outil qu'on fait tourner soi-même et depuis lequel on peut reconstruire à un outil déjà là qui ne coûte rien à démarrer.](assets/paysage.svg)
 
 La source est [`assets/paysage.csv`](assets/paysage.csv), la table en étoiles
 ci-dessus et rien de plus, et la carte se régénère avec :
@@ -328,35 +344,49 @@ vagues que les charges qui les portent, donc les charges sont le contrôle.
 `standpoint` place la première ligne en haut à droite et oriente tout le reste
 autour d'elle ; c'est une convention de dessin, pas une prétention de qualité.
 
-**Horizontal, nommé « Esthétique ↔ Fiabilité ».** Qualité visuelle du résultat
-(−0,445), produit un film fini (−0,432) et étendue de l'animation (−0,388)
+**Horizontal, nommé « Créativité ↔ Fiabilité ».** Qualité visuelle du résultat
+(−0,455), produit un film fini (−0,439) et étendue de l'animation (−0,410)
 tirent à gauche ; vérifie les revendications déclarées contre le code (+0,302),
-tourne sans intervention humaine (+0,274), utilisable en intégration continue
-(+0,269) et gratuit ou ouvert (+0,264) tirent à droite. L'axe oppose
+tourne sans intervention humaine (+0,263), utilisable en intégration continue
+(+0,257) et gratuit ou ouvert (+0,252) tirent à droite. L'axe oppose
 *fabriquer l'image* à *contrôler le fait*, qui est la division dont parle toute
 cette page, et c'est l'axe dont ce paquet occupe l'extrémité droite par
 construction.
 
-**Vertical, nommé « Simplicité ↔ Autonomie ».** Local et hors ligne (+0,411),
-refabricable depuis un clone propre (+0,385) et déterminisme du résultat
-(+0,381) chargent ensemble vers le haut, avec gratuit ou ouvert (+0,270) et
-utilisable en intégration continue (+0,269) derrière eux ; installation légère
-(−0,362) et maturité et écosystème (−0,167) tirent vers le bas. Le pôle haut
+**Vertical, nommé « Simplicité ↔ Autonomie ».** Local et hors ligne (+0,414),
+refabricable depuis un clone propre (+0,392) et déterminisme du résultat
+(+0,392) chargent ensemble vers le haut, avec utilisable en intégration
+continue (+0,279) et gratuit ou ouvert (+0,278) derrière eux ; installation
+légère (−0,370) et maturité et écosystème (−0,126) tirent vers le bas. Le pôle haut
 est une seule chose cohérente, *un outil qu'on fait tourner soi-même et depuis
 lequel on peut reconstruire*, et le bas en est l'opposé, *un outil déjà debout
 qui ne coûte rien à démarrer*. Rev, les sous-titres automatiques de YouTube et
 les générateurs vidéo hébergés longent le bord bas ; Nix, DVC et les moteurs de
 rendu longent le bord haut.
 
-**Deux axes portent 61,2 % de la table** (38,9 % et 22,3 %). Les 38,8 % qui
-restent sont dans la table et pas sur cette page, et une part compte plus que
-les autres : *attrape la dérive non déclarée* est le critère le plus faiblement
-chargé sur les deux axes (+0,173 et +0,110), et c'est le critère qui sépare ce
-paquet de tout le reste ici. La carte est une première orientation ; la colonne
-qui justifie le paquet la déplace à peine.
+**Deux axes portent 61,4 % de la table.** Les 38,6 % qui restent sont dans la
+table et pas sur cette page, et une part compte plus que les autres :
+*attrape la dérive non déclarée* est le critère le plus faiblement chargé sur
+les deux axes (+0,167 et +0,115), et c'est le critère qui sépare ce paquet de
+tout le reste ici. La carte est une première orientation ; la colonne qui
+justifie le paquet la déplace à peine.
 
-Deux lectures méritent d'être faites. HyperFrames est exactement à la même
-hauteur que ce paquet (3,42) et à l'autre bout de l'axe horizontal, ce qui est
+Ces 61,4 % appartiennent au **plan**, et cette page les découpait par axe,
+« 38,9 % et 22,3 % ». Ce n'est pas attribuable ainsi : `standpoint` nomme les
+axes qu'il *dessine* mais chiffre la variance des composantes principales
+sous-jacentes, et le repère dessiné est une rotation de ce plan — 32,5° ici,
+30,6° sur la carte à 29 outils. Une rotation préserve le plan, donc le cumul
+est solide et le partage par axe lisait une part que la rotation avait déjà
+mélangée. Les charges ci-dessus sont citées depuis le repère orienté, donc
+celles-là décrivent bien l'horizontale et la verticale telles qu'elles sont
+dessinées. Ici la rotation a bougé de moins de deux degrés, donc les deux axes
+portent toujours les mêmes partages qu'avant l'ajout de Claude Motion ; seuls
+les quatre mots du modèle ont changé, « Esthétique » devenant « Créativité »,
+ce qui est la raison permanente de citer les charges et de ne pas se fier aux
+mots.
+
+Trois lectures méritent d'être faites. HyperFrames est exactement à la même
+hauteur que ce paquet (3,34) et à l'autre bout de l'axe horizontal, ce qui est
 la carte en train de remarquer que le moteur de rendu derrière la couture
 partage tous les traits de reproductibilité et aucun des traits de contrôle. Et
 ce paquet est seul dans son coin, ce qui n'est pas une victoire : les moteurs
@@ -364,9 +394,22 @@ de rendu se regroupent parce qu'ils sont en concours les uns avec les autres,
 et personne dans ce groupe n'essaie de confronter un chiffre à un catalogue,
 parce que ce n'est pas le métier d'un moteur de rendu.
 
+La troisième porte sur la ligne la plus récente. **Claude Motion écrit son
+animation en code, la même technique que toute la bande en haut à gauche, et
+la carte ne le met pas là** : il atterrit à (−2,65 ; −1,56), à côté de
+Descript à la même hauteur, quatre unités et demie sous HyperFrames. L'axe
+vertical en est la raison, et il demande d'où le film peut être reconstruit,
+pas comment il a été écrit — local et hors ligne, refabricable depuis un clone
+propre, déterministe, ouvert, utilisable en intégration continue. Motion est à
+une étoile sur quatre de ces cinq colonnes, non pour quelque chose de son
+modèle d'animation mais parce que le programme vit dans un compte, sur un plan
+Team ou Enterprise. La carte fait un point que cette page devrait sinon
+défendre : sur ces critères, *où vit le film* sépare les outils plus que
+*comment le film a été fait*.
+
 `--check` confirme le leader en haut à droite et les étiquettes d'axes
-visibles, et marque la figure **non lisible** : huit paires d'étiquettes
-risquent de se chevaucher, dont Remotion avec Motion Canvas, Sybil avec
+visibles, et marque la figure **non lisible** : sept paires d'étiquettes
+risquent de se chevaucher, dont Claude Motion avec Descript, Sybil avec
 pytest-codeblocks et Percy avec Chromatic. Ce sont des outils dont les notes se
 superposent vraiment, donc le chevauchement est la table qui dit la vérité
 plutôt que la figure qui se trompe. Le SVG interactif les sépare au survol ; le
@@ -393,6 +436,8 @@ PNG non.
   [Whisper Has an Internal Word Aligner](https://arxiv.org/pdf/2509.09987).
 - [Les meilleurs générateurs vidéo testés pour 2026](https://pictory.ai/blog/best-ai-video-maker-2026),
   pour le bout hébergé de la première famille.
+- [Claude Dashboards et Claude Motion](https://www.anthropic.com/news/claude-dashboards-and-motion),
+  octobre 2026, pour l'animation écrite en code par un assistant hébergé.
 
 ## À voir aussi
 
