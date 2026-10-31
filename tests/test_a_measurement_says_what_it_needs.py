@@ -3,21 +3,25 @@
 
 Why this exists
 ---------------
-``audio-helper`` left the base install on 2026-10-31 for the ``voice`` extra.
-The reason was weight: it was a base dependency for this single lazily-imported
-call, and it brought scipy and numpy with it. Measured in a clean venv, the
-install this package's CI performs went from 74 packages and 326 MB to 65 and
-182 -- 129 MB of scientific stack for a function that reads one number out of
-ffprobe. The 98 tests passed without it, none of them skipping, because every
-one of them hands :class:`Spoken` a declared duration and tests the cue
-arithmetic rather than the measurement.
+Nothing exercised :func:`sprezzature_video.captions.measure` at all -- not the
+missing-file contract its own docstring promises, and not the import guard
+beside it. A dependency reached lazily behind an error message nobody has ever
+seen is a dependency whose absence surfaces as a traceback in front of a user.
 
-That last sentence is also the problem this file answers. Nothing exercised
-:func:`sprezzature_video.captions.measure` at all -- not the missing-file
-contract its docstring promises, and not the import guard that was added when
-the dependency moved. A dependency made optional behind an error message
-nobody has ever seen is a dependency whose absence will surface as a traceback
-in front of a user.
+The guard is worth having wherever ``audio-helper`` sits. It is a base
+dependency as this is written, and moving it to the ``voice`` extra is
+proposed and measured -- in a clean venv the install this package's CI performs
+goes from 74 packages and 326 MB to 65 and 182, which is 129 MB of scientific
+stack for a function that reads one number out of ffprobe. But a base
+dependency can also simply fail to import on a broken install, and a
+``ModuleNotFoundError`` raised out of a function whose documented failure is
+``FileNotFoundError`` tells the caller neither which of the two went wrong nor
+what to do about it.
+
+The 98 tests that came before this file all pass without ``audio-helper``, none
+of them skipping, because every one of them hands :class:`Spoken` a declared
+duration and tests the cue arithmetic rather than the measurement. That is what
+left this function uncovered.
 
 What runs where, said out loud rather than discovered later
 -----------------------------------------------------------
@@ -25,12 +29,11 @@ The first three cases need no heavy dependency: two of them *simulate* the
 absence, which is the thing worth testing. They run everywhere, CI included.
 
 The last one measures a real file and therefore needs both ``audio-helper``
-and the ``ffprobe`` binary. CI installs neither -- that is precisely the
-lightness the move bought -- so it skips there, by name. This is an admitted
-hole, not a hidden one: a skip reads exactly like a pass, so it is written
-down here and in the skip reason. It still earns its keep on a developer
-machine, where it is the only thing that has ever called the function for
-real.
+and the ``ffprobe`` binary. A runner has no ffprobe, so it skips there, by
+name. This is an admitted hole, not a hidden one: a skip reads exactly like a
+pass, so it is written down here and in the skip reason. It still earns its
+keep on a developer machine, where it is the only thing that has ever called
+the function for real.
 
 Author
 ------
@@ -139,8 +142,8 @@ def test_a_real_file_measures_its_real_length(tmp_path: Path) -> None:
     """
     pytest.importorskip(
         "audio_helper",
-        reason="audio-helper ships with the voice extra, which CI does not "
-        "install: it is 129 MB of scipy and numpy for this one call",
+        reason="audio-helper is 129 MB of scipy and numpy for this one call, "
+        "and is a candidate for the voice extra",
     )
     if shutil.which("ffprobe") is None:
         pytest.skip("ffprobe is not on PATH; audio-helper reads the duration through it")

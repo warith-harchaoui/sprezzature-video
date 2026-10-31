@@ -119,7 +119,15 @@ def measure(path: Path | str) -> float:
 
     # Imported lazily: measuring is only needed when a film actually has a
     # voice, and the dependency should not be required to import this module.
-    import audio_helper as ah
+    try:
+        import audio_helper as ah
+    except ImportError as exc:
+        raise RuntimeError(
+            f"measuring {target.name} needs audio-helper, which ships with the "
+            "voice:\n"
+            "    pip install 'sprezzature-video[voice]'\n"
+            "A film with no narration never reaches this line."
+        ) from exc
 
     return float(ah.get_audio_duration(str(target)))
 
