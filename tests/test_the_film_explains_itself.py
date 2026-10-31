@@ -309,9 +309,7 @@ def _voiced(lines: list[tuple[float, str]]):
             {"text": "the solution", "start": 20.0},
             {"text": "the magic", "start": 40.0},
         ],
-        narration={
-            "en": [Spoken(start=at, text=text, duration=3.0) for at, text in lines]
-        },
+        narration={"en": [Spoken(start=at, text=text, duration=3.0) for at, text in lines]},
     )
 
 
@@ -389,10 +387,13 @@ def test_numbers_followed_by_their_insight_are_not_a_feature_list() -> None:
         [
             (6.0, "Ninety characters, on screen for half a second."),
             (21.0, "Seven scripts, all of them local."),
-            (41.0, "Seventeen characters a second. Forty-two to a line. Two "
-                   "lines at most. Conventions rather than laws, which is why "
-                   "each one is a flag: a children's programme and a dense "
-                   "talk justify different numbers entirely."),
+            (
+                41.0,
+                "Seventeen characters a second. Forty-two to a line. Two "
+                "lines at most. Conventions rather than laws, which is why "
+                "each one is a flag: a children's programme and a dense "
+                "talk justify different numbers entirely.",
+            ),
         ]
     )
     report = pitch.from_narration(spec, "en", 60.0)

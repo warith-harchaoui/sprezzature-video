@@ -259,9 +259,7 @@ def lay_out(
             f"length(s): every line needs both"
         )
     if texts is not None and len(texts) != len(requested):
-        raise ValueError(
-            f"{len(texts)} text(s) against {len(requested)} line(s)"
-        )
+        raise ValueError(f"{len(texts)} text(s) against {len(requested)} line(s)")
     for n, (want, length) in enumerate(zip(requested, spoken, strict=True), 1):
         if want < 0:
             raise ValueError(f"line {n} asks to start at {want}s, before the film")
@@ -277,9 +275,7 @@ def lay_out(
     words = texts if texts is not None else [""] * len(requested)
     placed: list[Placed] = []
     cursor = 0.0
-    for index, (want, length, text) in enumerate(
-        zip(requested, spoken, words, strict=True)
-    ):
+    for index, (want, length, text) in enumerate(zip(requested, spoken, words, strict=True)):
         start = want if index == 0 else max(want, cursor + gap)
         placed.append(
             Placed(

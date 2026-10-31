@@ -62,6 +62,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from typing import Any
 
 #: At or above this, two cuts correspond closely enough to be worth reading
 #: side by side. See the module docstring for where the number comes from: the
@@ -219,9 +220,7 @@ def compare_cuts(
     overlap = min(len(first), len(second))
     longest = max(len(first), len(second))
     corresponding = [
-        index
-        for index in range(overlap)
-        if shape(first[index]) == shape(second[index])
+        index for index in range(overlap) if shape(first[index]) == shape(second[index])
     ]
     return CalqueReport(
         film=film,
@@ -232,7 +231,7 @@ def compare_cuts(
     )
 
 
-def compare_spec(spec, *, languages: tuple[str, str] = ("en", "fr")) -> CalqueReport:
+def compare_spec(spec: Any, *, languages: tuple[str, str] = ("en", "fr")) -> CalqueReport:
     """
     Run :func:`compare_cuts` over a loaded film spec's narration.
 

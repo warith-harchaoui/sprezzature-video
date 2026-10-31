@@ -47,9 +47,7 @@ def test_an_overrunning_line_pushes_the_next_one_and_nothing_else() -> None:
 
 def test_a_pushed_line_is_reported_rather_than_hidden() -> None:
     """A voice arriving after the picture it describes is worth a word."""
-    out = timeline.lay_out(
-        [1.0, 5.0], [8.0, 2.0], duration=60.0, texts=["long one", "the next"]
-    )
+    out = timeline.lay_out([1.0, 5.0], [8.0, 2.0], duration=60.0, texts=["long one", "the next"])
     assert [line.index for line in out.drifted] == [1]
     assert "line 2 starts at" in out.report()[0]
     assert "'the next'" in out.report()[0]

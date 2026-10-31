@@ -156,9 +156,7 @@ INVENTORY_SHARE = 0.5
 #: Kept under the old name: this module shipped with `FEATURE_LIST` public and
 #: a caller elsewhere may hold it. It is the union, which is what that name
 #: always meant.
-FEATURE_LIST = re.compile(
-    f"(?:{INVENTORY.pattern})|(?:{BROCHURE.pattern})", re.I
-)
+FEATURE_LIST = re.compile(f"(?:{INVENTORY.pattern})|(?:{BROCHURE.pattern})", re.I)
 
 
 @dataclass
@@ -247,11 +245,12 @@ def check(film: str, beats: dict[str, Beat], duration: float) -> PitchReport:
             f"{film}: the secret sauce is {_words(magic.text)} words "
             f"({magic.text!r}). That is a label, not the insight."
         )
-    if BROCHURE.search(magic.text):
+    brochure = BROCHURE.search(magic.text)
+    if brochure:
         report.findings.append(
             f"{film}: the secret sauce is written in brochure "
-            f"({BROCHURE.search(magic.text).group(0)!r} in {magic.text!r}). "
-            f"A package that \"supports\" something is being described to a "
+            f"({brochure.group(0)!r} in {magic.text!r}). "
+            f'A package that "supports" something is being described to a '
             f"buyer; the underlying magic is explained to a colleague."
         )
     covered = sum(len(_words_in(m.group(0))) for m in INVENTORY.finditer(magic.text))
@@ -385,15 +384,11 @@ def from_narration(spec: Any, lang: str, duration: float) -> PitchReport:
         passing one.
     """
     if lang not in spec.narration:
-        raise KeyError(
-            f"{getattr(spec, 'name', 'film')}: no {lang} narration to check"
-        )
+        raise KeyError(f"{getattr(spec, 'name', 'film')}: no {lang} narration to check")
 
     scene_starts = [float(scene["start"]) for scene in spec.scenes]
     declared = getattr(spec, "pitch", None) or {}
-    beat_of_scene = {
-        index: name for name, indices in declared.items() for index in indices
-    }
+    beat_of_scene = {index: name for name, indices in declared.items() for index in indices}
 
     # Numbered as the script numbers them, not looked up afterwards: two
     # identical lines in one script -- a refrain, a repeated CTA -- would make
@@ -412,11 +407,7 @@ def from_narration(spec: Any, lang: str, duration: float) -> PitchReport:
             continue
         beats[name] = Beat(
             name=name,
-            scenes=tuple(
-                sorted(
-                    {scene_of(line.start, scene_starts) for _n, line in numbered}
-                )
-            ),
+            scenes=tuple(sorted({scene_of(line.start, scene_starts) for _n, line in numbered})),
             text=" ".join(line.text for _n, line in numbered).strip(),
             start=min(line.start for _n, line in numbered),
             source=f"{lang} narration, line(s) "

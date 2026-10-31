@@ -81,7 +81,7 @@ def test_a_written_cut_is_not_flagged() -> None:
 
 
 def test_the_report_names_the_lines_that_correspond() -> None:
-    """"Rewrite the French" is not actionable; a list of positions is."""
+    """ "Rewrite the French" is not actionable; a list of positions is."""
     lines = calque.compare_cuts(ENGLISH, TRANSLATED, film="colors").report()
     assert lines, "a flagged pair reported nothing"
     assert "line(s) 1, 2, 3, 4" in lines[0], lines[0]
@@ -125,10 +125,8 @@ def test_a_spec_on_disk_reaches_the_measure() -> None:
     spec = FilmSpec(
         name="colors",
         narration={
-            "en": [Spoken(start=float(i), text=t, duration=3.0)
-                   for i, t in enumerate(ENGLISH)],
-            "fr": [Spoken(start=float(i), text=t, duration=3.0)
-                   for i, t in enumerate(TRANSLATED)],
+            "en": [Spoken(start=float(i), text=t, duration=3.0) for i, t in enumerate(ENGLISH)],
+            "fr": [Spoken(start=float(i), text=t, duration=3.0) for i, t in enumerate(TRANSLATED)],
         },
     )
     assert calque.compare_spec(spec).suspected
