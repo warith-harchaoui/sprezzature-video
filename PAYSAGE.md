@@ -383,7 +383,11 @@ dessinées. Ici la rotation a bougé de moins de deux degrés, donc les deux axe
 portent toujours les mêmes partages qu'avant l'ajout de Claude Motion ; seuls
 les quatre mots du modèle ont changé, « Esthétique » devenant « Créativité »,
 ce qui est la raison permanente de citer les charges et de ne pas se fier aux
-mots.
+mots. L'édition anglaise de cette page le montre sans attendre une seconde
+exécution : son nuage de points est **identique** à celui-ci, comparé
+coordonnée par coordonnée, sous les noms *Artistry ↔ Automation* et
+*Stability ↔ Reproducibility* — non pas la traduction des quatre mots
+français, un second tirage des mêmes dés.
 
 Trois lectures méritent d'être faites. HyperFrames est exactement à la même
 hauteur que ce paquet (3,34) et à l'autre bout de l'axe horizontal, ce qui est

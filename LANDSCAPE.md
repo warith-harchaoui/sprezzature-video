@@ -352,7 +352,11 @@ degrees, so the two axes still carry the same splits they did before Claude
 Motion was added; only the model's four words changed, "Reliability" to
 "Automation" and "Simplicity ↔ Autonomy" to "Stability ↔ Reproducibility",
 which is the standing reason the loadings are quoted and the words are not
-trusted.
+trusted. The French edition of this page shows the same thing without waiting
+for a second run: its point cloud is **identical** to this one, diffed
+coordinate by coordinate, under the names *Créativité ↔ Fiabilité* and
+*Simplicité ↔ Autonomie* — not translations of the English four, a second roll
+of the same dice.
 
 Three readings worth having. HyperFrames sits at exactly the same height as
 this package (3.34) and at the opposite end of the horizontal axis, which is
