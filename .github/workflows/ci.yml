@@ -45,6 +45,23 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e ".[dev,api,mcp]"
+      # Pinned, and to the same version the three ai-helpers siblings pin.
+      #
+      # `[dev]` asks for `ruff>=0.6`, so without this step CI took whatever
+      # ruff had been released that morning -- and the gate below reads `.`,
+      # the whole tree. That is a verdict hostage to somebody else's release
+      # day: ruff 0.16 made Markdown code-fence formatting the default, which
+      # is how `audio-helper` came to carry this same step with the same
+      # comment. This package was the one repository in the suite with the
+      # repo-wide format gate and no pin, so it was the one still exposed.
+      #
+      # Measured on 2026-10-31, both ways, so a future bump has a baseline:
+      # 0.15.21 sees 21 files and 0.16.10 sees 34 -- the difference is the
+      # Markdown fences -- and both declare every one of them formatted. The
+      # pin is therefore not hiding a finding; it is fixing which question
+      # gets asked. Bump it deliberately, not by surprise.
+      - name: Install ruff
+        run: pip install "ruff==0.15.21"
       - name: Ruff
         run: ruff check .
       - name: Ruff format
