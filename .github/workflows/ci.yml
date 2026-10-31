@@ -44,7 +44,7 @@ jobs:
       - name: Install
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev,cli,api,mcp]"
+          pip install -e ".[dev,api,mcp]"
       - name: Ruff
         run: ruff check .
       - name: Ruff format

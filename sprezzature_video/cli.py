@@ -12,9 +12,11 @@ describing the arrangement it replaced.
 Everything is delegated to the library, so a sub-command can differ from the
 function behind it in wording and never in behaviour.
 
-Install the extra::
-
-    pip install 'sprezzature-video[cli]'
+Installed by default: click is a base dependency, bought on 2026-10-25 when
+the argparse twin was dropped, so there is no extra to add for this command.
+A line reading ``pip install 'sprezzature-video[cli]'`` names an extra that
+no longer exists — pip warns and carries on, which is why such a line can
+sit in a document for weeks without anybody noticing.
 
 Author
 ------
