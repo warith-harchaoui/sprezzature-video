@@ -344,7 +344,13 @@ That 61.4 % belongs to the **plane**, and this page used to split it per axis,
 "38.9 % and 22.3 %". It is not attributable that way: `standpoint` names the
 axes it *draws* but reports variance for the underlying principal components,
 and the drawn frame is a rotation of that plane — 32.5° here, 30.6° on the
-29-tool run. Rotating preserves the plane, so the cumulative figure is sound
+29-tool run, which anyone can re-measure:
+
+```sh
+grep -v '^Claude Motion,' assets/landscape.csv > /tmp/before.csv
+standpoint /tmp/before.csv --outdir /tmp --stem before --check
+```
+ Rotating preserves the plane, so the cumulative figure is sound
 and the per-axis split was reading a share the rotation had already mixed. The
 loadings above are quoted from the oriented frame, so those do describe the
 horizontal and the vertical as drawn. Here the rotation moved by under two

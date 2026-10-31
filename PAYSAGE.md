@@ -375,7 +375,13 @@ Ces 61,4 % appartiennent au **plan**, et cette page les découpait par axe,
 « 38,9 % et 22,3 % ». Ce n'est pas attribuable ainsi : `standpoint` nomme les
 axes qu'il *dessine* mais chiffre la variance des composantes principales
 sous-jacentes, et le repère dessiné est une rotation de ce plan — 32,5° ici,
-30,6° sur la carte à 29 outils. Une rotation préserve le plan, donc le cumul
+30,6° sur la carte à 29 outils, ce que n'importe qui peut remesurer :
+
+```sh
+grep -v '^Claude Motion,' assets/landscape.csv > /tmp/before.csv
+standpoint /tmp/before.csv --outdir /tmp --stem before --check
+```
+ Une rotation préserve le plan, donc le cumul
 est solide et le partage par axe lisait une part que la rotation avait déjà
 mélangée. Les charges ci-dessus sont citées depuis le repère orienté, donc
 celles-là décrivent bien l'horizontale et la verticale telles qu'elles sont
