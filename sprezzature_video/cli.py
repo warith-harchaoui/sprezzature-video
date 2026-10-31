@@ -14,9 +14,9 @@ function behind it in wording and never in behaviour.
 
 Installed by default: click is a base dependency, bought on 2026-10-25 when
 the argparse twin was dropped, so there is no extra to add for this command.
-A line reading ``pip install 'sprezzature-video[cli]'`` names an extra that
-no longer exists — pip warns and carries on, which is why such a line can
-sit in a document for weeks without anybody noticing.
+An install line still asking pip for a ``[cli]`` extra of this package names
+one that no longer exists — pip warns and carries on, which is why such a
+line can sit in a document for weeks without anybody noticing.
 
 Author
 ------
