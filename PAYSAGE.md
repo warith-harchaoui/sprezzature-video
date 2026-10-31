@@ -326,7 +326,7 @@ sur une échelle de capacité vaut un. La source lisible par machine est
 
 ## La carte
 
-![Carte de positionnement de 30 outils sur deux axes issus d'une analyse en composantes principales. sprezzature-video est seul dans le coin en haut à droite, aux coordonnées 3,41 et 3,34, sans rien près de lui. Le long du bord haut, à la même hauteur mais tout à gauche, se trouvent les moteurs orientés code : HyperFrames exactement à la même hauteur, puis Manim, Remotion, Revideo et Motion Canvas. L'extrême gauche est tenue par After Effects, Screen Studio, Descript et Claude Motion, ces deux derniers côte à côte à la même hauteur, sous le milieu. Le bord bas porte les services hébergés : Rev tout en bas, puis les sous-titres automatiques de YouTube, Pictory, Synthesia, Loom et Veed. Entre ce paquet et les moteurs se trouvent les outils de documentation testée, doctest, cargo test --doc, Sybil et pytest-codeblocks, et juste en dessous les registres de ressources, Nix, DVC, Make et Git LFS. L'axe horizontal oppose fabriquer l'image à contrôler le fait ; l'axe vertical oppose un outil qu'on fait tourner soi-même et depuis lequel on peut reconstruire à un outil déjà là qui ne coûte rien à démarrer.](assets/paysage.svg)
+![Carte de positionnement de 30 outils sur deux axes issus d'une analyse en composantes principales. sprezzature-video est seul dans le coin en haut à droite, aux coordonnées 3,41 et 3,34, sans rien près de lui. Le long du bord haut, à la même hauteur mais tout à gauche, se trouvent les moteurs orientés code : HyperFrames exactement à la même hauteur, puis Manim, Remotion, Revideo et Motion Canvas. L'extrême gauche est tenue par After Effects, Screen Studio, Descript et Claude Motion, ces deux derniers côte à côte à la même hauteur, sous le milieu. Le bord bas porte les services hébergés : Rev tout en bas, puis les sous-titres automatiques de YouTube, Pictory, Synthesia, Loom et Veed. Entre ce paquet et les moteurs se trouvent les outils de documentation testée, doctest, cargo test --doc, Sybil et pytest-codeblocks, et au-dessus d'eux les registres de ressources, Nix, DVC, Make et Git LFS. L'axe horizontal oppose fabriquer l'image à contrôler le fait ; l'axe vertical oppose un outil qu'on fait tourner soi-même et depuis lequel on peut reconstruire à un outil déjà là qui ne coûte rien à démarrer.](assets/paysage.svg)
 
 La source est [`assets/paysage.csv`](assets/paysage.csv), la table en étoiles
 ci-dessus et rien de plus, et la carte se régénère avec :
@@ -378,7 +378,7 @@ sous-jacentes, et le repère dessiné est une rotation de ce plan — 32,5° ici
 30,6° sur la carte à 29 outils, ce que n'importe qui peut remesurer :
 
 ```sh
-grep -v '^Claude Motion,' assets/landscape.csv > /tmp/before.csv
+grep -v '^Claude Motion,' assets/paysage.csv > /tmp/before.csv
 standpoint /tmp/before.csv --outdir /tmp --stem before --check
 ```
  Une rotation préserve le plan, donc le cumul
@@ -407,7 +407,7 @@ parce que ce n'est pas le métier d'un moteur de rendu.
 La troisième porte sur la ligne la plus récente. **Claude Motion écrit son
 animation en code, la même technique que toute la bande en haut à gauche, et
 la carte ne le met pas là** : il atterrit à (−2,65 ; −1,56), à côté de
-Descript à la même hauteur, quatre unités et demie sous HyperFrames. L'axe
+Descript à la même hauteur, près de cinq unités sous HyperFrames. L'axe
 vertical en est la raison, et il demande d'où le film peut être reconstruit,
 pas comment il a été écrit — local et hors ligne, refabricable depuis un clone
 propre, déterministe, ouvert, utilisable en intégration continue. Motion est à

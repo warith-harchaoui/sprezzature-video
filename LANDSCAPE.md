@@ -375,7 +375,7 @@ against a catalogue, because that is not what a renderer is for.
 The third is about the newest row. **Claude Motion writes its animation as
 code, the same technique as the whole top-left band, and the map does not put
 it there**: it lands at (−2.65, −1.56), beside Descript at the same height,
-four and a half units below HyperFrames. The vertical axis is the reason, and
+nearly five units below HyperFrames. The vertical axis is the reason, and
 it asks where the film can be rebuilt from rather than how it was authored —
 local and offline, rebuildable from a clean clone, deterministic, open, usable
 in continuous integration. Motion scores one star on four of those five, not
