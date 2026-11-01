@@ -88,7 +88,17 @@ dependencies = [
     "playwright>=1.40",
     "fastapi-mcp>=0.3",
     "mcp<2.0",
-    "sprezzature-audio[narrate]>=1.5.0",
+    # Plain, and 1.9.0, since 2026-11-01. It asked for
+    # `sprezzature-audio[narrate]` while the index served 1.5.0, where
+    # `[narrate]` was the real thing and the base had no voice. 1.9.0 folded
+    # every extra into the base, so the name is now an empty deprecated shim
+    # kept alive only for this line and its twin in the other sibling.
+    #
+    # The floor is load-bearing in the exact way a floor should be: on 1.5.0
+    # this plain requirement would install a package that cannot speak, and
+    # pip would say nothing — an unknown extra is a warning and exit 0,
+    # measured, so neither spelling fails loudly on the wrong version.
+    "sprezzature-audio>=1.9.0",
     "audio-helper>=1.6.0",
 ]
 
