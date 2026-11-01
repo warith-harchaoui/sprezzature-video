@@ -19,7 +19,7 @@ against its own context.
 
 Install the extras::
 
-    pip install 'sprezzature-video[api,mcp]'
+    pip install 'sprezzature-video'
 
 Then serve it::
 
@@ -51,8 +51,10 @@ except ImportError:  # pragma: no cover - dependency guard
         the ``[mcp]`` extra needs a one-line fix, not a stack trace.
         """
         print(
-            "sprezzature-video MCP surface requires fastapi-mcp. "
-            "Install with: pip install 'sprezzature-video[api,mcp]'",
+            "sprezzature-video MCP surface could not import fastapi-mcp, which is a "
+            "base dependency since 2026-11-01 -- a broken install rather than "
+            "a missing extra. Reinstall with: "
+            "pip install 'sprezzature-video'",
             file=sys.stderr,
         )
         sys.exit(1)

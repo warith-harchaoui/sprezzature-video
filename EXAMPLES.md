@@ -137,7 +137,7 @@ the moment the film's strongest line is fully on screen.
 The same operations, same answers — one implementation underneath:
 
 ```bash
-pip install 'sprezzature-video[api]'
+pip install 'sprezzature-video'
 uvicorn sprezzature_video.api:app --port 8000
 
 curl -s -X POST localhost:8000/v1/scan \

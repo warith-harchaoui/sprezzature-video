@@ -31,9 +31,10 @@ see, or run the CLI where the code is.
 Nothing here renders. Rendering needs a browser and tens of seconds; it lives
 behind the renderer seam, not behind an HTTP request.
 
-Install the extra to get the runtime dependencies::
+FastAPI and uvicorn are base dependencies since 2026-11-01, so there
+is no extra to ask for::
 
-    pip install 'sprezzature-video[api]'
+    pip install 'sprezzature-video'
 
 Then run the app with any ASGI server::
 
@@ -60,8 +61,10 @@ try:
     from fastapi.responses import RedirectResponse
 except ImportError as exc:  # pragma: no cover - dependency guard
     raise ImportError(
-        "The FastAPI HTTP surface requires the [api] extra. "
-        "Install with: pip install 'sprezzature-video[api]'"
+        "The FastAPI HTTP surface could not import fastapi, which is a base "
+        "dependency since 2026-11-01 -- so this is a broken install rather "
+        "than a missing extra. Reinstall with: "
+        "pip install 'sprezzature-video'"
     ) from exc
 
 from pydantic import BaseModel, Field

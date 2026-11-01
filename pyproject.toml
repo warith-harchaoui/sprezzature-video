@@ -72,69 +72,27 @@ dependencies = [
     # The command line, and the only parser since 2026-10-25.
     "click>=8.1",
     "pyyaml>=6.0",
+
+    # ------------------------------------------------- une seule installation
+    # Folded in from the extras on 2026-11-01. The base was 4
+    # dependencies, so `pip install sprezzature-video` installed almost nothing and
+    # did almost nothing: choosing the right extra was a thing a reader had to
+    # know before the package could do its job. Across the suite that was 59
+    # extras over eleven repositories, six of them with a base of one.
+    #
+    # The surfaces are not features and they are not optional any more: the
+    # HTTP app and the MCP server are two of this package's five front doors,
+    # and a door you have to install separately is a door people do not find.
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "playwright>=1.40",
+    "fastapi-mcp>=0.3",
+    "mcp<2.0",
+    "sprezzature-audio[narrate]>=1.5.0",
+    "audio-helper>=1.6.0",
 ]
 
 [project.optional-dependencies]
-# The voice. `sprezzature-audio[narrate]` pulls `speaker-helper[kokoro,detect]`,
-# which is where the engines actually live — this package never speaks to
-# Kokoro directly, and must not: espeak-ng's loader wheel can kill the process
-# from C with no Python traceback, and the handling for that lives one layer
-# down where it was learned.
-#
-# Separate from the base install because a film can be made silent, and the
-# engines are heavy.
-voice = [
-    "sprezzature-audio[narrate]>=1.5.0",
-    # Measures how long a narration line actually is. The script this package
-    # generalises hard-coded those durations with a comment warning that
-    # regenerating a voice line would silently desync the subtitles -- and it
-    # did, by 43 and 64 milliseconds, the day two stale sentences were fixed.
-    # A number that can be measured should not be typed.
-    #
-    # Here rather than in the base install, since 2026-10-31. It was a base
-    # dependency for one lazily-imported call, and it brought scipy and numpy
-    # with it: measured in a clean venv, the install this package's own CI
-    # performs went from 74 packages and 326 MB to 65 and 182 -- 129 MB of
-    # scientific stack for a function that reads one number out of ffprobe.
-    # The 98 tests pass without it, none of them skipping, because every one
-    # of them hands `Spoken` a declared duration and tests the cue arithmetic
-    # rather than the measurement.
-    #
-    # It belongs with the voice and not beside it: measuring a narration
-    # presupposes having narrated. A film can be made silent, and a silent
-    # film never calls this.
-    "audio-helper>=1.6.0",
-]
-# ffmpeg, through the suite's door onto it rather than a hand-rolled
-# subprocess. video-helper 2.7.0 already carries the primitives this package
-# needs by name: `mux_audio`, `concat`, `image_loop`, `burn_subs`, `duration`,
-# `dimensions`, plus two-pass target-size compression. The poster-as-frame-0
-# trick and loudness normalisation are built out of those.
-post = [
-    # Already in the base install since 2026-10-31, named again here because
-    # this extra is about the ffmpeg primitives rather than about subtitles,
-    # and an extra that silently relies on a base dependency reads as optional
-    # when it is not.
-    "video-helper>=2.9.0",
-]
-# The local render path. Hyperframes is the default renderer and arrives over
-# `npx` (Apache 2.0, Node, no Python package), so it is NOT a dependency here —
-# see `sprezzature_video/renderers/`. Playwright is the escape hatch: a
-# composition is HTML, so frames can be captured without Node at all.
-local = [
-    "playwright>=1.40",
-]
-api = [
-    "fastapi>=0.115",
-    "uvicorn[standard]>=0.30",
-]
-mcp = [
-    "fastapi-mcp>=0.3",
-    # The same pin the rest of the suite carries: fastapi-mcp 0.4.0 declares
-    # mcp>=1.12.0 with no upper bound but calls mcp's Server(...)
-    # positionally, and mcp 2.0.0 made a parameter keyword-only.
-    "mcp<2.0",
-]
 dev = [
     "pytest>=8.0",
     "ruff>=0.6",
@@ -151,7 +109,7 @@ dev = [
     "mypy>=1.11,<3",
     "httpx>=0.27",
     # starlette 1.9.0 moved its TestClient onto httpx2, and CI installs
-    # `.[dev,...]` rather than reading requirements-dev.txt, so the
+    # `.[dev]` rather than reading requirements-dev.txt, so the
     # declaration has to be where the install actually looks.
     "httpx2>=2.0.0",
 ]

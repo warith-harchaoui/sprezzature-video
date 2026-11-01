@@ -151,7 +151,7 @@ be worse than no check at all.
 
 ```bash
 pip install sprezzature-video                    # the checker and the ledger
-pip install 'sprezzature-video[voice,post]'      # plus narration and ffmpeg work
+pip install 'sprezzature-video'      # plus narration and ffmpeg work
 ```
 
 ## Boundaries

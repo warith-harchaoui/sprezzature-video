@@ -95,7 +95,7 @@ réécrites entre 0,36 et 0,70. Un soupçon, nommé ligne par ligne, pas un verd
 
 ```bash
 pip install sprezzature-video                    # le vérificateur et le registre
-pip install 'sprezzature-video[voice,post]'      # plus la narration et le travail ffmpeg
+pip install 'sprezzature-video'      # plus la narration et le travail ffmpeg
 ```
 
 ## Frontières

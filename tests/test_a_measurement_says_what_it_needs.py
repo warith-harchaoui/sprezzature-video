@@ -103,7 +103,7 @@ def test_without_audio_helper_the_error_names_the_extra(
 
     message = str(caught.value)
     assert "audio-helper" in message, f"the error does not name the missing package: {message!r}"
-    assert "sprezzature-video[voice]" in message, (
+    assert "sprezzature-video" in message, (
         f"the error does not name the extra that ships it, so a reader has to "
         f"guess which install fixes it: {message!r}"
     )

@@ -137,7 +137,7 @@ def measure(path: Path | str) -> float:
         raise RuntimeError(
             f"measuring {target.name} needs audio-helper, which ships with the "
             "voice:\n"
-            "    pip install 'sprezzature-video[voice]'\n"
+            "    pip install 'sprezzature-video'\n"
             "A film with no narration never reaches this line."
         ) from exc
 
