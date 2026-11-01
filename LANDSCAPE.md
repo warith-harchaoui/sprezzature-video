@@ -43,7 +43,7 @@ sprezzature suite
 ├── sprezzature-figures     (the charts that appear inside the frame)
 ├── sprezzature-maps        (the map plates that appear inside the frame)
 ├── sprezzature-colors      (the palette the film is cut in)
-├── sprezzature-audio       (the narration voice, and the WebVTT writer)
+├── sprezzature-audio       (the narration voice)
 ├── sprezzature-publish     (the page the film is served from)
 └── video-helper            (the ffmpeg primitives, from ai-helpers)
 ```

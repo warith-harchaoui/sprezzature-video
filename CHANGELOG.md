@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Changed
+
+- **Captions are written by `video_helper.subtitles` now**, not by
+  `sprezzature-audio`. The suite's single timed-text module moved to the
+  package that burns subtitles into frames and converts between the formats,
+  and this package follows it: the writer is the same writer, verified
+  identical on real tracks before anything was rewired, so no caption file
+  changes by a byte.
+
+  The consequence worth noting is the dependency, not the import:
+  `sprezzature-audio` leaves the **base** install, because a subtitle format
+  was the only thing the base used it for. The voice still comes from there
+  through the `voice` extra, where it belongs, and `video-helper` takes its
+  place in the base with a floor of 2.9.0.
+
+  SubRip also comes free with the move. A film's captions can now reach the
+  platforms that refuse WebVTT, which is most of them, through
+  `video_helper.vtt2srt`.
+
+### Changed
 - `captions` breaks a caption at **42 characters instead of 58**, and breaks it
   as many times as it takes instead of once. 42 is the Netflix Timed Text Style
   Guide figure `sprezzature-audio` already audits against and the suite's own

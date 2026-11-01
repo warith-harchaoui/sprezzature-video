@@ -26,30 +26,47 @@ classifiers = [
     "Topic :: Multimedia :: Video",
 ]
 dependencies = [
-    # The one WebVTT module in the suite. It is not vendored here on purpose:
-    # `sprezzature-audio` consolidated four writers and two readers onto
-    # `sprezzature_audio_scripts._vtt` and pinned every one of their
-    # differences in `tests/test_one_vtt.py`. Writing a fifth writer for this
-    # package would re-open exactly what that consolidation closed, and the
-    # differences that matter here — cue identifiers, line structure — are
-    # among the ones it preserves.
+    # The one timed-text module in the suite, and the door onto ffmpeg. It is
+    # not vendored here on purpose: four writers and two readers of this format
+    # were consolidated once, every difference that matters here — cue
+    # identifiers, line structure, voice tags — was preserved by that work, and
+    # writing a fifth writer would re-open exactly what it closed.
     #
-    # The floor is 1.5.0 because that is the release whose `__init__` re-exports
-    # `write_vtt` / `render_vtt` as public API. Against anything older the
-    # import has to reach into the scripts package directly, which is a private
-    # path this package has no business knowing.
-    "sprezzature-audio>=1.5.0",
+    # The consolidation lived in `sprezzature-audio` until 2026-10-31 and is in
+    # `video_helper.subtitles` now. The address is the point: a caption file is
+    # what a player shows over a picture, so the package that knows players
+    # owns the format. This package stopped depending on the audio package for
+    # a subtitle format the same day; the voice still comes from there, through
+    # the `voice` extra, where it belongs.
+    #
+    # The floor is 2.9.0, the release that carries `subtitles`. It is also
+    # where `vtt2srt` arrived, which is how a film's captions reach a platform
+    # that refuses WebVTT.
+    "video-helper>=2.9.0",
     # Hashing, copying and path work for the asset ledger. Declared even
     # though `audio-helper` already pulls it: `assets.py` imports it by name,
     # and a dependency you use directly but inherit transitively is exactly
     # what a clean venv turns into an ImportError nobody saw coming.
-    "os-helper>=2.10.0",
-    # Measures how long a narration line actually is. The script this package
-    # generalises hard-coded those durations with a comment warning that
-    # regenerating a voice line would silently desync the subtitles -- and it
-    # did, by 43 and 64 milliseconds, the day two stale sentences were fixed.
-    # A number that can be measured should not be typed.
-    "audio-helper>=1.6.0",
+    # Plancher à 4.0.0 le 2026-11-01, et c'est une décision à deux moitiés.
+    #
+    # La 4.0.0 d'os-helper est une release majeure parce qu'elle a cessé de mentir :
+    # `hashfile` ne rend plus de digest pour un fichier qu'il n'a pas lu (il
+    # hachait le chemin en silence), un répertoire est refusé, `hashfolder` ne rend
+    # plus le digest de la chaîne vide, et `date=True` prend la mtime de la cible
+    # au lieu de l'heure courante. C'est exactement l'empreinte dont ce dépôt a
+    # besoin : une empreinte de contenu qui échoue au lieu d'inventer.
+    #
+    # Et c'est devenu possible seulement maintenant : les seize paquets ai-helpers
+    # plafonnaient `os-helper<4`, donc demander la 4 rendait l'installation
+    # insoluble. Les seize sont republiés en `<5`, vérifié sur les métadonnées
+    # PUBLIÉES (pas sur le dépôt local ni sur l'éditable installé, qui m'ont
+    # trompé deux fois).
+    #
+    # Vérifié avant de l'écrire : cette machine exécute déjà le contrat 4.0.0 par
+    # un éditable, et les onze suites de la suite y sont vertes ; et un venv vierge
+    # résout `os-helper==4.0.0` avec audio 2.6.1, speaker 0.14.1, video 2.9.0,
+    # standpoint 0.13.1, best-engine 1.11.1, wallet 1.3.1 et elbow 0.4.1.
+    "os-helper>=4.0.0,<5",
     # Specs are YAML, like `assets/*.yaml` everywhere else in the suite, so a
     # film is a reviewable text file rather than a Python literal.
     # The command line, and the only parser since 2026-10-25.
@@ -68,6 +85,25 @@ dependencies = [
 # engines are heavy.
 voice = [
     "sprezzature-audio[narrate]>=1.5.0",
+    # Measures how long a narration line actually is. The script this package
+    # generalises hard-coded those durations with a comment warning that
+    # regenerating a voice line would silently desync the subtitles -- and it
+    # did, by 43 and 64 milliseconds, the day two stale sentences were fixed.
+    # A number that can be measured should not be typed.
+    #
+    # Here rather than in the base install, since 2026-10-31. It was a base
+    # dependency for one lazily-imported call, and it brought scipy and numpy
+    # with it: measured in a clean venv, the install this package's own CI
+    # performs went from 74 packages and 326 MB to 65 and 182 -- 129 MB of
+    # scientific stack for a function that reads one number out of ffprobe.
+    # The 98 tests pass without it, none of them skipping, because every one
+    # of them hands `Spoken` a declared duration and tests the cue arithmetic
+    # rather than the measurement.
+    #
+    # It belongs with the voice and not beside it: measuring a narration
+    # presupposes having narrated. A film can be made silent, and a silent
+    # film never calls this.
+    "audio-helper>=1.6.0",
 ]
 # ffmpeg, through the suite's door onto it rather than a hand-rolled
 # subprocess. video-helper 2.7.0 already carries the primitives this package
@@ -75,7 +111,11 @@ voice = [
 # `dimensions`, plus two-pass target-size compression. The poster-as-frame-0
 # trick and loudness normalisation are built out of those.
 post = [
-    "video-helper>=2.7.0",
+    # Already in the base install since 2026-10-31, named again here because
+    # this extra is about the ffmpeg primitives rather than about subtitles,
+    # and an extra that silently relies on a base dependency reads as optional
+    # when it is not.
+    "video-helper>=2.9.0",
 ]
 # The local render path. Hyperframes is the default renderer and arrives over
 # `npx` (Apache 2.0, Node, no Python package), so it is NOT a dependency here —
@@ -98,7 +138,17 @@ mcp = [
 dev = [
     "pytest>=8.0",
     "ruff>=0.6",
-    "mypy>=1.11",
+    # Bounded on 2026-10-31, and the reason is three lines away in this file's own
+    # history: a tool resolved to "whatever is newest" is a red suite waiting for
+    # somebody else's release day. mypy 2.4.1 is out, this machine has 1.20.2, and
+    # a runner installs the former -- a whole major apart. It broke exactly one
+    # brick (`sprezzature-figures`, an inference cycle mypy 1 guessed through and 2
+    # reports), which is one more than zero and was invisible until measured.
+    #
+    # A floor as well as a ceiling: bare `mypy` was not even a floor, so a resolver
+    # was free to reach for an ancient one. Raise the ceiling deliberately, after
+    # running the new major against the tree, not by surprise.
+    "mypy>=1.11,<3",
     "httpx>=0.27",
     # starlette 1.9.0 moved its TestClient onto httpx2, and CI installs
     # `.[dev,...]` rather than reading requirements-dev.txt, so the

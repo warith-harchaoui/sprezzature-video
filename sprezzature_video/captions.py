@@ -28,8 +28,13 @@ up as many times as it takes rather than once. Until 2026-10-29 this module
 used 58, a number with no source, so every caption it wrote between 43 and 58
 characters passed here and failed there.
 
-The WebVTT itself is written by the suite's single VTT module, re-exported from
-``sprezzature_audio``. This is not the place for a fifth writer.
+The subtitle file itself is written by the suite's single timed-text module,
+``video_helper.subtitles``. This is not the place for a fifth writer. It moved
+there on 2026-10-31, from ``sprezzature-audio`` where the consolidation was
+first done: a caption file is what a player shows over a picture, so the
+package that knows players owns the format. The move also means SubRip is one
+call away, which matters because every platform that takes a caption upload
+takes SubRip and plenty still refuse WebVTT.
 
 Author
 ------
@@ -112,6 +117,13 @@ def measure(path: Path | str) -> float:
         If the file is absent. A missing narration file must not silently
         become a zero-length cue, which would read on screen as a caption that
         never appears.
+    RuntimeError
+        If ``audio-helper`` is not installed. It left the base install on
+        2026-10-31 for the ``voice`` extra, which is right -- measuring a
+        narration presupposes having narrated -- and makes this the one place
+        where a base install can run out of dependency. Named here rather than
+        left as a bare ImportError from inside a function whose contract says
+        FileNotFoundError.
     """
     target = Path(path)
     if not target.exists():
@@ -292,10 +304,10 @@ def write(lines: list[Spoken], *, translated: bool) -> str:
     str
         A WebVTT document.
     """
-    # The suite's one WebVTT writer, re-exported as public API by
-    # sprezzature-audio. Imported lazily so this module can be read and tested
-    # for its splitting rules without the dependency present.
-    from sprezzature_audio import Cue, write_vtt
+    # The suite's one timed-text writer, in video-helper since 2026-10-31.
+    # Imported lazily so this module can be read and tested for its splitting
+    # rules without the dependency present.
+    from video_helper.subtitles import Cue, write_vtt
 
     cues = [Cue(start=a, end=b, text=t) for a, b, t in to_cues(lines)]
     return str(write_vtt(cues, voices=not translated))
