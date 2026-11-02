@@ -12,7 +12,7 @@ pip install -e ".[dev]"
 `sprezzature-video` depends on `sprezzature-audio` for the suite's single
 WebVTT module and on `audio-helper` for measuring narration length. The
 heavier optional work is behind extras: `[voice]` pulls the narration engines
-(through `sprezzature-audio[narrate]` → `speaker-helper`), `[post]` pulls
+(through `sprezzature-audio` → `speaker-helper`), `[post]` pulls
 `video-helper` for the ffmpeg primitives, `[local]` pulls Playwright.
 
 Rendering is **not** a Python dependency. The default renderer is Hyperframes,

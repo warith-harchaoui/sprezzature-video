@@ -104,7 +104,7 @@ Qui possède quoi, entre cette suite et
 [ai-helpers](https://deraison.ai/ai-helpers), est écrit dans
 [BOUNDARIES.md](BOUNDARIES.md). En bref : **ai-helpers possède la primitive,
 sprezzature possède l'opinion.** La voix arrive par
-`sprezzature-audio[narrate]`, ffmpeg par `video-helper`, et le rendu par
+`sprezzature-audio`, ffmpeg par `video-helper`, et le rendu par
 Hyperframes derrière une couture.
 
 ## État

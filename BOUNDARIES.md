@@ -33,7 +33,7 @@ judgement about what good looks like, it belongs in sprezzature.
 These are layers, not alternatives. `sprezzature-audio` declares
 `narrate = ["speaker-helper[kokoro,detect]>=0.8.0"]`, so Kokoro arrives through
 speaker-helper whichever door you knock on. **A sprezzature package wanting a
-voice depends on `sprezzature-audio[narrate]`, never on speaker-helper
+voice depends on `sprezzature-audio`, never on speaker-helper
 directly** — the espeak-ng loader can kill a process from C with no Python
 traceback, and the handling for that lives one layer down, where it was learned.
 
@@ -58,10 +58,10 @@ storyboard and in whether the claims are true, not in the frame grabber.
 ## Three duplications this audit found
 
 **1. Three paths to Kokoro.** `npx hyperframes tts` (third party, bundled), the
-`speaker-helper` engines, and `sprezzature-audio[narrate]` as the suite's door
+`speaker-helper` engines, and `sprezzature-audio` as the suite's door
 onto them. The suite's own films were narrated by the **first** — the one
 outside both suites. That is how it happened, not how it should stay: the films
-should move to `sprezzature-audio[narrate]`. The migration is not free, and the
+should move to `sprezzature-audio`. The migration is not free, and the
 reason is worth recording — switching engines for part of a series changes the
 timbre, so a move means **regenerating all of a film's lines, not some**. Two
 lines were regenerated on 2026-10-24 with `hyperframes tts` for exactly that

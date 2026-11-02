@@ -160,7 +160,7 @@ Which package owns what, between this suite and
 [ai-helpers](https://deraison.ai/ai-helpers), is written down in
 [BOUNDARIES.md](BOUNDARIES.md). The short version: **ai-helpers owns the
 primitive, sprezzature owns the opinion.** Voice arrives through
-`sprezzature-audio[narrate]`, ffmpeg through `video-helper`, and rendering
+`sprezzature-audio`, ffmpeg through `video-helper`, and rendering
 through Hyperframes behind a seam.
 
 ## Status
