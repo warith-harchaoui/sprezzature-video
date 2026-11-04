@@ -90,8 +90,9 @@ On les atteint par la CLI ou la bibliothèque.
 `--port` le changent, comme `SPREZZATURE_VIDEO_HOST` et
 `SPREZZATURE_VIDEO_PORT`.
 
-L'image Docker installe ffmpeg et sert l'API sur le port 8000. Le fichier
-compose monte `./work` sur `/work`, et c'est là que `/v1/verify` doit trouver
+L'image Docker installe ffmpeg et lance `sprezzature-video-mcp` sur
+`0.0.0.0:8000` : un seul conteneur sert les routes HTTP et le point d'accès MCP
+`/mcp` sur le même port. Le fichier compose monte `./work` sur `/work`, et c'est là que `/v1/verify` doit trouver
 le dépôt qu'il vérifie.
 
 ## La spécification de film

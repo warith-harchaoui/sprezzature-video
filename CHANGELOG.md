@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- `sprezzature-video-mcp` parses its arguments with click instead of argparse.
+  `--host`, `--port`, their defaults, `SPREZZATURE_VIDEO_HOST` and
+  `SPREZZATURE_VIDEO_PORT` are unchanged; a usage error still exits 2.
+  `main(argv)` returns an `int` now. No module of the package imports argparse.
+- The Docker image and the compose service run `sprezzature-video-mcp` on
+  `0.0.0.0:8000` instead of `uvicorn sprezzature_video.api:app`. The bare app
+  never imported `sprezzature_video.mcp`, so the container answered 404 on
+  `/mcp`; one container now serves `/v1/...`, `/health` and `/mcp`.
+- A guard test runs every console script with `--help` and expects exit 0 and
+  a click usage line, and fails if any module of the package imports argparse.
+
 ### Fixed
 
 - `/health` and the OpenAPI document reported version 0.2.0 throughout 0.3.0:

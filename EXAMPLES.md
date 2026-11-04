@@ -172,8 +172,8 @@ curl -s -X POST localhost:8000/v1/scan \
 describes. `GET /v1/methods` lists the five claim methods and `GET /health`
 answers a liveness probe. Interactive documentation is at `/docs`.
 
-With Docker, `docker compose up -d` serves the same app on port 8000 and mounts
-`./work` on `/work`:
+With Docker, `docker compose up -d` serves the same app on port 8000, the
+routes and `/mcp` together, and mounts `./work` on `/work`:
 
 ```bash
 docker compose run --rm api make-film verify /work/film.yaml --root /work

@@ -88,8 +88,9 @@ are reached through the CLI or the library.
 `--port` override it, as do `SPREZZATURE_VIDEO_HOST` and
 `SPREZZATURE_VIDEO_PORT`.
 
-The Docker image installs ffmpeg and serves the API on port 8000. The compose
-file mounts `./work` on `/work`, which is where `/v1/verify` has to find the
+The Docker image installs ffmpeg and runs `sprezzature-video-mcp` on
+`0.0.0.0:8000`, so one container serves the HTTP routes and the MCP endpoint
+`/mcp` on the same port. The compose file mounts `./work` on `/work`, which is where `/v1/verify` has to find the
 repository it checks.
 
 ## The film spec

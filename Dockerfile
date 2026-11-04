@@ -20,8 +20,14 @@ RUN pip install --no-cache-dir "."
 EXPOSE 8000
 
 # Serve what the image was built for. A CMD of `--help` is a container that
-# starts, prints and exits — which looks like it works and does nothing.
+# starts, prints and exits, which looks like it works and does nothing.
+#
+# `sprezzature-video-mcp` rather than `uvicorn sprezzature_video.api:app`: the
+# MCP endpoint is mounted on the FastAPI app when `sprezzature_video.mcp` is
+# imported, so the bare app served /v1/... and /health and answered 404 on
+# /mcp. This one process serves both on the same port.
+#
 # Override with the command line:
 #
 #   docker run --rm -v "$PWD:/work" IMAGE make-film verify /work/film.yaml --root /work
-CMD ["uvicorn", "sprezzature_video.api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sprezzature-video-mcp", "--host", "0.0.0.0", "--port", "8000"]

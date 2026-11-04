@@ -4,7 +4,8 @@
 # `docker run` line in somebody's shell history.
 #
 #   docker compose up -d
-#   curl -s localhost:8000/health
+#   curl -s localhost:8000/health        # the HTTP routes, /v1/...
+#   # and the MCP endpoint, /mcp, from the same container on the same port
 #   docker compose run --rm api make-film verify /work/film.yaml --root /work
 #
 # No model and no network: this brick reads a spec, a composition and a
@@ -29,4 +30,8 @@ services:
       # to be visible from inside.
       - ./work:/work
     working_dir: /work
+    # Spelled out although it is the image's CMD: the one process that serves
+    # /v1/... and /mcp together. `uvicorn sprezzature_video.api:app` would
+    # serve the routes and answer 404 on /mcp.
+    command: ["sprezzature-video-mcp", "--host", "0.0.0.0", "--port", "8000"]
     restart: unless-stopped
