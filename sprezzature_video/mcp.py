@@ -17,9 +17,9 @@ to restate a number from memory. ``verify_claims`` and ``scan_composition``
 give it a way to check instead of recall, against the repository rather than
 against its own context.
 
-Install the extras::
+fastapi-mcp is a base dependency, so there is no extra to install::
 
-    pip install 'sprezzature-video'
+    pip install sprezzature-video
 
 Then serve it::
 
@@ -40,15 +40,16 @@ except ImportError:  # pragma: no cover - dependency guard
 
     def main(argv: list[str] | None = None) -> None:
         """
-        Entry point when the MCP extra is not installed.
+        Entry point when fastapi-mcp cannot be imported.
 
         Takes the same ``argv`` as the real entry point and ignores it: the two
         variants are reached through the same console script, so a caller that
         passes arguments must not get a ``TypeError`` from the branch that
         happens to be missing a dependency.
 
-        Says which extra is missing and stops. Reaching an MCP command without
-        the ``[mcp]`` extra needs a one-line fix, not a stack trace.
+        fastapi-mcp is a base dependency, so reaching this branch means a
+        broken install. It says so with a one-line fix and stops, rather than
+        printing a stack trace.
         """
         print(
             "sprezzature-video MCP surface could not import fastapi-mcp, which is a "

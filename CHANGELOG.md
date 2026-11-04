@@ -6,6 +6,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- `/health` and the OpenAPI document reported version 0.2.0 throughout 0.3.0:
+  the FastAPI app carried a literal. It reads `__version__` now.
+- `pitch` labelled every finding "film", because `from_spec` read a `key`
+  attribute `FilmSpec` does not have. Findings carry the spec's `name` now.
+- `scan --spec` had no help string.
+- Stale comments in the Dockerfile, the CI workflow, `pyproject.toml` and
+  `.githooks/pre-push` still described the extras and a three-version matrix.
+
+Each of the three code fixes has a regression test in
+`test_every_surface_answers.py`, checked to fail on the old code.
+
+### Docs
+
+The documentation was checked against the code and corrected where it had
+drifted.
+
+- README / LISEZMOI: the install section listed a second `pip install` line
+  for "narration and ffmpeg work", which is the same command since the extras
+  were folded in; it is one line now. The status said 94 tests and CI on
+  3.10/3.11/3.12: the suite collected 115 tests (118 with the fixes above),
+  and CI runs on 3.12 with a 3.10 install-and-import floor job. The `pitch` example showed a message the
+  code does not print; it shows the real one. Added what was missing: the five
+  surfaces, the eight commands with their exit codes, the five routes with
+  their MCP tool names, the film spec format, the claim methods, and the
+  `pitch`, `charter` and `spec` modules. LISEZMOI gained the `prose` section
+  it lacked and French typography.
+- TRIGGERS: captions were said to be written by `sprezzature-audio`'s VTT
+  module; they are written by `video_helper.subtitles`. Added a table of every
+  tool and the request it answers, a table of what to call on every surface,
+  and the `pitch`, `calque`, `prose`, `poster` and `list_methods` tools, which
+  were absent.
+- EXAMPLES: the asset report listed `diverged` before `missing`; the code
+  prints `missing` first. Added the narration section captions need, the MCP
+  surface, Docker compose, and the pitch, calque and prose commands.
+- BOUNDARIES: the WebVTT writer is in `video-helper` since 2026-10-31, not in
+  `sprezzature-audio`; the `narrate` extra it quoted no longer exists; the
+  `StopIteration` from `video_helper.video_duration` was fixed in video-helper
+  2.8.0; `post.poster` and `post.measured_loudness` call ffmpeg directly too,
+  so `normalize_loudness` is not the only one.
+- CONTRIBUTING: the `[voice]`, `[post]` and `[local]` extras no longer exist,
+  and the "three" gates were four.
+- CODING: `sprezzature_audio` is imported nowhere in this package; the
+  direct-ffmpeg exception covers three functions, not one.
+- LANDSCAPE / PAYSAGE: the WebVTT writer moved to `video-helper`; the WhisperX
+  refusal rested on torch being absent, and torch now arrives through
+  `sprezzature-audio`.
+- Docstrings: `__init__` named a `sprezzature_video.renderers` module that does
+  not exist; `mcp` still spoke of an MCP extra; `post` called loudness the
+  single direct ffmpeg call.
+
 ### Changed — one `pip install`
 
 **Everything this package does now installs with it.** 6 extras became

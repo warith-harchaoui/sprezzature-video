@@ -341,3 +341,47 @@ def test_mcp_mounts_on_the_same_app() -> None:
     paths = {getattr(route, "path", "") for route in app.routes}
     assert "/v1/scan" in paths
     assert any("mcp" in path for path in paths)
+
+
+# ------------------------------------------------- three defects, pinned
+
+
+def test_health_reports_the_package_version(client) -> None:  # type: ignore[no-untyped-def]
+    """The app's version is the package's, not a literal that ages.
+
+    It was typed as "0.2.0" and stayed there through 0.3.0, so `/health` and
+    the OpenAPI document named a release that was no longer running.
+    """
+    from sprezzature_video import __version__
+
+    assert client.get("/health").json()["version"] == __version__
+    assert client.get("/openapi.json").json()["info"]["version"] == __version__
+
+
+def test_pitch_findings_name_the_film(tmp_path: Path) -> None:
+    """A finding names the film it is about, from the spec's `name`.
+
+    `from_spec` read a `key` attribute that `FilmSpec` never had, so every
+    finding from the command line said "film" whatever the spec was called.
+    """
+    doc = tmp_path / "spec.yaml"
+    doc.write_text(
+        "name: colors\n"
+        "scenes:\n"
+        "  - {text: 'Colour pickers lie about contrast.', start: 0}\n"
+        "  - {text: 'This one measures every pair against WCAG.', start: 8}\n"
+        "  - {text: 'Ten packages. Five surfaces each.', start: 40}\n"
+        "pitch: {problem: 0, solution: 1, magic: 2}\n"
+    )
+    result = CliRunner().invoke(cli_main, ["pitch", str(doc), "--duration", "60"])
+    assert result.exit_code == 1
+    assert result.output.startswith("colors: "), result.output
+    assert "film: " not in result.output
+
+
+def test_every_scan_option_says_what_it_is_for() -> None:
+    """`scan --spec` was the one option in the CLI with no help string."""
+    result = CliRunner().invoke(cli_main, ["scan", "--help"])
+    assert result.exit_code == 0
+    line = next(ln for ln in result.output.splitlines() if ln.strip().startswith("--spec"))
+    assert len(line.split()) > 2, f"--spec has no help: {line!r}"

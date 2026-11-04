@@ -45,16 +45,17 @@ sprezzature suite
 ├── sprezzature-colors      (the palette the film is cut in)
 ├── sprezzature-audio       (the narration voice)
 ├── sprezzature-publish     (the page the film is served from)
-└── video-helper            (the ffmpeg primitives, from ai-helpers)
+└── video-helper            (the ffmpeg primitives and the WebVTT writer, from ai-helpers)
 ```
 
 What comes before: a storyboard, the figures and map plates from
 `sprezzature-figures` and `sprezzature-maps`, and a narration script. What
 comes after: a renderer, by default [HyperFrames](https://github.com/heygen-com/hyperframes),
 then the page `sprezzature-publish` builds around the finished file. The sister
-package doing the neighbouring work is `sprezzature-audio`: it owns the voice
-and the single WebVTT writer the suite shares, while this package owns where
-each spoken line lands on a film's time grid.
+package doing the neighbouring work is `sprezzature-audio`: it owns the voice,
+while this package owns where each spoken line lands on a film's time grid. The
+caption file itself is written by `video_helper.subtitles`, where the suite's
+WebVTT writer has lived since 2026-10-31.
 
 ## When to choose it
 
@@ -193,11 +194,12 @@ for the attribute.
 known transcript, which is exactly the situation here.** The script is on disk,
 the audio was synthesized from it, so word-level timings are available for the
 asking and `split_line` would break a caption at a measured pause instead of at
-a guessed comma. Refused as written: WhisperX brings torch, and this package
-installs in seconds today. If it is ever done it belongs in
-`sprezzature-audio`, which already carries a whisper.cpp build and already owns
-the WebVTT writer, and it arrives here as a measured duration list like
-everything else.
+a guessed comma. Not done here. The old reason, that WhisperX brings torch,
+no longer holds: since the extras were folded into the base on 2026-11-01,
+torch already arrives through the voice engines of `sprezzature-audio`. The
+reason left is ownership. If it is ever done it belongs in
+`sprezzature-audio`, which already carries a whisper.cpp build, and it arrives
+here as a measured duration list like everything else.
 
 **[Nix](https://nixos.org/): pin the whole build environment and the output
 stops depending on the machine.** Refused, and the reason is specific rather
@@ -423,4 +425,6 @@ The interactive SVG separates them on hover; the PNG does not.
   and [sprezzature-maps](https://github.com/warith-harchaoui/sprezzature-maps):
   what appears inside the frame.
 - [sprezzature-audio](https://github.com/warith-harchaoui/sprezzature-audio):
-  the voice, and the single WebVTT writer the suite shares.
+  the voice.
+- [video-helper](https://github.com/warith-harchaoui/video-helper): the ffmpeg
+  primitives, and the WebVTT writer the suite shares.

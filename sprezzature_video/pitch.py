@@ -297,7 +297,9 @@ def from_spec(
             start=min(scene_start(i) for i in indices),
             source=f"scenes {', '.join(str(i) for i in indices)}",
         )
-    return check(getattr(spec, "key", "film"), beats, duration)
+    # `name`, the field FilmSpec has. This read `key`, which FilmSpec never had,
+    # so every finding from the command line was labelled "film".
+    return check(getattr(spec, "name", "film"), beats, duration)
 
 
 def scene_of(start: float, scene_starts: list[float]) -> int:

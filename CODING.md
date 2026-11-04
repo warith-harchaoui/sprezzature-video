@@ -37,8 +37,9 @@ next reader why they must not tidy it.
 
 ## Lazy imports
 
-The heavier dependencies — `audio_helper`, `video_helper`, `sprezzature_audio`
-— are imported **inside** the functions that use them, not at module top level.
+The heavier dependencies (`audio_helper`, `video_helper`, `os_helper`, `yaml`)
+are imported **inside** the functions that use them, not at module top level.
+No module of this package imports `sprezzature_audio`.
 Two reasons, both real: the audit is useful on a machine that has a film's
 asset tree but not the full toolchain, and `import audio_helper` costs over a
 second that a caller who only wants `claims` should not pay.
@@ -47,9 +48,10 @@ second that a caller who only wants `claims` should not pay.
 
 It does not render, synthesize speech, or call ffmpeg for anything
 `video-helper` already covers. Those belong to packages named in
-[BOUNDARIES.md](BOUNDARIES.md). The one deliberate exception is loudness
-normalisation, which has no primitive upstream yet; it is marked as such in
-`post.py` and should become a call outward if one lands.
+[BOUNDARIES.md](BOUNDARIES.md). Three functions in `post.py` call the ffmpeg
+binary directly: `normalize_loudness` and `measured_loudness`, because no
+loudness primitive exists upstream yet, and `poster`, a single-frame extract.
+`bake_poster` goes through `video-helper`.
 
 ## Tests
 

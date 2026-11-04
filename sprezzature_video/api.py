@@ -69,12 +69,15 @@ except ImportError as exc:  # pragma: no cover - dependency guard
 
 from pydantic import BaseModel, Field
 
+from sprezzature_video import __version__
 from sprezzature_video import captions as captions_mod
 from sprezzature_video import claims as claims_mod
 
 app = FastAPI(
     title="sprezzature-video",
-    version="0.2.0",
+    # Read from the package, never typed: a literal here said 0.2.0 on /health
+    # for the whole of 0.3.0.
+    version=__version__,
     description=(
         "Check what a film says against the project it describes: verify declared "
         "claims, find numbers on screen that no claim accounts for, and build "

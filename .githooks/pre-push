@@ -3,7 +3,7 @@
 #
 # Enable once per clone:  git config core.hooksPath .githooks
 #
-# CI is three Python versions and a few minutes; this is one version and a few
+# CI is a 3.12 gate plus a 3.10 install floor, and a few minutes; this is one version and a few
 # seconds. It exists to catch the ordinary mistakes -- an unformatted file, a
 # broken import -- without a round trip through GitHub.
 set -euo pipefail

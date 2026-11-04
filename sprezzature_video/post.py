@@ -16,12 +16,13 @@ days, with narration at one level and a music bed at another, arrive at
 different perceived volumes; a viewer who adjusts the volume between two films
 of the same series notices the series, not the films. This is the one operation
 with no primitive in ``video-helper`` — its surface covers muxing, concat,
-overlay, compression and subtitle burn, but not ``loudnorm`` — so it is the
-single place here that calls ffmpeg directly, and it is marked as such rather
-than hidden.
+overlay, compression and subtitle burn, but not ``loudnorm`` — so
+:func:`normalize_loudness` and :func:`measured_loudness` call ffmpeg directly,
+and are marked as such rather than hidden. :func:`poster` also calls the
+ffmpeg binary directly, for a single-frame extract.
 
-Everything else goes through ``video-helper``, which already owns the ffmpeg
-primitives this needs by name: ``image_loop_to_video``, ``concat_videos``,
+:func:`bake_poster` goes through ``video-helper``, which already owns the ffmpeg
+primitives it needs by name: ``image_loop_to_video``, ``concat_videos``,
 ``video_dimensions``.
 
 Author

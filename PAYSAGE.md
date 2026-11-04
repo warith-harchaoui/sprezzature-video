@@ -47,9 +47,9 @@ suite sprezzature
 ├── sprezzature-figures     (les graphiques qui apparaissent dans le cadre)
 ├── sprezzature-maps        (les planches cartographiques dans le cadre)
 ├── sprezzature-colors      (la palette dans laquelle le film est monté)
-├── sprezzature-audio       (la voix de narration, et l'écrivain WebVTT)
+├── sprezzature-audio       (la voix de narration)
 ├── sprezzature-publish     (la page depuis laquelle le film est servi)
-└── video-helper            (les primitives ffmpeg, venues d'ai-helpers)
+└── video-helper            (les primitives ffmpeg et l'écrivain WebVTT, venus d'ai-helpers)
 ```
 
 Ce qui vient avant : un storyboard, les figures et les planches de
@@ -57,10 +57,11 @@ Ce qui vient avant : un storyboard, les figures et les planches de
 vient après : un moteur de rendu, par défaut
 [HyperFrames](https://github.com/heygen-com/hyperframes), puis la page que
 `sprezzature-publish` construit autour du fichier fini. Le paquet frère qui
-fait le travail voisin est `sprezzature-audio` : il possède la voix et
-l'unique écrivain WebVTT que la suite partage, tandis que ce paquet-ci
-possède l'endroit où chaque ligne parlée atterrit sur la grille de temps du
-film.
+fait le travail voisin est `sprezzature-audio` : il possède la voix, tandis
+que ce paquet-ci possède l'endroit où chaque ligne parlée atterrit sur la
+grille de temps du film. Le fichier de sous-titres lui-même est écrit par
+`video_helper.subtitles`, où vit l'écrivain WebVTT de la suite depuis le
+31 octobre 2026.
 
 ## Quand la choisir
 
@@ -215,11 +216,13 @@ demi-journée pour l'attribut.
 transcription connue, ce qui est exactement la situation ici.** Le script est
 sur le disque, l'audio en a été synthétisé, donc les minutages mot à mot sont
 disponibles pour qui les demande, et `split_line` couperait un sous-titre à une
-pause mesurée au lieu d'une virgule devinée. Refusé tel quel : WhisperX amène
-torch, et ce paquet s'installe en quelques secondes aujourd'hui. Si cela se
+pause mesurée au lieu d'une virgule devinée. Pas fait ici. L'ancienne raison,
+que WhisperX amène torch, ne tient plus : depuis que les extras ont été
+versés dans la base le 1er novembre 2026, torch arrive déjà par les moteurs de
+voix de `sprezzature-audio`. La raison qui reste est la propriété. Si cela se
 fait un jour, cela appartient à `sprezzature-audio`, qui porte déjà une
-compilation de whisper.cpp et possède déjà l'écrivain WebVTT, et cela arrive
-ici comme une liste de durées mesurées, comme tout le reste.
+compilation de whisper.cpp, et cela arrive ici comme une liste de durées
+mesurées, comme tout le reste.
 
 **[Nix](https://nixos.org/) : épingler tout l'environnement de construction et
 la sortie cesse de dépendre de la machine.** Refusé, et la raison est précise
@@ -457,4 +460,6 @@ PNG non.
   et [sprezzature-maps](https://github.com/warith-harchaoui/sprezzature-maps) :
   ce qui apparaît dans le cadre.
 - [sprezzature-audio](https://github.com/warith-harchaoui/sprezzature-audio) :
-  la voix, et l'unique écrivain WebVTT que la suite partage.
+  la voix.
+- [video-helper](https://github.com/warith-harchaoui/video-helper) : les
+  primitives ffmpeg, et l'écrivain WebVTT que la suite partage.

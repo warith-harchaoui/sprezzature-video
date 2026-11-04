@@ -44,10 +44,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-      # The package with every surface it advertises. Not just [dev]: without
-      # [cli,api,mcp] the Click, HTTP and MCP tests all skip, and the gate goes
-      # green on code nobody ran -- a failure this suite has already paid for.
-      # Still cheap: the heavy backends sit behind extras none of these pull.
+      # The package with every surface it advertises. Since 2026-11-01 the
+      # Click, HTTP and MCP surfaces are base dependencies and `[dev]` is only
+      # the test toolchain, so this one install is the whole package: no
+      # surface test can skip for a missing extra and go green on code nobody
+      # ran -- a failure this suite has already paid for.
       - name: Install
         run: |
           python -m pip install --upgrade pip

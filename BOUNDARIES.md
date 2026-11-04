@@ -27,12 +27,12 @@ judgement about what good looks like, it belongs in sprezzature.
 |---|---|---|
 | `speaker-engines` | Model weights, self-hosted. Nothing is fetched from Hugging Face at runtime. | speaker-helper |
 | `speaker-helper` | **The engines**: Kokoro, OpenVoice, Chatterbox, Voicebox. espeak-ng handling, voice cloning, the evaluation gate. | sprezzature-audio |
-| `sprezzature-audio` | "The sound modality in both directions" — its own words. Drives speaker-helper through `scripts/_speaker.py`; adds captions, diarization, translation, and the suite's one WebVTT module. | publish, video |
+| `sprezzature-audio` | "The sound modality in both directions" — its own words. Drives speaker-helper through `scripts/_speaker.py`; adds captions, diarization and translation. | publish, video |
 | `sprezzature-publish`, `sprezzature-video` | Applying it: a narrated blog post, a film's narration track. | the site |
 
-These are layers, not alternatives. `sprezzature-audio` declares
-`narrate = ["speaker-helper[kokoro,detect]>=0.8.0"]`, so Kokoro arrives through
-speaker-helper whichever door you knock on. **A sprezzature package wanting a
+These are layers, not alternatives. `sprezzature-audio` carries
+`speaker-helper[kokoro,detect,chatterbox,openvoice]` in its base dependencies,
+so Kokoro arrives through speaker-helper whichever door you knock on. **A sprezzature package wanting a
 voice depends on `sprezzature-audio`, never on speaker-helper
 directly** — the espeak-ng loader can kill a process from C with no Python
 traceback, and the handling for that lives one layer down, where it was learned.
@@ -44,7 +44,7 @@ and diarize. Do not look for a voice there.
 
 | Layer | Owns |
 |---|---|
-| `video-helper` | ffmpeg primitives: frame extraction, convert, compress, concat, overlay, `mux_audio_video`, `burn_subtitles`, optical flow. |
+| `video-helper` | ffmpeg primitives: frame extraction, convert, compress, concat, overlay, `mux_audio_video`, `burn_subtitles`, optical flow. Since 2.9.0, also `subtitles`, the timed-text module this package writes its WebVTT through, and `vtt2srt`. |
 | `capture-helper` | Frames out of the room rather than out of a file. |
 | `youtube-helper`, `podcast-helper` | Acquisition: a URL in, media out. |
 | `sprezzature-figures`, `-maps` | What appears *in* the frame: hand-authored SVG. |
@@ -67,27 +67,30 @@ timbre, so a move means **regenerating all of a film's lines, not some**. Two
 lines were regenerated on 2026-10-24 with `hyperframes tts` for exactly that
 reason.
 
-**2. Two WebVTT writers.** `sprezzature_audio_scripts._vtt` consolidated four
-writers and two readers inside sprezzature and pinned every behavioural
-difference in `test_one_vtt.py`. `speaker_helper.cues_to_vtt` is a second one,
-in the backend. Both are defensible where they sit — speaker-helper should not
-depend on a sprezzature package — but a caption written by one and read by the
-other is an untested path. Worth a decision, not an accident.
+**2. More than one WebVTT writer.** `sprezzature_audio_scripts._vtt`
+consolidated four writers and two readers inside sprezzature and pinned every
+behavioural difference in `test_one_vtt.py`. On 2026-10-31 that writer moved to
+`video_helper.subtitles`, and this package writes its captions there. The
+`_vtt` module is still in `sprezzature-audio`, and `speaker_helper.cues_to_vtt`
+is another writer, in the backend. Each is defensible where it sits, since
+speaker-helper should not depend on a sprezzature package. A caption written
+by one and read by another is still an untested path. Worth a decision, not an
+accident.
 
-**3. Duration is split on purpose, and the split leaks.**
+**3. Duration is split on purpose.**
 `audio_helper.get_audio_duration` and `video_helper.video_duration` are
-deliberate mirrors; `video_duration`'s own docstring says so. But handed an
-audio-only file it raises a bare `StopIteration` from an internal generator,
-which reads as a bug in video-helper rather than as "wrong half of the split".
-A clear error naming the other function is the fix — the boundary is right, the
-signpost is missing.
+deliberate mirrors; `video_duration`'s own docstring says so. Handed an
+audio-only file, it used to raise a bare `StopIteration` from an internal
+generator, which read as a bug in video-helper. Since video-helper 2.8.0 it
+raises a `ValueError` that names `audio_helper.get_audio_duration`. The
+boundary was right; the signpost is now there. This package measures narration
+with `audio_helper`.
 
 ## Improvements this suggests for the backend
 
-- `video-helper`: raise a clear, named error on audio-only input instead of
-  leaking `StopIteration`, pointing the caller at `audio_helper`.
 - `video-helper`: no loudness primitive exists. `sprezzature-video`'s
-  `post.normalize_loudness` is the only direct ffmpeg call in this package for
-  that reason, and should become a call into video-helper if one lands.
-- `speaker-helper` / `sprezzature-audio`: decide which WebVTT writer is
-  canonical, or pin the round trip between them with a test.
+  `post.normalize_loudness` and `post.measured_loudness` call ffmpeg directly
+  for that reason, and should become calls into video-helper if one lands.
+  `post.poster` also calls ffmpeg directly, for a single-frame extract.
+- `speaker-helper` / `sprezzature-audio` / `video-helper`: decide which WebVTT
+  writer is canonical, or pin the round trips between them with tests.

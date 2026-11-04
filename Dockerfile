@@ -12,9 +12,9 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# The API, the MCP endpoint mounted beside it, and the Click twin. fastapi and
-# uvicorn live behind the `api` extra precisely so nobody installing the
-# library pays for them, so an image that serves has to ask for it.
+# The API, the MCP endpoint mounted beside it, and the command line. fastapi,
+# uvicorn and fastapi-mcp are base dependencies since 2026-11-01, so the plain
+# install is the whole surface and there is no extra to ask for.
 RUN pip install --no-cache-dir "."
 
 EXPOSE 8000

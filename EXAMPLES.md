@@ -88,15 +88,19 @@ make-film assets film.yaml --tree _assets --repo .
 ```
 
 ```
+missing (1):
+  music/track.mp3  licensed track; the whole beat grid is measured off this file
 diverged (1):
   figures/bar-grouped.svg  differs from web/img/figures/bar-grouped.svg;
                            the film and the project no longer show the same
                            file. Decide, do not guess.
-missing (1):
-  music/track.mp3  licensed track; the whole beat grid is measured off this file
 
 11/13 assets in hand
 ```
+
+The groups come in the order a fix wants: `missing`, `diverged`, `no-source`,
+`restorable`. Assets in hand are not listed. Exit code 1 whenever one asset is
+not in hand.
 
 Three classes, and the distinction is the point. A file one `cp` away is not
 the same problem as a file that exists nowhere else. **A divergence is never
@@ -108,6 +112,19 @@ regenerated out from under four films.
 nothing else.
 
 ## Build captions
+
+Captions read the spec's `narration` section, which the two-claim spec above
+does not have. Each line gives its `start`, its `text`, and either an `audio`
+file (measured) or a `duration` (for a translated track riding on the original
+timing):
+
+```yaml
+narration:
+  en:
+    - {start: 0.0, text: "A film said 127.", audio: voice/en-01.wav}
+  fr:
+    - {start: 0.0, text: "Un film disait 127.", duration: 1.8}
+```
 
 ```bash
 make-film captions film.yaml --lang en --out film.en.vtt
@@ -123,6 +140,10 @@ nothing to notice.
 `--translated` omits voice tags, because W3C reserves `<v Name>` for the track
 in the audio's own language.
 
+A line longer than 42 characters is cut into successive cues until every piece
+fits, and the line's time is shared between the pieces in proportion to their
+length. Without `--out` the WebVTT goes to standard output.
+
 ## Take a poster frame
 
 ```bash
@@ -134,10 +155,11 @@ the moment the film's strongest line is fully on screen.
 
 ## Over HTTP
 
-The same operations, same answers — one implementation underneath:
+The same operations and the same answers, because every route calls the same
+library functions as the command line:
 
 ```bash
-pip install 'sprezzature-video'
+pip install sprezzature-video
 uvicorn sprezzature_video.api:app --port 8000
 
 curl -s -X POST localhost:8000/v1/scan \
@@ -147,7 +169,40 @@ curl -s -X POST localhost:8000/v1/scan \
 
 `/v1/scan` and `/v1/captions` are pure. `/v1/verify` reads files under a root
 **on the server**, because a claim is only meaningful against the repository it
-describes.
+describes. `GET /v1/methods` lists the five claim methods and `GET /health`
+answers a liveness probe. Interactive documentation is at `/docs`.
+
+With Docker, `docker compose up -d` serves the same app on port 8000 and mounts
+`./work` on `/work`:
+
+```bash
+docker compose run --rm api make-film verify /work/film.yaml --root /work
+```
+
+## Over MCP
+
+```bash
+sprezzature-video-mcp --host 127.0.0.1 --port 8000
+```
+
+The MCP endpoint is `/mcp`, mounted on the same FastAPI app. Its five tools are
+the routes' `operation_id`s: `health`, `list_methods`, `scan_composition`,
+`verify_claims` and `build_captions`.
+
+## Pitch, calque and prose
+
+These three read the telling rather than the numbers, and are covered with
+their output in [README.md](README.md#does-the-film-explain-anything):
+
+```bash
+make-film pitch film.yaml --duration 60
+make-film pitch film.yaml --duration 60 --voice fr
+make-film calque film.yaml --from en --to fr
+make-film prose script.txt --lang en --strict
+```
+
+`pitch` needs `scenes` and `pitch` in the spec; `--voice` and `calque` need
+`narration` for the languages named.
 
 ## As a gate
 

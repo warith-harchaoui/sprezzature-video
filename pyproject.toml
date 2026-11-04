@@ -36,8 +36,8 @@ dependencies = [
     # `video_helper.subtitles` now. The address is the point: a caption file is
     # what a player shows over a picture, so the package that knows players
     # owns the format. This package stopped depending on the audio package for
-    # a subtitle format the same day; the voice still comes from there, through
-    # the `voice` extra, where it belongs.
+    # a subtitle format the same day. The voice still comes from there, as a
+    # base dependency since the extras were folded in on 2026-11-01.
     #
     # The floor is 2.9.0, the release that carries `subtitles`. It is also
     # where `vtt2srt` arrived, which is how a film's captions reach a platform

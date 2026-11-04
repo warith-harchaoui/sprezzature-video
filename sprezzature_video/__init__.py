@@ -3,9 +3,9 @@ sprezzature-video — project launch films, with the claims checked.
 
 The package is organised around the one thing a film has that a README does
 not: assertions burned into pixels, where nothing reads them again. So the
-entry point is not a renderer. It is :mod:`sprezzature_video.claims`, and the
-renderer sits behind a seam (:mod:`sprezzature_video.renderers`) precisely
-because which tool draws the frames is the least interesting decision here.
+entry point is not a renderer. It is :mod:`sprezzature_video.claims`. There is
+no renderer module: rendering is done outside this package, because which tool
+draws the frames is the least interesting decision here.
 
 Author
 ------

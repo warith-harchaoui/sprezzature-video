@@ -9,11 +9,13 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-`sprezzature-video` depends on `sprezzature-audio` for the suite's single
-WebVTT module and on `audio-helper` for measuring narration length. The
-heavier optional work is behind extras: `[voice]` pulls the narration engines
-(through `sprezzature-audio` → `speaker-helper`), `[post]` pulls
-`video-helper` for the ffmpeg primitives, `[local]` pulls Playwright.
+`[dev]` adds the test toolchain: pytest, ruff, mypy and httpx. Everything else
+is a base dependency, and there is no other extra. `video-helper` provides the
+WebVTT writer (`video_helper.subtitles`) and the ffmpeg primitives,
+`audio-helper` measures narration length, `os-helper` hashes and copies asset
+files, and `sprezzature-audio` brings the narration engines through
+`speaker-helper`. FastAPI, uvicorn, fastapi-mcp and Playwright are in the base
+too. The `poster` command and the `post` module need the `ffmpeg` binary.
 
 Rendering is **not** a Python dependency. The default renderer is Hyperframes,
 which arrives over `npx`; see [BOUNDARIES.md](BOUNDARIES.md) for why that line
@@ -21,7 +23,9 @@ is drawn where it is.
 
 ## The gates
 
-The same three the rest of the suite runs, and CI runs all of them:
+Lint, format, types and tests. CI runs all four, on Python 3.12, with ruff
+pinned to 0.15.21. A separate floor job installs and imports the package on
+Python 3.10.
 
 ```bash
 ruff check .
@@ -34,6 +38,9 @@ pytest -q
 whole suite: without it, pytest warns about an unknown mark and then runs the
 test anyway, so a typo in `@pytest.mark.renders` reads as a marked test and
 behaves as an unmarked one.
+
+`.githooks/pre-push` runs the same gates before a push. Enable it once per
+clone with `git config core.hooksPath .githooks`.
 
 ## Tests, and what they are for here
 

@@ -77,7 +77,12 @@ def verify(spec_path: str, root: str) -> None:
 
 @main.command()
 @click.argument("composition", type=click.Path(exists=True, dir_okay=False))
-@click.option("--spec", "spec_path", type=click.Path(exists=True, dir_okay=False))
+@click.option(
+    "--spec",
+    "spec_path",
+    type=click.Path(exists=True, dir_okay=False),
+    help="Film spec whose claims account for numbers on screen. Default: no claims.",
+)
 @click.option("--ignore", default="", help="Comma-separated non-claim values on screen.")
 def scan(composition: str, spec_path: str | None, ignore: str) -> None:
     """Find numbers on screen that no claim accounts for."""
