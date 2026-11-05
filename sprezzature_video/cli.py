@@ -44,8 +44,15 @@ Shell completion:
   eval "$(_SPREZZATURE_VIDEO_COMPLETE=bash_source sprezzature-video)"   # bash
   eval "$(_SPREZZATURE_VIDEO_COMPLETE=zsh_source sprezzature-video)"    # zsh
 
-Exit codes: 0 the film is still honest, 1 it is not, 2 the call was wrong.
+Exit codes: 0 the film is still honest, 1 it is not, 2 the call was wrong,
+or a tool it needs is missing (ffmpeg, for poster).
 """
+
+
+class _MissingTool(click.ClickException):
+    """A binary the command shells out to is absent: exit 2, one line, no traceback."""
+
+    exit_code = 2
 
 
 @click.group(
@@ -141,9 +148,17 @@ def captions(spec_path: str, lang: str, out: str | None, translated: bool) -> No
 @click.option("--out", required=True, type=click.Path(), help="Output .jpg.")
 @click.option("--at", type=float, required=True, help="Frame time in seconds.")
 def poster(video: str, out: str, at: float) -> None:
-    """Extract a frame of a rendered film as JPEG."""
+    """Extract a frame of a rendered film as JPEG. Needs ffmpeg on PATH."""
     from sprezzature_video import post
 
+    # Asked before the call, not caught after it: a missing binary is a
+    # problem with the machine, not with the film, so it exits 2 like any
+    # other wrong call. It used to surface as a FileNotFoundError traceback
+    # from deep inside `post`, which reads as a bug in this package.
+    try:
+        post._ffmpeg()
+    except FileNotFoundError as exc:
+        raise _MissingTool(f"{exc}. Install ffmpeg, then run poster again.") from None
     click.echo(str(post.poster(video, out, at=at)))
 
 

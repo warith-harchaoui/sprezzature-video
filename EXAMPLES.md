@@ -172,6 +172,9 @@ curl -s -X POST localhost:8000/v1/scan \
 describes. `GET /v1/methods` lists the five claim methods and `GET /health`
 answers a liveness probe. Interactive documentation is at `/docs`.
 
+The bare `uvicorn` line serves the HTTP routes only: `/mcp` answers 404
+there. `sprezzature-video-mcp` serves both on one port.
+
 With Docker, `docker compose up -d` serves the same app on port 8000, the
 routes and `/mcp` together, and mounts `./work` on `/work`:
 

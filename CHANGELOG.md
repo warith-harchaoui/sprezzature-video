@@ -6,11 +6,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Removed
+
+- `playwright` is no longer a base dependency. Nothing in the package, its
+  tests or its scripts imports it; it was declared for a renderer seam that
+  does not exist.
+
+### Fixed
+
+- `poster` without `ffmpeg` on `PATH` printed a `FileNotFoundError`
+  traceback, which read as a bug in this package. It now exits 2 with one
+  line naming ffmpeg, before anything runs. Tested with `shutil.which`
+  patched out, and checked to fail on the old code.
+
 ### Docs
 
+- `api.py`, README / LISEZMOI and EXAMPLES: `uvicorn sprezzature_video.api:app`
+  serves the HTTP routes only and answers 404 on `/mcp`; the routes and `/mcp`
+  together need `sprezzature-video-mcp`. The exit-2 notes name the missing
+  ffmpeg. Playwright is gone from the install lists (README, LISEZMOI,
+  CONTRIBUTING).
+
 - README / LISEZMOI: the status still said 0.3.0 and 118 tests; it is 0.4.0
-  and 124. `[dev]` also carries httpx2, now named with httpx (CONTRIBUTING
-  too).
+  and 125 with the poster test above. `[dev]` also carries httpx2, now
+  named with httpx (CONTRIBUTING too).
 - LISEZMOI / PAYSAGE: non-breaking spaces before `:` `;` `?` `!` and inside
   guillemets, outside code.
 - LANDSCAPE / PAYSAGE: "the highest return of the eight" counted the ideas

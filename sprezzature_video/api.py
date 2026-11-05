@@ -40,6 +40,11 @@ Then run the app with any ASGI server::
 
     uvicorn sprezzature_video.api:app --host 0.0.0.0 --port 8000
 
+That serves the HTTP routes only. The MCP endpoint ``/mcp`` is mounted on this
+app when :mod:`sprezzature_video.mcp` is imported, which this module never
+does, so the bare app answers 404 there. For the routes and ``/mcp`` together,
+on one port, run ``sprezzature-video-mcp`` (what the Docker image runs).
+
 Usage example
 -------------
 >>> # curl -X POST localhost:8000/v1/scan \\

@@ -33,7 +33,7 @@ it, and nothing anywhere was watching. That is this package's whole subject.
 pip install sprezzature-video
 ```
 
-One install, every surface. FastAPI, uvicorn, the MCP server, Playwright,
+One install, every surface. FastAPI, uvicorn, the MCP server,
 `sprezzature-audio`, `audio-helper`, `video-helper` and `os-helper` are base
 dependencies. The only extra is `[dev]`, the test toolchain (pytest, ruff,
 mypy, httpx and httpx2).
@@ -49,8 +49,8 @@ The same functions behind five doors.
 |---|---|
 | Library | `import sprezzature_video` |
 | CLI (command-line interface) | `sprezzature-video` or `make-film`: two names for one Click group |
-| HTTP API | `uvicorn sprezzature_video.api:app --port 8000`, or `docker compose up` |
-| MCP (Model Context Protocol) server | `sprezzature-video-mcp`, endpoint `/mcp` on the same FastAPI app |
+| HTTP API | `uvicorn sprezzature_video.api:app --port 8000` (HTTP routes only, no `/mcp`), or `sprezzature-video-mcp`, or `docker compose up` |
+| MCP (Model Context Protocol) server | `sprezzature-video-mcp`, endpoint `/mcp` on the same FastAPI app; the bare `uvicorn` line above does not serve it |
 | Skill | `sprezzature-video/SKILL.md`, kept in the [sprezzature](https://github.com/warith-harchaoui/sprezzature) hub |
 
 ### Command line
@@ -66,8 +66,9 @@ The same functions behind five doors.
 | `pitch SPEC --duration SECONDS [--voice LANG]` | Checks the problem, solution and secret sauce beats. | a finding |
 | `calque SPEC [--from en] [--to fr]` | Reports a second-language cut that reads as a translation of the first. | the cut is suspected |
 
-Exit 2 is a wrong call: a missing file, a missing required option. Shell
-completion and the exit codes are printed by `sprezzature-video --help`.
+Exit 2 is a wrong call: a missing file, a missing required option, or, for
+`poster`, no `ffmpeg` on `PATH`. Shell completion and the exit codes are
+printed by `sprezzature-video --help`.
 
 ### HTTP and MCP
 
@@ -271,7 +272,7 @@ files and ffmpeg primitives come from `video-helper`, durations from
 0.4.0, alpha. The checker, the asset ledger, the captions, the
 post-processing, the timeline layout, the pitch and calque checks, the prose
 charter, the YAML spec loader and the five surfaces are written and tested:
-124 tests. CI runs ruff, `ruff format --check`, mypy and pytest on Python 3.12,
+125 tests. CI runs ruff, `ruff format --check`, mypy and pytest on Python 3.12,
 and a floor job that installs and imports the package on 3.10.
 
 There is no renderer module yet. Hyperframes is driven directly, and a

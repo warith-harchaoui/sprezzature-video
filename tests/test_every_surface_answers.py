@@ -150,6 +150,30 @@ def test_scan_accepts_an_exempted_value(project: Path, tmp_path: Path) -> None:
     assert _run(args) == 0
 
 
+def test_poster_without_ffmpeg_is_a_clean_usage_error(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """2 and one line naming ffmpeg, never a traceback that reads as our bug."""
+    import shutil
+
+    from sprezzature_video import post
+
+    film = tmp_path / "film.mp4"
+    film.write_bytes(b"")
+    monkeypatch.setattr(shutil, "which", lambda *_a, **_k: None)
+    monkeypatch.setenv("PATH", "")
+    ran: list[object] = []
+    monkeypatch.setattr(post.subprocess, "run", lambda *a, **k: ran.append(a))
+    result = CliRunner().invoke(
+        cli_main, ["poster", str(film), "--out", str(tmp_path / "p.jpg"), "--at", "1"]
+    )
+    assert result.exit_code == 2
+    assert "ffmpeg" in result.output
+    assert "Traceback" not in result.output
+    assert result.exception is None or isinstance(result.exception, SystemExit)
+    assert not ran
+
+
 #: A film in two languages, with its beats on the scene grid and a sentence
 #: on each one. Enough for the two sub-commands that read a *script* rather
 #: than a claim -- and the scene text matters: an empty magic scene is a

@@ -14,7 +14,7 @@ is a base dependency, and there is no other extra. `video-helper` provides the
 WebVTT writer (`video_helper.subtitles`) and the ffmpeg primitives,
 `audio-helper` measures narration length, `os-helper` hashes and copies asset
 files, and `sprezzature-audio` brings the narration engines through
-`speaker-helper`. FastAPI, uvicorn, fastapi-mcp and Playwright are in the base
+`speaker-helper`. FastAPI, uvicorn and fastapi-mcp are in the base
 too. The `poster` command and the `post` module need the `ffmpeg` binary.
 
 Rendering is **not** a Python dependency. The default renderer is Hyperframes,

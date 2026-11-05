@@ -35,7 +35,7 @@ pip install sprezzature-video
 ```
 
 Une seule installation, toutes les surfaces. FastAPI, uvicorn, le serveur MCP,
-Playwright, `sprezzature-audio`, `audio-helper`, `video-helper` et `os-helper`
+`sprezzature-audio`, `audio-helper`, `video-helper` et `os-helper`
 sont des dépendances de base. Le seul extra est `[dev]`, l'outillage de test
 (pytest, ruff, mypy, httpx et httpx2).
 
@@ -50,8 +50,8 @@ Les mêmes fonctions derrière cinq portes.
 |---|---|
 | Bibliothèque | `import sprezzature_video` |
 | CLI (interface en ligne de commande) | `sprezzature-video` ou `make-film` : deux noms pour un seul groupe Click |
-| API HTTP | `uvicorn sprezzature_video.api:app --port 8000`, ou `docker compose up` |
-| Serveur MCP (Model Context Protocol) | `sprezzature-video-mcp`, point d'accès `/mcp` sur la même application FastAPI |
+| API HTTP | `uvicorn sprezzature_video.api:app --port 8000` (routes HTTP seulement, pas de `/mcp`), ou `sprezzature-video-mcp`, ou `docker compose up` |
+| Serveur MCP (Model Context Protocol) | `sprezzature-video-mcp`, point d'accès `/mcp` sur la même application FastAPI ; la ligne `uvicorn` ci-dessus ne le sert pas |
 | Skill | `sprezzature-video/SKILL.md`, rangé dans le dépôt central [sprezzature](https://github.com/warith-harchaoui/sprezzature) |
 
 ### Ligne de commande
@@ -68,8 +68,8 @@ Les mêmes fonctions derrière cinq portes.
 | `calque SPEC [--from en] [--to fr]` | Signale une coupe en deuxième langue qui se lit comme une traduction de la première. | la coupe est soupçonnée |
 
 La sortie 2 signale un appel faux : un fichier absent, une option obligatoire
-manquante. La complétion du shell et les codes de sortie sont affichés par
-`sprezzature-video --help`.
+manquante, ou, pour `poster`, pas de `ffmpeg` dans le `PATH`. La complétion
+du shell et les codes de sortie sont affichés par `sprezzature-video --help`.
 
 ### HTTP et MCP
 
@@ -280,7 +280,7 @@ d'`audio-helper`. Le rendu est fait par Hyperframes, hors de ce paquet.
 0.4.0, alpha. Le vérificateur, le registre d'actifs, les sous-titres,
 l'après-rendu, le calage sur la grille, les vérifications pitch et calque, la
 charte de prose, le chargeur de spécifications YAML et les cinq surfaces sont
-écrits et testés : 124 tests. La CI fait tourner ruff, `ruff format --check`,
+écrits et testés : 125 tests. La CI fait tourner ruff, `ruff format --check`,
 mypy et pytest sous Python 3.12, et un job plancher qui installe et importe le
 paquet sous 3.10.
 
