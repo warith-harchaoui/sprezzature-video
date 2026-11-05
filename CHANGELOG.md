@@ -6,14 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.3] — 2026-11-05
+
 ### Docs
 
 - README / LISEZMOI: `captions` needs ffprobe (from the `ffmpeg` install)
   when a narration line names an audio file rather than a duration; the
   measurement goes through `audio_helper.get_audio_duration`, which probes
   the file.
-- README / LISEZMOI: the status section counts 127 tests, the number the
-  suite collects today; it said 125.
+- README / LISEZMOI: the status section no longer pins a version or a test
+  count, both wrong by the next release (it said 125 tests while the suite
+  collected 127).
+- `captions` no longer tells a reader to install a `voice` extra that was
+  folded back into the base on 2026-11-01, and `normalize_loudness` no longer
+  calls itself the one direct ffmpeg call.
 
 ## [0.4.2] — 2026-11-05
 
