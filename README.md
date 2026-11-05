@@ -270,10 +270,10 @@ files and ffmpeg primitives come from `video-helper`, durations from
 
 ## Status
 
-0.4.2, alpha. The checker, the asset ledger, the captions, the
+Alpha, before 1.0. The checker, the asset ledger, the captions, the
 post-processing, the timeline layout, the pitch and calque checks, the prose
-charter, the YAML spec loader and the five surfaces are written and tested:
-127 tests. CI runs ruff, `ruff format --check`, mypy and pytest on Python 3.12,
+charter, the YAML spec loader and the five surfaces are written and tested.
+CI runs ruff, `ruff format --check`, mypy and pytest on Python 3.12,
 and a floor job that installs and imports the package on 3.10.
 
 There is no renderer module yet. Hyperframes is driven directly, and a
