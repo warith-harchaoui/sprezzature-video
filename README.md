@@ -269,7 +269,7 @@ files and ffmpeg primitives come from `video-helper`, durations from
 
 ## Status
 
-0.4.0, alpha. The checker, the asset ledger, the captions, the
+0.4.1, alpha. The checker, the asset ledger, the captions, the
 post-processing, the timeline layout, the pitch and calque checks, the prose
 charter, the YAML spec loader and the five surfaces are written and tested:
 125 tests. CI runs ruff, `ruff format --check`, mypy and pytest on Python 3.12,
