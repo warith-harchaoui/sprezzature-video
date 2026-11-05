@@ -59,7 +59,7 @@ class _MissingTool(click.ClickException):
     context_settings={"help_option_names": ["-h", "--help"]},
     epilog=_EPILOG,
 )
-@click.version_option(package_name="sprezzature-video")
+@click.version_option(None, "-V", "--version", package_name="sprezzature-video")
 def main() -> None:
     """Check what a film says against the project it describes."""
 

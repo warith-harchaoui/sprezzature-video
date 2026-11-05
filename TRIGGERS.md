@@ -86,7 +86,7 @@ not carry that operation.
 | Scan the screen | `undeclared_numbers` | `scan COMPOSITION --spec SPEC [--ignore ...]` | `POST /v1/scan` | `scan_composition` |
 | List claim methods | `claims.Method` | - | `GET /v1/methods` | `list_methods` |
 | Build captions | `captions.write`, `to_cues` | `captions SPEC --lang LANG [--translated]` | `POST /v1/captions` | `build_captions` |
-| Liveness | `__version__` | `--version` | `GET /health` | `health` |
+| Liveness | `__version__` | `-V`, `--version` | `GET /health` | `health` |
 | Audit assets | `AssetLedger.audit`, `.restore` | `assets SPEC --tree DIR [--restore]` | - | - |
 | Poster frame | `post.poster` | `poster VIDEO --out FILE --at S` | - | - |
 | Pitch | `from_spec`, `from_narration`, `check_pitch` | `pitch SPEC --duration S [--voice LANG]` | - | - |

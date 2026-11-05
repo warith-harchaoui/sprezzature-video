@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- The front door `sprezzature-video` (and `make-film`) answers `-V` as well
+  as `--version`, like the other bricks' commands; it was a usage error.
+  `tests/test_the_front_door_answers_both_version_flags.py` holds both flags
+  against the installed version, and the surface table in `TRIGGERS.md`
+  names both.
+
 ## [0.4.1] — 2026-11-05
 
 ### Removed
