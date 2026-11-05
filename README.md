@@ -39,7 +39,8 @@ dependencies. The only extra is `[dev]`, the test toolchain (pytest, ruff,
 mypy, httpx and httpx2).
 
 Python 3.10 to 3.13. The `poster` command and the `post` module also need the
-`ffmpeg` binary on `PATH`.
+`ffmpeg` binary on `PATH`, and so does `captions` when a narration line names
+an audio file instead of a duration: it measures the file with ffprobe.
 
 ## Five surfaces
 

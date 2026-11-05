@@ -40,7 +40,9 @@ sont des dépendances de base. Le seul extra est `[dev]`, l'outillage de test
 (pytest, ruff, mypy, httpx et httpx2).
 
 Python 3.10 à 3.13. La commande `poster` et le module `post` demandent aussi le
-binaire `ffmpeg` dans le `PATH`.
+binaire `ffmpeg` dans le `PATH`, tout comme `captions` quand une ligne de
+narration désigne un fichier audio plutôt qu'une durée : il le mesure avec
+ffprobe.
 
 ## Cinq surfaces
 
