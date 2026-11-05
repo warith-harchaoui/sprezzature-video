@@ -6,6 +6,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Docs
+
+- README / LISEZMOI: the status still said 0.3.0 and 118 tests; it is 0.4.0
+  and 124. `[dev]` also carries httpx2, now named with httpx (CONTRIBUTING
+  too).
+- LISEZMOI / PAYSAGE: non-breaking spaces before `:` `;` `?` `!` and inside
+  guillemets, outside code.
+- LANDSCAPE / PAYSAGE: "the highest return of the eight" counted the ideas
+  before Claude Motion joined them; there are nine. The package does not
+  drive a renderer, so it no longer says it is happy to.
+- `pyproject.toml` description: "one spec drives landscape, portrait and
+  square on a single time grid" described a renderer this package does not
+  have.
+- `mypy.ini` and the CI header: a three-version matrix, an `[api]` extra, a
+  renderer seam needing playwright and a `scripts/` check, none of which
+  exist any more.
+
 ## [0.4.0] - 2026-11-04: three surface defects, click everywhere
 
 ### Changed

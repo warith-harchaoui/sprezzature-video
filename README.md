@@ -36,7 +36,7 @@ pip install sprezzature-video
 One install, every surface. FastAPI, uvicorn, the MCP server, Playwright,
 `sprezzature-audio`, `audio-helper`, `video-helper` and `os-helper` are base
 dependencies. The only extra is `[dev]`, the test toolchain (pytest, ruff,
-mypy, httpx).
+mypy, httpx and httpx2).
 
 Python 3.10 to 3.13. The `poster` command and the `post` module also need the
 `ffmpeg` binary on `PATH`.
@@ -268,10 +268,10 @@ files and ffmpeg primitives come from `video-helper`, durations from
 
 ## Status
 
-0.3.0, alpha. The checker, the asset ledger, the captions, the
+0.4.0, alpha. The checker, the asset ledger, the captions, the
 post-processing, the timeline layout, the pitch and calque checks, the prose
 charter, the YAML spec loader and the five surfaces are written and tested:
-118 tests. CI runs ruff, `ruff format --check`, mypy and pytest on Python 3.12,
+124 tests. CI runs ruff, `ruff format --check`, mypy and pytest on Python 3.12,
 and a floor job that installs and imports the package on 3.10.
 
 There is no renderer module yet. Hyperframes is driven directly, and a

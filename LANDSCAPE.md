@@ -80,7 +80,7 @@ WebVTT writer has lived since 2026-10-31.
   character animation, anything where the frame is the work.
   [Remotion](https://www.remotion.dev/), [Motion Canvas](https://motioncanvas.io/)
   and HyperFrames are far better at this than anything here, and this package
-  is happy to drive them. It owns none of that breadth and does not want to.
+  is happy to check what they render. It owns none of that breadth and does not want to.
 - **You want the animation written for you, and the film is the deliverable.**
   [Claude Motion](https://www.anthropic.com/news/claude-dashboards-and-motion)
   takes a description and places and times the text, charts, shapes and images
@@ -121,7 +121,7 @@ memory: the same divergence is re-reported on every run until people learn to
 scroll past it, and a guard everybody scrolls past has stopped running. The
 fix is an `accepted:` block in the film spec holding the digest somebody
 approved and the one line saying why, consulted by `AssetLedger.audit` before
-it emits `State.DIVERGED`. Half a day, and the highest return of the eight,
+it emits `State.DIVERGED`. Half a day, and the highest return of the nine,
 because it protects a check that already exists from going quietly ignored.
 
 **[Claude Motion](https://www.anthropic.com/news/claude-dashboards-and-motion): the elements stay editable as code after the export.** Motion exports an MP4 and the text, charts, shapes and images behind it remain addressable as a program, so changing one number is an edit to one element rather than a new commission. Here, `verify` names the claim that went stale and then stops: nothing connects that failure to the work of fixing it, so the remedy in practice is to re-render everything. On the suite's own films that is 66 HyperFrames projects — eleven films, two languages, three cuts each — and the renderer's unit is the whole composition, so a scene-level re-render is not on offer and this entry does not pretend otherwise. What *is* on offer is narrowing which compositions have to move, and the boundary for it is **already declared**: `FilmSpec.scenes` carries each scene's text and start time, and `pitch` maps every beat to the scene indices that hold it, so the film already knows which scene a failed claim lives in. The work is a `verify --affected` that prints the scenes, and therefore the cuts, a failed claim touches; `render_films.sh` already skips a cut whose MP4 is newer than its composition, so a claim-driven answer plugs into a skip that exists. Cost: a day, almost all of it in the reporting half. It is high on this list because it turns "the film is wrong somewhere" into a work item.

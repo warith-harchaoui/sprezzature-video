@@ -18,7 +18,7 @@ Fait partie de la suite [sprezzature](https://sprezzature.ai/).
 
 ## Comment ça marche
 
-![Schéma de flux. En haut, une spécification de film et le code qu'elle décrit alimentent deux voies. La voie de gauche vérifie les nombres : chaque affirmation déclarée contre l'endroit du code qui la tranche, chaque nombre visible à l'écran contre les déclarations, et la possibilité de refabriquer le film depuis un clone. La voie de droite vérifie le récit : l'ordre de Kawasaki, et la moitié mécanique de la charte d'écriture. Les deux se rejoignent en un seul résultat, les parties d'un film qu'une fonction peut porter, les sous-titres calés sur l'audio mesuré, l'affiche cuite en image zéro, et le niveau sonore égalisé sur toute une série.](https://raw.githubusercontent.com/warith-harchaoui/sprezzature-video/main/assets/comment-ca-marche.svg)
+![Schéma de flux. En haut, une spécification de film et le code qu'elle décrit alimentent deux voies. La voie de gauche vérifie les nombres : chaque affirmation déclarée contre l'endroit du code qui la tranche, chaque nombre visible à l'écran contre les déclarations, et la possibilité de refabriquer le film depuis un clone. La voie de droite vérifie le récit : l'ordre de Kawasaki, et la moitié mécanique de la charte d'écriture. Les deux se rejoignent en un seul résultat, les parties d'un film qu'une fonction peut porter, les sous-titres calés sur l'audio mesuré, l'affiche cuite en image zéro, et le niveau sonore égalisé sur toute une série.](https://raw.githubusercontent.com/warith-harchaoui/sprezzature-video/main/assets/comment-ca-marche.svg)
 
 ## Pourquoi il existe
 
@@ -37,7 +37,7 @@ pip install sprezzature-video
 Une seule installation, toutes les surfaces. FastAPI, uvicorn, le serveur MCP,
 Playwright, `sprezzature-audio`, `audio-helper`, `video-helper` et `os-helper`
 sont des dépendances de base. Le seul extra est `[dev]`, l'outillage de test
-(pytest, ruff, mypy, httpx).
+(pytest, ruff, mypy, httpx et httpx2).
 
 Python 3.10 à 3.13. La commande `poster` et le module `post` demandent aussi le
 binaire `ffmpeg` dans le `PATH`.
@@ -91,7 +91,7 @@ On les atteint par la CLI ou la bibliothèque.
 `SPREZZATURE_VIDEO_PORT`.
 
 L'image Docker installe ffmpeg et lance `sprezzature-video-mcp` sur
-`0.0.0.0:8000` : un seul conteneur sert les routes HTTP et le point d'accès MCP
+`0.0.0.0:8000` : un seul conteneur sert les routes HTTP et le point d'accès MCP
 `/mcp` sur le même port. Le fichier compose monte `./work` sur `/work`, et c'est là que `/v1/verify` doit trouver
 le dépôt qu'il vérifie.
 
@@ -277,10 +277,10 @@ d'`audio-helper`. Le rendu est fait par Hyperframes, hors de ce paquet.
 
 ## État
 
-0.3.0, alpha. Le vérificateur, le registre d'actifs, les sous-titres,
+0.4.0, alpha. Le vérificateur, le registre d'actifs, les sous-titres,
 l'après-rendu, le calage sur la grille, les vérifications pitch et calque, la
 charte de prose, le chargeur de spécifications YAML et les cinq surfaces sont
-écrits et testés : 118 tests. La CI fait tourner ruff, `ruff format --check`,
+écrits et testés : 124 tests. La CI fait tourner ruff, `ruff format --check`,
 mypy et pytest sous Python 3.12, et un job plancher qui installe et importe le
 paquet sous 3.10.
 

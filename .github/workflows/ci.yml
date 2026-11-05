@@ -1,7 +1,8 @@
 name: ci
 
-# Gentle, deterministic gate: ruff + mypy + pytest on the supported Python
-# versions. No model calls, no network, no renderer. Intentionally minimal.
+# Gentle, deterministic gate: ruff + mypy + pytest on Python 3.12, and a floor
+# job that installs and imports on 3.10. No model calls, no network, no
+# renderer. Intentionally minimal.
 #
 # Nothing here renders a film. Rendering needs Node and a browser, takes tens
 # of seconds per format, and is the one part of the pipeline this package does

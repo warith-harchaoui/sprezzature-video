@@ -9,7 +9,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-`[dev]` adds the test toolchain: pytest, ruff, mypy and httpx. Everything else
+`[dev]` adds the test toolchain: pytest, ruff, mypy, httpx and httpx2. Everything else
 is a base dependency, and there is no other extra. `video-helper` provides the
 WebVTT writer (`video_helper.subtitles`) and the ffmpeg primitives,
 `audio-helper` measures narration length, `os-helper` hashes and copies asset
