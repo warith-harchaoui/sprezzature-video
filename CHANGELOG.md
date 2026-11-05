@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.2] — 2026-11-05
+
 ### Changed
 
 - The front door `sprezzature-video` (and `make-film`) answers `-V` as well
