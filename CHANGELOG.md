@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Docs
+
+- README / LISEZMOI: `captions` needs ffprobe (from the `ffmpeg` install)
+  when a narration line names an audio file rather than a duration; the
+  measurement goes through `audio_helper.get_audio_duration`, which probes
+  the file.
+- README / LISEZMOI: the status section counts 127 tests, the number the
+  suite collects today; it said 125.
+
 ## [0.4.2] — 2026-11-05
 
 ### Changed

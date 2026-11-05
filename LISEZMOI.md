@@ -282,7 +282,7 @@ d'`audio-helper`. Le rendu est fait par Hyperframes, hors de ce paquet.
 0.4.2, alpha. Le vérificateur, le registre d'actifs, les sous-titres,
 l'après-rendu, le calage sur la grille, les vérifications pitch et calque, la
 charte de prose, le chargeur de spécifications YAML et les cinq surfaces sont
-écrits et testés : 125 tests. La CI fait tourner ruff, `ruff format --check`,
+écrits et testés : 127 tests. La CI fait tourner ruff, `ruff format --check`,
 mypy et pytest sous Python 3.12, et un job plancher qui installe et importe le
 paquet sous 3.10.
 
