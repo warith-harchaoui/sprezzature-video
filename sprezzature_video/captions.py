@@ -118,11 +118,10 @@ def measure(path: Path | str) -> float:
         become a zero-length cue, which would read on screen as a caption that
         never appears.
     RuntimeError
-        If ``audio-helper`` is not installed. It left the base install on
-        2026-10-31 for the ``voice`` extra, which is right -- measuring a
-        narration presupposes having narrated -- and makes this the one place
-        where a base install can run out of dependency. Named here rather than
-        left as a bare ImportError from inside a function whose contract says
+        If ``audio-helper`` is missing. It is a base dependency (the ``voice``
+        extra it briefly lived in was folded back on 2026-11-01), so this only
+        fires in a broken environment. Named here rather than left as a bare
+        ImportError from inside a function whose contract says
         FileNotFoundError.
     """
     target = Path(path)
@@ -135,9 +134,9 @@ def measure(path: Path | str) -> float:
         import audio_helper as ah
     except ImportError as exc:
         raise RuntimeError(
-            f"measuring {target.name} needs audio-helper, which ships with the "
-            "voice:\n"
-            "    pip install 'sprezzature-video'\n"
+            f"measuring {target.name} needs audio-helper, a dependency of "
+            "sprezzature-video missing from this environment:\n"
+            "    pip install --force-reinstall sprezzature-video\n"
             "A film with no narration never reaches this line."
         ) from exc
 

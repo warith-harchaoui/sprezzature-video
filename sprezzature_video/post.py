@@ -195,9 +195,9 @@ def normalize_loudness(
     doubling the work. The video stream is copied, never re-encoded: a
     loudness fix must not cost a generation of picture quality.
 
-    This is the one direct ffmpeg call in the package — ``video-helper`` has no
-    loudness primitive. If one is added there, this function should become a
-    call to it.
+    ffmpeg is called directly because ``video-helper`` has no loudness
+    primitive (the module docstring lists the other direct calls). If one is
+    added there, this function should become a call to it.
     """
     out = Path(out)
     cmd = [
