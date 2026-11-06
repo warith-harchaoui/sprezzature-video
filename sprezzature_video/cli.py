@@ -261,7 +261,12 @@ def calque(spec_path: str, first: str, second: str) -> None:
     from sprezzature_video import spec as spec_mod
 
     film = spec_mod.load(spec_path)
-    report = calque_mod.compare_spec(film, languages=(first, second))
+    try:
+        report = calque_mod.compare_spec(film, languages=(first, second))
+    except KeyError as exc:
+        # A missing cut is a usage error (2), not a suspicion (1): the
+        # traceback used to exit 1, which a gate reads as "translated".
+        raise click.UsageError(str(exc.args[0])) from None
     for line in report.report():
         click.echo(line)
     if not report.suspected:

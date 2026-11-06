@@ -244,6 +244,19 @@ def test_an_unknown_language_is_a_failure_and_not_a_pass(tmp_path: Path) -> None
     assert _run(["calque", str(doc), "--to", "de"]) != 0
 
 
+def test_calque_on_a_missing_cut_is_a_usage_error_not_a_suspicion(tmp_path: Path) -> None:
+    """Exit 1 means "reads as a translation"; a cut that is not there is 2.
+
+    The hub's own films.yaml declares claims and no narration: calque died on
+    a KeyError traceback, exit 1, which a gate would have read as a verdict.
+    """
+    doc = _spec(tmp_path, "film", _COMPOSED)
+    result = CliRunner().invoke(cli_main, ["calque", str(doc), "--to", "de"])
+    assert result.exit_code == 2, result.output
+    assert "Traceback" not in result.output
+    assert "no de narration" in result.output
+
+
 def test_calque_exits_1_on_a_translated_cut_and_0_on_a_written_one(tmp_path: Path) -> None:
     """Both directions, because a measure that cannot pass is switched off."""
     assert _run(["calque", str(_spec(tmp_path, "rendered", _RENDERED))]) == 1, (

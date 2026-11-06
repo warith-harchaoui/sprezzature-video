@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **`calque` on a spec without the asked cut is a usage error.** It died
+  on a `KeyError` traceback with exit 1, the code that means "reads as a
+  translation"; it now says which narration is missing and exits 2.
+
 ## [0.4.3] — 2026-11-05
 
 ### Docs
