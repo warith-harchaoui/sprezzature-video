@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.4] — 2026-11-07
+
 ### Fixed
 
 - **`calque` on a spec without the asked cut is a usage error.** It died
