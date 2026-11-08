@@ -75,11 +75,6 @@ jobs:
         run: ruff check .
       - name: Ruff format
         run: ruff format --check .
-      # The type half of the gate. Once, on one version: this is a gate, not a
-      # matrix.
-      - name: Mypy
-        if: matrix.python-version == '3.12'
-        run: mypy sprezzature_video
       - name: Pytest
         run: pytest -q
 

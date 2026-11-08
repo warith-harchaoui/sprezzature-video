@@ -286,7 +286,7 @@ Alpha, avant 1.0. Le vérificateur, le registre d'actifs, les sous-titres,
 l'après-rendu, le calage sur la grille, les vérifications pitch et calque, la
 charte de prose, le chargeur de spécifications YAML et les cinq surfaces sont
 écrits et testés. La CI fait tourner ruff, `ruff format --check`,
-mypy et pytest sous Python 3.12, et un job plancher qui installe et importe le
+et pytest sous Python 3.12, et un job plancher qui installe et importe le
 paquet sous 3.10.
 
 Il n'y a pas encore de module de rendu. Hyperframes est piloté directement, et
