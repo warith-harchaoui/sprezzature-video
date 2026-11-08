@@ -34,6 +34,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   with one line.
 - `/v1/scan` and `/v1/verify` answer 400 instead of 500 on a claim whose
   `source` lacks `path` or `method`.
+- The MCP server announced a sentence as its version: fastapi-mcp 0.4 passes
+  the description into the `version` slot of `Server`. `serverInfo.version` is
+  the package version again, and the description is in `instructions`.
 
 ### Docs
 

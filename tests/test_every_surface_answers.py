@@ -422,3 +422,13 @@ def test_every_scan_option_says_what_it_is_for() -> None:
     assert result.exit_code == 0
     line = next(ln for ln in result.output.splitlines() if ln.strip().startswith("--spec"))
     assert len(line.split()) > 2, f"--spec has no help: {line!r}"
+
+
+def test_the_mcp_server_announces_its_version_as_a_version() -> None:
+    """fastapi-mcp passes the description into the version slot."""
+    from sprezzature_video import __version__
+    from sprezzature_video.mcp import mcp
+
+    options = mcp.server.create_initialization_options()
+    assert options.server_version == __version__
+    assert options.instructions == mcp.description
