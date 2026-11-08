@@ -25,6 +25,7 @@ Author
 
 from __future__ import annotations
 
+import subprocess
 import sys
 from pathlib import Path
 
@@ -49,10 +50,27 @@ or a tool it needs is missing (ffmpeg, for poster).
 """
 
 
-class _MissingTool(click.ClickException):
-    """A binary the command shells out to is absent: exit 2, one line, no traceback."""
+class _WrongCall(click.ClickException):
+    """What was asked cannot be attempted: exit 2, one line, no traceback."""
 
     exit_code = 2
+
+
+def _film(spec_path: str) -> spec_mod.FilmSpec:
+    """
+    Load a spec, or stop with exit 2.
+
+    The exit code is the reason this exists. An uncaught exception leaves
+    Python with status 1, and status 1 is this tool's way of saying the film is
+    lying, so a typo in the YAML or a ``sole`` asset with no ``why`` read to a
+    gate as a film that had failed its check. The spec was never read at all.
+    """
+    import yaml
+
+    try:
+        return spec_mod.load(spec_path)
+    except (ValueError, KeyError, TypeError, AttributeError, yaml.YAMLError) as exc:
+        raise _WrongCall(f"{spec_path}: not a usable film spec: {exc}") from None
 
 
 @click.group(
@@ -69,7 +87,7 @@ def main() -> None:
 @click.option("--root", default=".", help="Directory claim sources are relative to.")
 def verify(spec_path: str, root: str) -> None:
     """Verify a film's declared claims against the code."""
-    film = spec_mod.load(spec_path)
+    film = _film(spec_path)
     if not film.claims:
         # Silence here would read exactly like a film that checks out.
         raise click.ClickException(f"{spec_path}: no claims declared — nothing was checked")
@@ -93,7 +111,7 @@ def verify(spec_path: str, root: str) -> None:
 @click.option("--ignore", default="", help="Comma-separated non-claim values on screen.")
 def scan(composition: str, spec_path: str | None, ignore: str) -> None:
     """Find numbers on screen that no claim accounts for."""
-    declared = spec_mod.load(spec_path).claims if spec_path else []
+    declared = _film(spec_path).claims if spec_path else []
     skip = frozenset(int(p) for p in (piece.strip() for piece in ignore.split(",")) if p.isdigit())
     html = Path(composition).read_text(encoding="utf-8")
     found = claims_mod.undeclared_numbers(html, declared, ignore=skip)
@@ -111,7 +129,7 @@ def scan(composition: str, spec_path: str | None, ignore: str) -> None:
 @click.option("--restore", is_flag=True, help="Copy back absent tracked assets only.")
 def assets(spec_path: str, tree: str, repo: str, restore: bool) -> None:
     """Audit the asset tree a film renders from."""
-    film = spec_mod.load(spec_path)
+    film = _film(spec_path)
     if restore:
         for line in film.ledger.restore(tree, repo):
             click.echo(line)
@@ -131,11 +149,16 @@ def assets(spec_path: str, tree: str, repo: str, restore: bool) -> None:
 @click.option("--translated", is_flag=True, help="Omit voice tags on a translated track.")
 def captions(spec_path: str, lang: str, out: str | None, translated: bool) -> None:
     """Write WebVTT from the narration script and the measured audio."""
-    film = spec_mod.load(spec_path)
+    film = _film(spec_path)
     if lang not in film.narration:
         known = ", ".join(sorted(film.narration)) or "none"
         raise click.ClickException(f"no narration for {lang!r}; the spec has: {known}")
-    body = captions_mod.write(film.narration[lang], translated=translated)
+    try:
+        body = captions_mod.write(film.narration[lang], translated=translated)
+    except (ValueError, FileNotFoundError) as exc:
+        # A line with no timing, or a narration file that is not there: the
+        # same refusals the HTTP route turns into a 400.
+        raise _WrongCall(str(exc)) from None
     if out:
         Path(out).write_text(body, encoding="utf-8")
         click.echo(out)
@@ -158,8 +181,11 @@ def poster(video: str, out: str, at: float) -> None:
     try:
         post._ffmpeg()
     except FileNotFoundError as exc:
-        raise _MissingTool(f"{exc}. Install ffmpeg, then run poster again.") from None
-    click.echo(str(post.poster(video, out, at=at)))
+        raise _WrongCall(f"{exc}. Install ffmpeg, then run poster again.") from None
+    try:
+        click.echo(str(post.poster(video, out, at=at)))
+    except (subprocess.CalledProcessError, RuntimeError) as exc:
+        raise _WrongCall(f"ffmpeg could not take a frame of {video}: {exc}") from None
 
 
 @main.command()
@@ -217,12 +243,16 @@ def pitch(spec_path: str, duration: float, lang: str) -> None:
     out loud, and only the second reading sees that.
     """
     from sprezzature_video import pitch as pitch_mod
-    from sprezzature_video import spec as spec_mod
 
-    film = spec_mod.load(spec_path)
+    film = _film(spec_path)
     scenes = getattr(film, "scenes", []) or []
     if lang:
-        report = pitch_mod.from_narration(film, lang, duration)
+        try:
+            report = pitch_mod.from_narration(film, lang, duration)
+        except KeyError as exc:
+            # Same reasoning as `calque`: a cut that is absent was never
+            # judged, so it must not exit with the code for a failed pitch.
+            raise click.UsageError(str(exc.args[0])) from None
     else:
         report = pitch_mod.from_spec(
             film,
@@ -258,9 +288,8 @@ def calque(spec_path: str, first: str, second: str) -> None:
     read side by side.
     """
     from sprezzature_video import calque as calque_mod
-    from sprezzature_video import spec as spec_mod
 
-    film = spec_mod.load(spec_path)
+    film = _film(spec_path)
     try:
         report = calque_mod.compare_spec(film, languages=(first, second))
     except KeyError as exc:

@@ -49,7 +49,15 @@ Method = Literal["json_len", "json_key_len", "regex_count", "line_count", "liter
 
 #: Elements whose text content is markup machinery, never something a viewer
 #: reads. Their contents are dropped before any number is counted.
-_NON_VISIBLE_TAGS = frozenset({"style", "script", "template", "head", "title", "meta"})
+#:
+#: ``meta`` must never be listed here, and it was until 0.4.5. It is a void
+#: element: it opens and never closes, so the counter below went up on every
+#: ``<meta charset>`` and came down on nothing. ``</head>`` then left the parser
+#: one level short of zero and the whole ``<body>`` was read as machinery. Every
+#: real document came back with no visible text, ``scan`` said "0 undeclared
+#: number(s)" and exited 0: the check that exists to catch the number nobody
+#: declared could only fail on a fragment with no head.
+_NON_VISIBLE_TAGS = frozenset({"style", "script", "template", "head", "title"})
 
 #: A run of digits, optionally with thousands separators or a decimal part.
 #: Deliberately not anchored to word boundaries on the left: "x127" should
@@ -61,7 +69,19 @@ _NON_VISIBLE_TAGS = frozenset({"style", "script", "template", "head", "title", "
 #: runs of `\s` and Python counts U+00A0 as whitespace, so "1 000" always
 #: arrived here already spaced with U+0020. Both forms are listed now, so the
 #: rule holds whether a caller passes raw markup or normalised text.
-_NUMBER = re.compile("\\d[\\d ,._\u00a0\u202f]*\\d|\\d")
+#:
+#: One separator between two groups, and a space only in front of a group of
+#: exactly three digits, which is the shape of a thousands separator. The class
+#: was a greedy run of any separators until 0.4.5, so a slide reading
+#: "10, 20, 30" was one number and "Since 2026, 167 charts" came back as the
+#: single value 2026167. Neither ``--ignore 2026`` nor a claim of 167 could
+#: account for that, so the report was wrong in a way its reader could not fix.
+_NUMBER = re.compile("\\d+(?:[,._]\\d+|[ \u00a0\u202f]\\d{3}(?!\\d))*")
+
+
+def _collapsed(text: str) -> str:
+    """*text* with every run of whitespace reduced to one space, and trimmed."""
+    return re.sub(r"\s+", " ", text).strip()
 
 
 class _VisibleText(HTMLParser):
@@ -82,7 +102,11 @@ class _VisibleText(HTMLParser):
         self._suppressed = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if tag in _NON_VISIBLE_TAGS:
+        if tag == "body":
+            # HTML lets a document omit ``</head>``. Whatever was still open
+            # up there, the body is what a viewer sees.
+            self._suppressed = 0
+        elif tag in _NON_VISIBLE_TAGS:
             self._suppressed += 1
 
     def handle_endtag(self, tag: str) -> None:
@@ -96,7 +120,7 @@ class _VisibleText(HTMLParser):
     @property
     def text(self) -> str:
         """The visible text, runs of whitespace collapsed to single spaces."""
-        return re.sub(r"\s+", " ", " ".join(self.chunks)).strip()
+        return _collapsed(" ".join(self.chunks))
 
 
 @dataclass(frozen=True)
@@ -160,6 +184,14 @@ class Verdict:
     detail: str
 
 
+def _parsed(html: str) -> _VisibleText:
+    """Run the visible-text parser over *html* and return it, chunks included."""
+    parser = _VisibleText()
+    parser.feed(html)
+    parser.close()
+    return parser
+
+
 def visible_text(html: str) -> str:
     """
     Extract the text a viewer sees from a composition's HTML.
@@ -180,10 +212,7 @@ def visible_text(html: str) -> str:
     >>> visible_text("<style>.a{width:127px}</style><p>167 kinds</p>")
     '167 kinds'
     """
-    parser = _VisibleText()
-    parser.feed(html)
-    parser.close()
-    return parser.text
+    return _parsed(html).text
 
 
 def numbers_in(text: str) -> list[str]:
@@ -322,10 +351,16 @@ def verify(claim: Claim, root: Path | str) -> Verdict:
     """
     try:
         actual = read_actual(claim.source, root)
-    except (FileNotFoundError, ValueError, json.JSONDecodeError) as exc:
+    except (OSError, ValueError, TypeError, re.error) as exc:
         # An unreadable source is a failure, never a skip. A guard that goes
         # quiet when its input moves is the shape of defect this suite keeps
         # finding, so it is refused here explicitly.
+        #
+        # The whole family, not only a missing file: a path that became a
+        # directory (OSError), a selector that does not compile (re.error) and
+        # a ``json_key_len`` over a number (TypeError) each used to escape as
+        # a traceback from the command line and a 500 from the route, instead
+        # of the verdict this function promises.
         return Verdict(claim, None, False, f"could not verify: {exc}")
 
     if actual == claim.value:
@@ -383,20 +418,31 @@ def undeclared_numbers(
         One entry per unaccounted number, with surrounding text so the frame
         can be found.
     """
-    text = visible_text(html)
+    parser = _parsed(html)
+    text = parser.text
     declared_values = {claim.value for claim in claims}
-    declared_text = " ".join(claim.text for claim in claims)
+    # Whole numbers, not a substring of the claims' text: ``"16" in "167 kinds"``
+    # is true, so a stale 16 on screen was accounted for by a claim about 167.
+    declared_written = set(numbers_in(" ".join(claim.text for claim in claims)))
 
     found: list[UndeclaredNumber] = []
-    for written in numbers_in(text):
+    cursor = 0
+    # Chunk by chunk: two neighbouring elements are joined by a space in
+    # ``text``, and "<b>167</b><b>960</b>" is two numbers, never one in the
+    # thousands.
+    written_on_screen = (w for chunk in parser.chunks for w in numbers_in(_collapsed(chunk)))
+    for written in written_on_screen:
+        # From the cursor, so that a number shown twice is placed twice.
+        at = text.find(written, cursor)
+        if at != -1:
+            cursor = at + len(written)
         parsed = _as_int(written)
         if parsed is not None and (parsed in declared_values or parsed in ignore):
             continue
-        if written in declared_text:
+        if written in declared_written:
             continue
         # Context, not just the digits: a bare "167" in a failure report does
         # not tell anyone which scene to re-cut.
-        at = text.find(written)
         start, end = max(0, at - 40), min(len(text), at + len(written) + 40)
         found.append(UndeclaredNumber(written, text[start:end].strip()))
     return found

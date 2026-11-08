@@ -139,6 +139,23 @@ class CaptionsIn(BaseModel):
     )
 
 
+def _declared(claims: list[ClaimIn]) -> list[claims_mod.Claim]:
+    """
+    Build library claims from the request body.
+
+    Raises
+    ------
+    HTTPException
+        400 when a ``source`` lacks ``path`` or ``method``. ``source`` is typed
+        as a plain mapping, so validation lets that through and it used to
+        surface as a 500, which says the server broke when the caller did.
+    """
+    try:
+        return [claims_mod.as_claim(c.model_dump()) for c in claims]
+    except KeyError as exc:
+        raise HTTPException(status_code=400, detail=f"a claim source lacks {exc}") from exc
+
+
 @app.get(
     "/health",
     tags=["meta"],
@@ -182,7 +199,7 @@ def scan_composition(body: ScanIn) -> dict[str, Any]:
     Pure: everything needed is in the request. Stylesheet and script contents
     are excluded, because a keyframe percentage is not a claim about a project.
     """
-    declared = [claims_mod.as_claim(c.model_dump()) for c in body.claims]
+    declared = _declared(body.claims)
     found = claims_mod.undeclared_numbers(body.html, declared, ignore=frozenset(body.ignore))
     return {
         "undeclared": [{"written": u.written, "context": u.context} for u in found],
@@ -209,7 +226,7 @@ def verify_claims(body: VerifyIn) -> dict[str, Any]:
     """
     if not body.claims:
         raise HTTPException(status_code=400, detail="no claims supplied — nothing would be checked")
-    declared = [claims_mod.as_claim(c.model_dump()) for c in body.claims]
+    declared = _declared(body.claims)
     verdicts = claims_mod.verify_all(declared, body.root)
     return {
         "verdicts": [
