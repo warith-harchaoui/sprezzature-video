@@ -69,8 +69,11 @@ Les mêmes fonctions derrière cinq portes.
 | `pitch SPEC --duration SECONDES [--voice LANG]` | Vérifie les trois temps problème, solution, ingrédient secret. | une alerte |
 | `calque SPEC [--from en] [--to fr]` | Signale une coupe en deuxième langue qui se lit comme une traduction de la première. | la coupe est soupçonnée |
 
-La sortie 2 signale un appel faux : un fichier absent, une option obligatoire
-manquante, ou, pour `poster`, pas de `ffmpeg` dans le `PATH`. La complétion
+La sortie 2 signale un appel faux, quand rien n'a été jugé : un fichier absent,
+une option obligatoire manquante, une spécification qui ne se charge pas, une
+langue demandée à `pitch --voice` ou à `calque` que la spécification n'a pas,
+une ligne de sous-titre sans durée ou dont le fichier audio manque, ou, pour
+`poster`, pas de `ffmpeg` dans le `PATH` ou un fichier que ffmpeg refuse. La complétion
 du shell et les codes de sortie sont affichés par `sprezzature-video --help`.
 
 ### HTTP et MCP
@@ -104,8 +107,8 @@ Un film est un fichier YAML. Chaque section est facultative.
 ```yaml
 name: demo                     # par défaut, le nom du fichier sans extension
 claims:                        # ce que le film affirme, et où c'est vérifié
-  - text: "167 kinds, every one hand-authored."
-    value: 167
+  - text: "168 kinds, every one hand-authored."
+    value: 168
     source: {path: sprezzature-figures/sprezzature_figures/catalog/figures.json, method: json_len}
 assets:                        # ce dont il est rendu : suivi, dérivé ou unique
   - {rel: figures/sankey.svg, provenance: tracked, source: web/img/figures/sankey.svg}
@@ -134,7 +137,7 @@ résout depuis le répertoire de la spécification elle-même.
 
 | Module | Ce qu'il possède |
 |---|---|
-| `claims` | Une revendication est un couple déclaré : le texte à l'écran, et l'endroit du code qui décide s'il est vrai. `verify_all` vérifie que chaque revendication déclarée tient encore ; `undeclared_numbers` vérifie que chaque nombre *visible* est une revendication déclarée. Le texte de `style`, `script`, `template`, `head`, `title` et `meta` est ignoré. |
+| `claims` | Une revendication est un couple déclaré : le texte à l'écran, et l'endroit du code qui décide s'il est vrai. `verify_all` vérifie que chaque revendication déclarée tient encore ; `undeclared_numbers` vérifie que chaque nombre *visible* est une revendication déclarée. Le texte de `style`, `script`, `template`, `head` et `title` est ignoré. |
 | `assets` | Ce film peut-il être rendu à nouveau depuis un clone ? Trois classes : `TRACKED` (copie d'un fichier suivi, **prouvée** égale à sa source par empreinte de contenu), `DERIVED` (sortie d'une recette, affichée et jamais exécutée), `SOLE` (existe à un seul endroit). Une divergence est signalée, jamais réparée en silence. |
 | `captions` | Du WebVTT construit à partir du script de narration et de la durée **mesurée** de chaque fichier audio, ni transcrite, ni tapée. Un sous-titre est coupé à 42 caractères autant de fois qu'il le faut. Le fichier est écrit par `video_helper.subtitles`. |
 | `post` | `poster` extrait une image. `bake_poster` fait de cette image fixe l'image 0, parce que Slack, X et Discord refabriquent leur vignette depuis la première image, quoi que dise un attribut `poster=`. `normalize_loudness` et `measured_loudness` égalisent une série à -16 LUFS (unités de sonie relatives à la pleine échelle), crête vraie à -1,5 dBTP. |
@@ -150,8 +153,8 @@ résout depuis le répertoire de la spécification elle-même.
 from sprezzature_video import Claim, ClaimSource, verify, undeclared_numbers
 
 claim = Claim(
-    text="167 kinds, every one hand-authored.",
-    value=167,
+    text="168 kinds, every one hand-authored.",
+    value=168,
     source=ClaimSource(
         path="sprezzature-figures/sprezzature_figures/catalog/figures.json",
         method="json_len",

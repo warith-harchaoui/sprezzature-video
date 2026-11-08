@@ -67,8 +67,11 @@ The same functions behind five doors.
 | `pitch SPEC --duration SECONDS [--voice LANG]` | Checks the problem, solution and secret sauce beats. | a finding |
 | `calque SPEC [--from en] [--to fr]` | Reports a second-language cut that reads as a translation of the first. | the cut is suspected |
 
-Exit 2 is a wrong call: a missing file, a missing required option, or, for
-`poster`, no `ffmpeg` on `PATH`. Shell completion and the exit codes are
+Exit 2 is a wrong call, when nothing was judged: a missing file, a missing
+required option, a spec that does not load, a language `pitch --voice` or
+`calque` is asked for and the spec lacks, a caption line with no timing or
+whose audio file is absent, or, for `poster`, no `ffmpeg` on `PATH` or a file
+ffmpeg refuses. Shell completion and the exit codes are
 printed by `sprezzature-video --help`.
 
 ### HTTP and MCP
@@ -102,8 +105,8 @@ A film is a YAML file. Every section is optional.
 ```yaml
 name: demo                     # defaults to the file's stem
 claims:                        # what the film asserts, and where it is checked
-  - text: "167 kinds, every one hand-authored."
-    value: 167
+  - text: "168 kinds, every one hand-authored."
+    value: 168
     source: {path: sprezzature-figures/sprezzature_figures/catalog/figures.json, method: json_len}
 assets:                        # what it renders from: tracked, derived or sole
   - {rel: figures/sankey.svg, provenance: tracked, source: web/img/figures/sankey.svg}
@@ -131,7 +134,7 @@ resolved against the spec's own directory.
 
 | Module | What it owns |
 |---|---|
-| `claims` | A claim is a declared pair: the text on screen, and the place in the code that decides whether it is true. `verify_all` checks every declared claim still holds; `undeclared_numbers` checks every number *visible* on screen is a declared claim. Text inside `style`, `script`, `template`, `head`, `title` and `meta` is ignored. |
+| `claims` | A claim is a declared pair: the text on screen, and the place in the code that decides whether it is true. `verify_all` checks every declared claim still holds; `undeclared_numbers` checks every number *visible* on screen is a declared claim. Text inside `style`, `script`, `template`, `head` and `title` is ignored. |
 | `assets` | Can this film be rendered again from a clone? Three classes: `TRACKED` (a copy of a tracked file, proved equal to its source by content hash), `DERIVED` (output of a recipe, shown and never run), `SOLE` (exists in exactly one place). Divergence is reported, never silently repaired. |
 | `captions` | WebVTT built from the narration script and the **measured** length of each audio file, neither transcribed nor typed. A caption is cut at 42 characters as many times as it takes. The file is written by `video_helper.subtitles`. |
 | `post` | `poster` extracts a frame. `bake_poster` makes that still frame 0, because Slack, X and Discord regenerate their thumbnail from the first frame whatever a `poster=` attribute says. `normalize_loudness` and `measured_loudness` level a series to -16 LUFS (loudness units relative to full scale), true peak -1.5 dBTP. |
@@ -147,8 +150,8 @@ resolved against the spec's own directory.
 from sprezzature_video import Claim, ClaimSource, verify, undeclared_numbers
 
 claim = Claim(
-    text="167 kinds, every one hand-authored.",
-    value=167,
+    text="168 kinds, every one hand-authored.",
+    value=168,
     source=ClaimSource(
         path="sprezzature-figures/sprezzature_figures/catalog/figures.json",
         method="json_len",

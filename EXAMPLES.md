@@ -8,8 +8,8 @@ moves underneath it.
 # film.yaml
 name: demo
 claims:
-  - text: "167 kinds, every one hand-authored."
-    value: 167
+  - text: "168 kinds, every one hand-authored."
+    value: 168
     source:
       path: sprezzature-figures/sprezzature_figures/catalog/figures.json
       method: json_len
@@ -37,13 +37,12 @@ ok   matches
 2/2 claims hold
 ```
 
-Exit code 0. Now suppose the catalogue grows and nobody re-cuts the film — the
-exact thing that happened to the five films on sprezzature.ai, which said "127"
-while the catalogue held 167:
+Exit code 0, for as long as the catalogue holds 168 entries. Now take a film
+still saying 127 against that catalogue: the exact thing that happened to the
+five films on sprezzature.ai, which said "127" while the catalogue held 167:
 
 ```
-FAIL the film says 127 ('127 kinds, every one hand-authored.');
-     sprezzature-figures/sprezzature_figures/catalog/figures.json says 167
+FAIL the film says 127 ('127 kinds, every one hand-authored.'); sprezzature-figures/sprezzature_figures/catalog/figures.json says 168
 ok   matches
 
 1/2 claims hold
@@ -54,6 +53,8 @@ whoever reads it has to find the frame to re-cut and the authority to trust.
 
 A spec with no claims at all exits 1 too. "0/0 claims hold" reads exactly like
 a film that checks out, and that is the failure this package exists to prevent.
+A spec that does not load (broken YAML, a `sole` asset with no `why`) exits 2:
+nothing was checked, so nothing can be said about the film.
 
 ## Scan for numbers nothing accounts for
 
@@ -91,9 +92,7 @@ make-film assets film.yaml --tree _assets --repo .
 missing (1):
   music/track.mp3  licensed track; the whole beat grid is measured off this file
 diverged (1):
-  figures/bar-grouped.svg  differs from web/img/figures/bar-grouped.svg;
-                           the film and the project no longer show the same
-                           file. Decide, do not guess.
+  figures/bar-grouped.svg  differs from web/img/figures/bar-grouped.svg; the film and the project no longer show the same file. Decide, do not guess.
 
 11/13 assets in hand
 ```

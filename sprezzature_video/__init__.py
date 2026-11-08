@@ -49,7 +49,7 @@ from sprezzature_video.pitch import check as check_pitch
 from sprezzature_video.spec import FilmSpec, load
 from sprezzature_video.timeline import Layout, Placed, lay_out
 
-__version__ = "0.4.4"
+__version__ = "0.4.5"
 
 __all__ = [
     "Asset",

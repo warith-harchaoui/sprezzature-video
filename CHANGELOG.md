@@ -6,6 +6,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.5] — 2026-11-08
+
+### Fixed
+
+- **`scan` read nothing of a real document.** `<meta>` is a void element, the
+  parser counted it as opened and never closed, and `</head>` then left the
+  whole body suppressed. Every composition with a `<meta charset>` came back
+  with no visible text, "0 undeclared number(s)" and exit 0; only head-less
+  fragments, which is what the tests fed it, were read. `meta` is out of the
+  suppressed set, and `<body>` now clears whatever an omitted `</head>` left
+  open.
+- **`scan` glued distinct numbers together.** "10, 20, 30" was one number,
+  "Since 2026, 167 charts" was 2026167 and neither `--ignore` nor a claim
+  could account for it, and two neighbouring elements were one number. One
+  separator between groups now, a space only before exactly three digits, and
+  each text node is read alone.
+- **`scan` accounted for a number by substring.** A 16 on screen passed on a
+  claim reading "167 kinds". Numbers are compared whole. A number shown twice
+  now reports each place, not the first one twice.
+- **`verify` raised instead of giving a verdict** on a selector that does not
+  compile, a `json_key_len` over a scalar and a source path that became a
+  directory: a traceback on the command line, a 500 over HTTP.
+- **A wrong call exited 1**, the code for a film that fails its check. A spec
+  that does not load, `pitch --voice` on an absent language, a caption line
+  with no timing or a missing audio file, and a file ffmpeg refuses are exit 2
+  with one line.
+- `/v1/scan` and `/v1/verify` answer 400 instead of 500 on a claim whose
+  `source` lacks `path` or `method`.
+
+### Docs
+
+- EXAMPLES, README and LISEZMOI: the worked claim said 167 kinds against a
+  catalogue that now holds 168, so the documented `verify` printed a failure.
+  The sample output of `verify` and `assets` is the real one-line form.
+- README and LISEZMOI list what exit 2 covers.
+
 ## [0.4.4] — 2026-11-07
 
 ### Fixed
