@@ -33,7 +33,7 @@ it, and nothing anywhere was watching. That is this package's whole subject.
 pip install sprezzature-video
 ```
 
-One install, every surface. FastAPI, uvicorn, the MCP server,
+One install, every surface. FastAPI, uvicorn, the MCP (Model Context Protocol, the protocol through which AI agents call tools in English) server,
 `sprezzature-audio`, `audio-helper`, `video-helper` and `os-helper` are base
 dependencies. The only extra is `[dev]`, the test toolchain (pytest, ruff,
 mypy, httpx and httpx2).
@@ -50,7 +50,7 @@ The same functions behind five doors.
 |---|---|
 | Library | `import sprezzature_video` |
 | CLI (command-line interface) | `sprezzature-video` or `make-film`: two names for one Click group |
-| HTTP API | `uvicorn sprezzature_video.api:app --port 8000` (HTTP routes only, no `/mcp`), or `sprezzature-video-mcp`, or `docker compose up` |
+| HTTP (HyperText Transfer Protocol, the protocol a browser uses to ask a server for a page, and a program to ask for data) API (application programming interface, addresses another program calls to use this tool with no person clicking) | `uvicorn sprezzature_video.api:app --port 8000` (HTTP routes only, no `/mcp`), or `sprezzature-video-mcp`, or `docker compose up` |
 | MCP (Model Context Protocol) server | `sprezzature-video-mcp`, endpoint `/mcp` on the same FastAPI app; the bare `uvicorn` line above does not serve it |
 | Skill | `sprezzature-video/SKILL.md`, kept in the [sprezzature](https://github.com/warith-harchaoui/sprezzature) hub |
 
@@ -100,7 +100,7 @@ repository it checks.
 
 ## The film spec
 
-A film is a YAML file. Every section is optional.
+A film is a YAML (YAML Ain't Markup Language, a settings file people edit by hand, one setting per line such as title: Home) file. Every section is optional.
 
 ```yaml
 name: demo                     # defaults to the file's stem
@@ -120,7 +120,7 @@ pitch:                         # beat name to scene indices
   problem: [0]
 ```
 
-A claim's `method` is one of `json_len` (length of a top-level JSON array),
+A claim's `method` is one of `json_len` (length of a top-level JSON (JavaScript Object Notation, a text format in which programs store data as named fields, such as "title": "Home") array),
 `json_key_len` (length of the value at `selector`), `regex_count` (matches of
 `selector`, multiline), `line_count` (non-blank lines) and `literal` (the file
 contains `selector` verbatim). A `regex_count` selector that matches nothing is
@@ -276,7 +276,7 @@ files and ffmpeg primitives come from `video-helper`, durations from
 Alpha, before 1.0. The checker, the asset ledger, the captions, the
 post-processing, the timeline layout, the pitch and calque checks, the prose
 charter, the YAML spec loader and the five surfaces are written and tested.
-CI runs ruff, `ruff format --check` and pytest on Python 3.12,
+CI (continuous integration, the checks a server reruns on every push, so a broken test shows before release) runs ruff, `ruff format --check` and pytest on Python 3.12,
 and a floor job that installs and imports the package on 3.10.
 
 There is no renderer module yet. Hyperframes is driven directly, and a
@@ -284,4 +284,4 @@ There is no renderer module yet. Hyperframes is driven directly, and a
 
 ## License
 
-BSD-3-Clause.
+The three-clause Berkeley Software Distribution license, BSD-3-Clause, a permissive open-source license: anyone may reuse the code, even commercially, if they keep the copyright notice.

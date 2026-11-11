@@ -34,7 +34,7 @@ paquet.
 pip install sprezzature-video
 ```
 
-Une seule installation, toutes les surfaces. FastAPI, uvicorn, le serveur MCP,
+Une seule installation, toutes les surfaces. FastAPI, uvicorn, le serveur MCP (Model Context Protocol, le protocole par lequel les agents IA appellent des outils en français),
 `sprezzature-audio`, `audio-helper`, `video-helper` et `os-helper`
 sont des dépendances de base. Le seul extra est `[dev]`, l'outillage de test
 (pytest, ruff, mypy, httpx et httpx2).
@@ -52,7 +52,7 @@ Les mêmes fonctions derrière cinq portes.
 |---|---|
 | Bibliothèque | `import sprezzature_video` |
 | CLI (interface en ligne de commande) | `sprezzature-video` ou `make-film` : deux noms pour un seul groupe Click |
-| API HTTP | `uvicorn sprezzature_video.api:app --port 8000` (routes HTTP seulement, pas de `/mcp`), ou `sprezzature-video-mcp`, ou `docker compose up` |
+| API (application programming interface, des adresses qu'un autre programme appelle pour se servir de l'outil sans personne qui clique) HTTP (HyperText Transfer Protocol, le protocole par lequel un navigateur demande une page à un serveur, et un programme des données) | `uvicorn sprezzature_video.api:app --port 8000` (routes HTTP seulement, pas de `/mcp`), ou `sprezzature-video-mcp`, ou `docker compose up` |
 | Serveur MCP (Model Context Protocol) | `sprezzature-video-mcp`, point d'accès `/mcp` sur la même application FastAPI ; la ligne `uvicorn` ci-dessus ne le sert pas |
 | Skill | `sprezzature-video/SKILL.md`, rangé dans le dépôt central [sprezzature](https://github.com/warith-harchaoui/sprezzature) |
 
@@ -102,7 +102,7 @@ le dépôt qu'il vérifie.
 
 ## La spécification de film
 
-Un film est un fichier YAML. Chaque section est facultative.
+Un film est un fichier YAML (YAML Ain't Markup Language, un fichier de réglages qu'on modifie à la main, un réglage par ligne, comme « titre : Accueil »). Chaque section est facultative.
 
 ```yaml
 name: demo                     # par défaut, le nom du fichier sans extension
@@ -123,7 +123,7 @@ pitch:                         # nom du temps vers les indices de scène
 ```
 
 La `method` d'une revendication est l'une de `json_len` (longueur d'un tableau
-JSON de premier niveau), `json_key_len` (longueur de la valeur sous
+JSON (JavaScript Object Notation, un format texte dans lequel les programmes rangent des données en champs nommés, comme « titre : Accueil ») de premier niveau), `json_key_len` (longueur de la valeur sous
 `selector`), `regex_count` (correspondances de `selector`, en mode multiligne),
 `line_count` (lignes non vides) et `literal` (le fichier contient `selector`
 mot pour mot). Un sélecteur `regex_count` qui ne trouve rien est une erreur,
@@ -285,7 +285,7 @@ d'`audio-helper`. Le rendu est fait par Hyperframes, hors de ce paquet.
 Alpha, avant 1.0. Le vérificateur, le registre d'actifs, les sous-titres,
 l'après-rendu, le calage sur la grille, les vérifications pitch et calque, la
 charte de prose, le chargeur de spécifications YAML et les cinq surfaces sont
-écrits et testés. La CI fait tourner ruff, `ruff format --check`,
+écrits et testés. La CI (continuous integration, les vérifications qu'un serveur relance à chaque envoi, pour qu'un test cassé se voie avant la publication) fait tourner ruff, `ruff format --check`,
 et pytest sous Python 3.12, et un job plancher qui installe et importe le
 paquet sous 3.10.
 
@@ -294,4 +294,4 @@ un paquet `renderers/` revient dans le commit qui lui donne un module.
 
 ## Licence
 
-BSD-3-Clause.
+La licence Berkeley Software Distribution à trois clauses, BSD-3-Clause, une licence libre permissive : chacun peut réutiliser le code, même commercialement, à condition de garder la mention de copyright.
