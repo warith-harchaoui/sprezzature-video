@@ -31,12 +31,11 @@ from pathlib import Path
 
 import click
 
-from sprezzature_video._skill import skill_command
-
 from sprezzature_video import assets as assets_mod
 from sprezzature_video import captions as captions_mod
 from sprezzature_video import claims as claims_mod
 from sprezzature_video import spec as spec_mod
+from sprezzature_video._skill import skill_command
 
 #: Shown under the command list. Completion is click's, and worth saying out
 #: loud: nobody discovers it by guessing.
