@@ -51,7 +51,10 @@ from sprezzature_video.timeline import Layout, Placed, lay_out
 
 __version__ = "0.4.5"
 
+from sprezzature_video._skill import skill_path  # noqa: E402
+
 __all__ = [
+    "skill_path",
     "Asset",
     "AssetLedger",
     "AssetVerdict",

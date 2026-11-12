@@ -124,6 +124,7 @@ dev = [
 ]
 
 [project.scripts]
+sprezzature-video-skill = "sprezzature_video._skill:main"
 make-film = "sprezzature_video.cli:main"
 sprezzature-video = "sprezzature_video.cli:main"
 sprezzature-video-mcp = "sprezzature_video.mcp:main"
@@ -166,3 +167,9 @@ ignore = [
     "B008",
     "SIM108",
 ]
+
+[tool.setuptools.package-data]
+# The skill an agent reads ships inside the package, so `pip install`
+# carries all five surfaces; `sprezzature-video-skill --install` puts it
+# where Claude Code or OpenCode looks.
+"sprezzature_video" = ["skill/**/*"]

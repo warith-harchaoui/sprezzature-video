@@ -31,6 +31,8 @@ from pathlib import Path
 
 import click
 
+from sprezzature_video._skill import skill_command
+
 from sprezzature_video import assets as assets_mod
 from sprezzature_video import captions as captions_mod
 from sprezzature_video import claims as claims_mod
@@ -305,6 +307,10 @@ def calque(spec_path: str, first: str, second: str) -> None:
             f"rather than rendered"
         )
     raise SystemExit(1 if report.suspected else 0)
+
+
+# The skill this package ships, one sub-command away: `sprezzature-video skill --install`.
+main.add_command(skill_command)
 
 
 if __name__ == "__main__":
