@@ -52,7 +52,7 @@ The same functions behind five doors.
 | CLI (command-line interface) | `sprezzature-video` or `make-film`: two names for one Click group |
 | HTTP (HyperText Transfer Protocol, the protocol a browser uses to ask a server for a page, and a program to ask for data) API (application programming interface, addresses another program calls to use this tool with no person clicking) | `uvicorn sprezzature_video.api:app --port 8000` (HTTP routes only, no `/mcp`), or `sprezzature-video-mcp`, or `docker compose up` |
 | MCP (Model Context Protocol) server | `sprezzature-video-mcp`, endpoint `/mcp` on the same FastAPI app; the bare `uvicorn` line above does not serve it |
-| Skill | `sprezzature-video/SKILL.md`, kept in the [sprezzature](https://github.com/warith-harchaoui/sprezzature) hub |
+| Skill | `sprezzature_video/skill/SKILL.md`, shipped inside the package. `sprezzature-video-skill` (or `sprezzature-video skill`) says whether the copy an agent reads is in step; `--install` copies it into `~/.claude/skills`, `--agent opencode` into `~/.opencode/skills`. `sprezzature_video.skill_path()` returns the folder |
 
 ### Command line
 
@@ -66,6 +66,7 @@ The same functions behind five doors.
 | `prose FILE [--lang en\|fr] [--strict]` | Checks each line of a text file against the writing charter. | `--strict` and a hard finding |
 | `pitch SPEC --duration SECONDS [--voice LANG]` | Checks the problem, solution and secret sauce beats. | a finding |
 | `calque SPEC [--from en] [--to fr]` | Reports a second-language cut that reads as a translation of the first. | the cut is suspected |
+| `skill [--install] [--agent claude\|opencode] [--path]` | Reports whether the skill installed for an agent matches the one this package ships, and with `--install` copies it there. `--path` prints where pip put it. Also installed as `sprezzature-video-skill`. | the build ships no skill |
 
 Exit 2 is a wrong call, when nothing was judged: a missing file, a missing
 required option, a spec that does not load, a language `pitch --voice` or
@@ -257,7 +258,8 @@ a regular expression knows, and a green tick standing in for a reading would
 be worse than no check at all.
 
 More runs, with their output, are in [EXAMPLES.md](EXAMPLES.md). Agent routing
-is in [TRIGGERS.md](TRIGGERS.md).
+is in [TRIGGERS.md](TRIGGERS.md), and the skill an agent reads is in
+[`sprezzature_video/skill/`](sprezzature_video/skill/SKILL.md).
 
 ---
 
@@ -284,4 +286,4 @@ There is no renderer module yet. Hyperframes is driven directly, and a
 
 ## License
 
-The three-clause Berkeley Software Distribution license, BSD-3-Clause, a permissive open-source license: anyone may reuse the code, even commercially, if they keep the copyright notice.
+Released under the Berkeley Software Distribution (BSD) 3-Clause licence, a permissive open-source licence: anyone may reuse the code, even commercially, if they keep the copyright notice. Copyright (c) Warith HARCHAOUI, warithmetics@deraison.ai.

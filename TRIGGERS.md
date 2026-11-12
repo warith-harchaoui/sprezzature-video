@@ -3,7 +3,7 @@
 When to check a film against the project it describes, and what to call.
 
 This file is written for an agent: a Claude Code or OpenCode skill, an MCP
-(Model Context Protocol) host, anything choosing a tool on someone's behalf.
+(Model Context Protocol, the protocol through which AI agents call tools in English) host, anything choosing a tool on someone's behalf.
 Humans are welcome, but the routing rules below are the point.
 
 ---
@@ -40,7 +40,7 @@ When one of these nouns appears about a film, this package is in scope:
 - **stale**, out of date, outdated, wrong number, drift, « périmé »
 - **asset**, footage, music, narration file, voice-over file, licensed, "where did X come from"
 - **re-render**, re-cut, rebuild, regenerate, « remonter »
-- **caption**, subtitle, VTT, « sous-titres »
+- **caption**, subtitle, VTT (WebVTT, Web Video Text Tracks, the caption file a browser player reads), « sous-titres »
 - **poster**, thumbnail, preview frame, "the image before you press play"
 - **loudness**, volume across a series
 - **pitch**, problem, solution, secret sauce, "does the film explain anything"
@@ -70,15 +70,18 @@ reimplementing either.
 | `prose` | "Check this script against the writing charter." Dashes, comma-and, negative openings, banned phrases. |
 | `health` | "Is the server up?" |
 | Library only: `post.bake_poster` | "Make this still the thumbnail feeds will show." Prepends it as frame 0. |
-| Library only: `post.normalize_loudness`, `post.measured_loudness` | "Level the loudness across the series." -16 LUFS, true peak -1.5 dBTP. |
+| Library only: `post.normalize_loudness`, `post.measured_loudness` | "Level the loudness across the series." -16 LUFS (loudness units relative to full scale), true peak -1.5 dBTP. |
 | Library only: `timeline.lay_out` | "Where does each narration line land once it has been spoken?" |
+| `skill` / `sprezzature-video-skill` | "Is the skill my agent reads up to date?" Reports; `--install` copies the shipped skill into `~/.claude/skills` (`--agent opencode`: `~/.opencode/skills`). |
 
 ---
 
 ## What to call on every surface
 
 The MCP tool name is the route's `operation_id`. A dash means the surface does
-not carry that operation.
+not carry that operation. CLI (command-line interface) is the commands typed
+in a terminal; HTTP (HyperText Transfer Protocol, the protocol a program uses to
+ask a server for data) is the FastAPI app.
 
 | Operation | Library | CLI (`sprezzature-video` or `make-film`) | HTTP | MCP tool |
 |---|---|---|---|---|
@@ -94,9 +97,15 @@ not carry that operation.
 | Prose charter | `check_line`, `measure_prose` | `prose FILE --lang en\|fr [--strict]` | - | - |
 | Bake poster, loudness | `post.bake_poster`, `post.normalize_loudness`, `post.measured_loudness` | - | - | - |
 | Timeline | `lay_out` | - | - | - |
+| The skill | `skill_path()` | `skill [--install] [--agent claude\|opencode] [--path]`, or `sprezzature-video-skill` | - | - |
 
 The MCP server is `sprezzature-video-mcp` (default `127.0.0.1:8000`, endpoint
-`/mcp`). The skill is `sprezzature-video` in the sprezzature hub.
+`/mcp`). The skill is `sprezzature-video`, shipped inside the package at
+`sprezzature_video/skill/`; `sprezzature-video-skill --install` puts it where
+Claude Code reads it. Five surfaces in all: library, CLI (Click), HTTP API
+(application programming interface: the FastAPI app, with a Dockerfile and
+`docker-compose.yml`), MCP (fastapi-mcp) and
+the skill.
 
 ---
 

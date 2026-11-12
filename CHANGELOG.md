@@ -6,6 +6,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- **The skill ships inside the package.** `SKILL.md`, its references and its
+  trigger catalogue moved from the sprezzature hub into
+  `sprezzature_video/skill/`, and the wheel carries them, so
+  `pip install sprezzature-video` now brings all five surfaces: library,
+  Click command line, HTTP (HyperText Transfer Protocol) API (application
+  programming interface) on FastAPI with its Dockerfile and compose file,
+  MCP (Model Context Protocol, the protocol through which AI agents call tools
+  in English) server, and the skill. `sprezzature-video-skill`, also reachable
+  as `sprezzature-video skill`, reports whether the copy an agent reads is in
+  step; `--install` copies it into `~/.claude/skills` (`--agent opencode` for
+  `~/.opencode/skills`), moving a previous copy to `skills-superseded/`, and
+  `--path` prints where pip put it. `sprezzature_video.skill_path()` returns
+  the folder.
+
+### Docs
+
+- README, LISEZMOI, TRIGGERS and the skill itself said the skill was kept in
+  the hub; they now point at the package and document the `skill` command.
+  EXAMPLES gains a section on it.
+- CONTRIBUTING said CI (continuous integration, the checks a server reruns on
+  every push) runs four gates; it runs three. mypy runs in the pre-push hook
+  only, since the CI was lightened.
+- README and LISEZMOI name the licence as the Berkeley Software Distribution
+  (BSD) 3-Clause licence, with its holder.
+- EXAMPLES and TRIGGERS define each acronym at its first occurrence.
+
 ## [0.4.5] — 2026-11-08
 
 ### Fixed

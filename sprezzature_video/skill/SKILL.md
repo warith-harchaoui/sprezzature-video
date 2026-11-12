@@ -22,7 +22,7 @@ metadata:
 
 # sprezzature-video
 
-> The tools below ship as the standalone package [`sprezzature-video`](https://github.com/warith-harchaoui/sprezzature-video) (`pip install sprezzature-video`, every surface included). It is invoked as `make-film …` or `sprezzature-video …`, two names for one Click group, with the agent surface `sprezzature-video-mcp …`. There is no `scripts/` folder in this monorepo; the SKILL.md here is the agentic contract.
+> The tools below ship as the standalone package [`sprezzature-video`](https://github.com/warith-harchaoui/sprezzature-video) (`pip install sprezzature-video`, every surface included). It is invoked as `make-film …` or `sprezzature-video …`, two names for one Click group, with the agent surface `sprezzature-video-mcp …`. This skill ships inside that package, at `sprezzature_video/skill/`: `sprezzature-video-skill` (or `sprezzature-video skill`) says whether the copy an agent reads is in step, and `--install` copies it into `~/.claude/skills` (`--agent opencode` for `~/.opencode/skills`).
 
 You built a video about a project. The project moved. Nothing told the video.
 
@@ -49,8 +49,9 @@ Three triggers, and the second is the one people miss:
 
 ## How to use it
 
-Eight commands. The checks (`verify`, `scan`, `assets`, `pitch`, `calque`, and
-`prose` under `--strict`) exit 1 when the film fails; every command exits 2 on
+Eight commands that judge a film, plus `skill`, which manages this skill. The
+checks (`verify`, `scan`, `assets`, `pitch`, `calque`, and `prose` under
+`--strict`) exit 1 when the film fails; every command exits 2 on
 a wrong call, and `poster` exits 2 when `ffmpeg` is missing.
 
 ```bash
@@ -62,6 +63,7 @@ make-film poster film.mp4 --out film.jpg --at 7.6        # one JPEG frame, throu
 make-film pitch film.yaml --duration 60                  # problem, solution, secret sauce; --voice fr reads the narration
 make-film calque film.yaml --from en --to fr             # was the second language written or translated?
 make-film prose script.txt --lang en --strict            # the mechanical half of the writing charter
+make-film skill --install                                # refresh this skill in ~/.claude/skills
 ```
 
 Both directions matter. `verify` protects the claims somebody remembered to
@@ -74,10 +76,12 @@ generator nobody opens.
 
 ## The surfaces
 
-Library, the command line (`sprezzature-video` or `make-film`, Click only), a
-FastAPI HTTP (HyperText Transfer Protocol, the language a browser and a server speak each time a page loads) API (application programming interface, the requests one program can send another, such as verify this film), and MCP (Model Context Protocol, the protocol through which AI agents call tools in English) tools mounted on that same app at `/mcp`. One
+Five: the library, the command line (`sprezzature-video` or `make-film`, Click only), a
+FastAPI HTTP (HyperText Transfer Protocol, the language a browser and a server speak each time a page loads) API (application programming interface, the requests one program can send another, such as verify this film), and MCP (Model Context Protocol, the protocol through which AI agents call tools in English) tools mounted on that same app at `/mcp`, and this skill. One
 implementation underneath, so the terminal answer and the HTTP answer cannot
-disagree.
+disagree. `sprezzature-video-mcp` serves the routes and `/mcp` together on
+`127.0.0.1:8000`; the Docker image and `docker compose up` run the same thing
+on `0.0.0.0:8000`, with `./work` mounted on `/work` for `/v1/verify`.
 
 The five MCP tools are the routes' `operation_id`s:
 

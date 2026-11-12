@@ -1,7 +1,8 @@
 # Examples
 
-Every example below runs against the same small film spec. It is deliberately
-tiny: the interesting part is not the YAML, it is what happens when the project
+Every example below runs against the same small film spec, a YAML (YAML Ain't
+Markup Language, a settings file people edit by hand, one setting per line)
+file. It is deliberately tiny: the interesting part is not the YAML, it is what happens when the project
 moves underneath it.
 
 ```yaml
@@ -22,7 +23,8 @@ claims:
 ```
 
 Two claims, two different ways of being true: one is a count read out of a JSON
-array, the other a phrase that must appear verbatim in a reference file.
+(JavaScript Object Notation, a text format in which programs store data as
+named fields) array, the other a phrase that must appear verbatim in a reference file.
 
 ## Verify the claims
 
@@ -136,7 +138,8 @@ the audio, not typed: the script this generalises hard-coded them, and the day
 two stale lines were re-synthesized they moved by 43 and 64 milliseconds with
 nothing to notice.
 
-`--translated` omits voice tags, because W3C reserves `<v Name>` for the track
+`--translated` omits voice tags, because the W3C (World Wide Web Consortium,
+the body that writes the WebVTT standard) reserves `<v Name>` for the track
 in the audio's own language.
 
 A line longer than 42 characters is cut into successive cues until every piece
@@ -154,6 +157,8 @@ the moment the film's strongest line is fully on screen.
 
 ## Over HTTP
 
+HTTP (HyperText Transfer Protocol, the protocol a program uses to ask a server
+for data) is how a build step in any language reaches the checker.
 The same operations and the same answers, because every route calls the same
 library functions as the command line:
 
@@ -172,7 +177,8 @@ describes. `GET /v1/methods` lists the five claim methods and `GET /health`
 answers a liveness probe. Interactive documentation is at `/docs`.
 
 The bare `uvicorn` line serves the HTTP routes only: `/mcp` answers 404
-there. `sprezzature-video-mcp` serves both on one port.
+there. `sprezzature-video-mcp` serves both on one port: the routes, and the
+MCP (Model Context Protocol, the protocol through which AI agents call tools in English) endpoint.
 
 With Docker, `docker compose up -d` serves the same app on port 8000, the
 routes and `/mcp` together, and mounts `./work` on `/work`:
@@ -183,6 +189,8 @@ docker compose run --rm api make-film verify /work/film.yaml --root /work
 
 ## Over MCP
 
+The same routes, as tools an agent calls.
+
 ```bash
 sprezzature-video-mcp --host 127.0.0.1 --port 8000
 ```
@@ -190,6 +198,30 @@ sprezzature-video-mcp --host 127.0.0.1 --port 8000
 The MCP endpoint is `/mcp`, mounted on the same FastAPI app. Its five tools are
 the routes' `operation_id`s: `health`, `list_methods`, `scan_composition`,
 `verify_claims` and `build_captions`.
+
+## As a skill
+
+The skill an agent reads ships inside the package, in
+`sprezzature_video/skill/` (`SKILL.md` and its `references/`). Nothing is
+installed for an agent until you ask:
+
+```bash
+sprezzature-video-skill                         # is the copy an agent reads in step?
+sprezzature-video-skill --install               # copy it into ~/.claude/skills/sprezzature-video
+sprezzature-video-skill --install --agent opencode   # ~/.opencode/skills instead
+sprezzature-video-skill --path                  # where pip put it
+sprezzature-video skill --install               # the same command, as a sub-command
+```
+
+```
+sprezzature-video: differs: SKILL.md (/home/you/.claude/skills/sprezzature-video)
+Pass --install to copy the shipped skill there.
+```
+
+`--install` moves a previous copy to `~/.claude/skills-superseded/` first,
+beside the skills folder rather than inside it, so the old copy is not read
+as a second skill. From Python, `sprezzature_video.skill_path()` returns the
+folder.
 
 ## Pitch, calque and prose
 
@@ -208,7 +240,8 @@ make-film prose script.txt --lang en --strict
 
 ## As a gate
 
-The exit codes are the point. In a pre-commit hook or a CI step:
+The exit codes are the point. In a pre-commit hook or a CI (continuous
+integration, the checks a server reruns on every push) step:
 
 ```bash
 make-film verify film.yaml --root . || exit 1

@@ -17,15 +17,26 @@ files, and `sprezzature-audio` brings the narration engines through
 `speaker-helper`. FastAPI, uvicorn and fastapi-mcp are in the base
 too. The `poster` command and the `post` module need the `ffmpeg` binary.
 
+The skill an agent reads is part of the package, in `sprezzature_video/skill/`,
+and ships in the wheel with the other four surfaces (library, Click command
+line, FastAPI app, and the MCP (Model Context Protocol, the protocol through which AI agents call tools in English) server). `sprezzature_video/_skill.py` and
+`tests/test_the_skill_ships_with_the_package.py` are shared verbatim by the ten
+bricks and kept in step by the hub's `scripts/sync_helpers.py`: change them
+there, not here. The `description:` of `SKILL.md` and
+`skill/references/triggers.md` are held by the hub's
+`scripts/build_triggers.py`.
+
 Rendering is **not** a Python dependency. The default renderer is Hyperframes,
 which arrives over `npx`; see [BOUNDARIES.md](BOUNDARIES.md) for why that line
 is drawn where it is.
 
 ## The gates
 
-Lint, format, types and tests. CI runs all four, on Python 3.12, with ruff
-pinned to 0.15.21. A separate floor job installs and imports the package on
-Python 3.10.
+Lint, format, types and tests. CI (continuous integration, the checks a server
+reruns on every push) runs three of them, ruff, `ruff format --check` and
+pytest, on Python 3.12 with ruff pinned to 0.15.21; a separate floor job
+installs and imports the package on Python 3.10. Types are checked locally
+only: mypy runs in the pre-push hook below, not in CI.
 
 ```bash
 ruff check .

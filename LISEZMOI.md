@@ -54,7 +54,7 @@ Les mêmes fonctions derrière cinq portes.
 | CLI (interface en ligne de commande) | `sprezzature-video` ou `make-film` : deux noms pour un seul groupe Click |
 | API (application programming interface, des adresses qu'un autre programme appelle pour se servir de l'outil sans personne qui clique) HTTP (HyperText Transfer Protocol, le protocole par lequel un navigateur demande une page à un serveur, et un programme des données) | `uvicorn sprezzature_video.api:app --port 8000` (routes HTTP seulement, pas de `/mcp`), ou `sprezzature-video-mcp`, ou `docker compose up` |
 | Serveur MCP (Model Context Protocol) | `sprezzature-video-mcp`, point d'accès `/mcp` sur la même application FastAPI ; la ligne `uvicorn` ci-dessus ne le sert pas |
-| Skill | `sprezzature-video/SKILL.md`, rangé dans le dépôt central [sprezzature](https://github.com/warith-harchaoui/sprezzature) |
+| Skill | `sprezzature_video/skill/SKILL.md`, embarqué dans le paquet. `sprezzature-video-skill` (ou `sprezzature-video skill`) dit si la copie que lit un agent est à jour ; `--install` la copie dans `~/.claude/skills`, `--agent opencode` dans `~/.opencode/skills`. `sprezzature_video.skill_path()` rend le dossier |
 
 ### Ligne de commande
 
@@ -68,6 +68,7 @@ Les mêmes fonctions derrière cinq portes.
 | `prose FILE [--lang en\|fr] [--strict]` | Confronte chaque ligne d'un fichier texte à la charte d'écriture. | `--strict` et une alerte ferme |
 | `pitch SPEC --duration SECONDES [--voice LANG]` | Vérifie les trois temps problème, solution, ingrédient secret. | une alerte |
 | `calque SPEC [--from en] [--to fr]` | Signale une coupe en deuxième langue qui se lit comme une traduction de la première. | la coupe est soupçonnée |
+| `skill [--install] [--agent claude\|opencode] [--path]` | Dit si le skill installé pour un agent est celui que livre ce paquet, et avec `--install` l'y copie. `--path` affiche où pip l'a posé. Aussi installé sous le nom `sprezzature-video-skill`. | la construction ne livre aucun skill |
 
 La sortie 2 signale un appel faux, quand rien n'a été jugé : un fichier absent,
 une option obligatoire manquante, une spécification qui ne se charge pas, une
@@ -266,7 +267,8 @@ une chose que connaît une expression régulière, et une coche verte qui
 tiendrait lieu de lecture serait pire que pas de vérification du tout.
 
 D'autres exécutions, avec leur sortie, sont dans [EXAMPLES.md](EXAMPLES.md).
-Le routage des agents est dans [TRIGGERS.md](TRIGGERS.md).
+Le routage des agents est dans [TRIGGERS.md](TRIGGERS.md), et le skill que lit
+un agent est dans [`sprezzature_video/skill/`](sprezzature_video/skill/SKILL.md).
 
 ---
 
@@ -294,4 +296,4 @@ un paquet `renderers/` revient dans le commit qui lui donne un module.
 
 ## Licence
 
-La licence Berkeley Software Distribution à trois clauses, BSD-3-Clause, une licence libre permissive : chacun peut réutiliser le code, même commercialement, à condition de garder la mention de copyright.
+Publié sous la licence Berkeley Software Distribution (BSD) 3-Clause, une licence libre permissive : chacun peut réutiliser le code, même commercialement, à condition de garder la mention de copyright. Copyright (c) Warith HARCHAOUI, warithmetics@deraison.ai.
