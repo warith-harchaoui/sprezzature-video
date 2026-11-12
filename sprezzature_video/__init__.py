@@ -49,7 +49,7 @@ from sprezzature_video.pitch import check as check_pitch
 from sprezzature_video.spec import FilmSpec, load
 from sprezzature_video.timeline import Layout, Placed, lay_out
 
-__version__ = "0.4.5"
+__version__ = "0.5.0"
 
 from sprezzature_video._skill import skill_path  # noqa: E402
 
