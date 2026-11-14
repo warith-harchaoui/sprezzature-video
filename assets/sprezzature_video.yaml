@@ -43,7 +43,7 @@ approaches:
     axis_1: 2.4782
     axis_2: 1.1178
   role: best
-  color: '#FF3B30'
+  color: '#FF383C'
   attributes:
     Claims checked against source: 5.0
     Asset rebuild audit: 5.0
@@ -121,7 +121,7 @@ approaches:
     axis_1: 2.4782
     axis_2: -0.4628
   role: right
-  color: '#007AFF'
+  color: '#0088FF'
   attributes:
     Claims checked against source: 1.0
     Asset rebuild audit: 2.0
@@ -134,7 +134,7 @@ approaches:
     axis_1: -2.4782
     axis_2: 1.1178
   role: worst
-  color: '#A52A2A'
+  color: '#AC7F5E'
   attributes:
     Claims checked against source: 1.0
     Asset rebuild audit: 1.0

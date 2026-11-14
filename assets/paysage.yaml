@@ -68,7 +68,7 @@ approaches:
     axis_1: 3.4064
     axis_2: 3.343
   role: best
-  color: '#FF3B30'
+  color: '#FF383C'
   attributes:
     Produit un film fini: 2.0
     Étendue de l'animation: 1.0
@@ -156,7 +156,7 @@ approaches:
     axis_1: -1.5928
     axis_2: 3.343
   role: top
-  color: '#AF52DE'
+  color: '#CB30E0'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 5.0
@@ -332,7 +332,7 @@ approaches:
     axis_1: -2.2786
     axis_2: -2.2399
   role: worst
-  color: '#A52A2A'
+  color: '#AC7F5E'
   attributes:
     Produit un film fini: 5.0
     Étendue de l'animation: 3.0
@@ -398,7 +398,7 @@ approaches:
     axis_1: 3.4064
     axis_2: 0.602
   role: right
-  color: '#007AFF'
+  color: '#0088FF'
   attributes:
     Produit un film fini: 1.0
     Étendue de l'animation: 1.0
