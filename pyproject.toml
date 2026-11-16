@@ -42,7 +42,7 @@ dependencies = [
     # The floor is 2.9.0, the release that carries `subtitles`. It is also
     # where `vtt2srt` arrived, which is how a film's captions reach a platform
     # that refuses WebVTT.
-    "video-helper>=2.9.0",
+    "video-helper>=2.9.0,<3",
     # Hashing, copying and path work for the asset ledger. Declared even
     # though `audio-helper` already pulls it: `assets.py` imports it by name,
     # and a dependency you use directly but inherit transitively is exactly
@@ -98,7 +98,7 @@ dependencies = [
     # pip would say nothing — an unknown extra is a warning and exit 0,
     # measured, so neither spelling fails loudly on the wrong version.
     "sprezzature-audio>=1.9.0",
-    "audio-helper>=1.6.0",
+    "audio-helper>=1.6.0,<3",
 ]
 
 [project.optional-dependencies]
