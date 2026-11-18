@@ -18,7 +18,7 @@ description: >-
 license: BSD-3-Clause
 metadata:
   author: Warith HARCHAOUI
-  version: 1.9.0
+  version: 1.9.1
 ---
 
 # sprezzature-video
