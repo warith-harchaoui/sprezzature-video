@@ -72,7 +72,7 @@ else:
         app,
         name="sprezzature-video",
         description=(
-            "Sprezzature video MCP tools: verify a film's declared claims against "
+            "sprezzature video MCP tools: verify a film's declared claims against "
             "the code it describes, find numbers on screen that no claim accounts "
             "for, and build WebVTT captions from a narration script."
         ),

@@ -188,7 +188,7 @@ def test_an_undeclared_number_on_screen_is_reported() -> None:
 
 def test_an_exempted_number_is_not_reported() -> None:
     """A year in a wordmark is on screen without being a claim about the code."""
-    html = "<p>167 kinds — Sprezzature 2026</p>"
+    html = "<p>167 kinds — sprezzature 2026</p>"
     found = undeclared_numbers(html, [_kinds_claim(167)], ignore=frozenset({2026}))
     assert found == []
 

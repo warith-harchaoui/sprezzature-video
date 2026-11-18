@@ -31,13 +31,13 @@ from sprezzature_video.spec import FilmSpec
 #: a line at a time. Every position holds the same number of sentences and the
 #: same numerals, which is what makes it a translation and not a script.
 ENGLISH = [
-    "Sprezzature is an AI engine for Design. Colors makes sure yours can be read.",
+    "sprezzature is an AI engine for Design. Colors makes sure yours can be read.",
     "Light grey on white reads perfectly well, at your desk, indoors.",
     "About one man in twelve does not separate red from green.",
     "The matrices come from a 2009 paper, measured on real observers.",
 ]
 TRANSLATED = [
-    "Sprezzature est un moteur d'IA pour le design. Colors vérifie que les vôtres se lisent.",
+    "sprezzature est un moteur d'IA pour le design. Colors vérifie que les vôtres se lisent.",
     "Du gris clair sur du blanc se lit très bien, chez vous, à l'intérieur.",
     "Environ un homme sur douze ne sépare pas le rouge du vert.",
     "Les matrices viennent d'un article de 2009, mesurées sur de vrais observateurs.",
@@ -47,7 +47,7 @@ TRANSLATED = [
 #: two sentences rather than one, the paper arrives in the same breath as what
 #: it proves, and the script runs to a different number of lines.
 WRITTEN = [
-    "Sprezzature est un moteur d'IA pour le design. Colors vérifie que vos couleurs se lisent.",
+    "sprezzature est un moteur d'IA pour le design. Colors vérifie que vos couleurs se lisent.",
     "Du gris clair sur du blanc, ça se lit très bien.",
     "Chez vous, à l'intérieur.",
     "Et un homme sur douze ne distingue pas le rouge du vert : vos deux barres n'en font plus qu'une.",

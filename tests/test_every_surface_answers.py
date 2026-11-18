@@ -145,7 +145,7 @@ def test_scan_finds_an_undeclared_number(project: Path, tmp_path: Path) -> None:
 
 def test_scan_accepts_an_exempted_value(project: Path, tmp_path: Path) -> None:
     page = tmp_path / "index.html"
-    page.write_text("<p>167 kinds — Sprezzature 2026</p>")
+    page.write_text("<p>167 kinds — sprezzature 2026</p>")
     args = ["scan", str(page), "--spec", str(project / "film.yaml"), "--ignore", "2026"]
     assert _run(args) == 0
 
