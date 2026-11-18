@@ -15,6 +15,7 @@ description: >-
   "poster frame". Not this one when: the ask is motion
   design, which belongs to the renderer. The exhaustive trigger catalogue is in
   `references/triggers.md`.
+license: BSD-3-Clause
 metadata:
   author: Warith HARCHAOUI
   version: 1.9.0
