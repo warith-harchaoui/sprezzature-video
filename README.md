@@ -286,4 +286,4 @@ There is no renderer module yet. Hyperframes is driven directly, and a
 
 ## License
 
-Released under the Berkeley Software Distribution (BSD) 3-Clause licence, a permissive open-source licence: anyone may reuse the code, even commercially, if they keep the copyright notice. Copyright (c) Warith HARCHAOUI, warithmetics@deraison.ai.
+Released under the Berkeley Software Distribution (BSD) 3-Clause licence, a permissive open-source licence: anyone may reuse the code, even commercially, if they keep the copyright notice. Copyright (c) Warith Harchaoui, warithmetics@deraison.ai.

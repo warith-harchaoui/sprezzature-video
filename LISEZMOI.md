@@ -296,4 +296,4 @@ un paquet `renderers/` revient dans le commit qui lui donne un module.
 
 ## Licence
 
-Publié sous la licence Berkeley Software Distribution (BSD) 3-Clause, une licence libre permissive : chacun peut réutiliser le code, même commercialement, à condition de garder la mention de copyright. Copyright (c) Warith HARCHAOUI, warithmetics@deraison.ai.
+Publié sous la licence Berkeley Software Distribution (BSD) 3-Clause, une licence libre permissive : chacun peut réutiliser le code, même commercialement, à condition de garder la mention de copyright. Copyright (c) Warith Harchaoui, warithmetics@deraison.ai.
